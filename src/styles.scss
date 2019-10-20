@@ -45,3 +45,12 @@ p, .paragraph {
       padding: 9px 18px;
       text-decoration: none;
  }
+
+.search-icon {
+     display: flex;
+     align-items: center;
+     border: none;
+     padding: 0;
+     background-color: transparent;
+     text-align: inherit;
+}
