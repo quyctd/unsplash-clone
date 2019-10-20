@@ -25,13 +25,13 @@
      line-height: 1.6;
 }
 
-.btn-block-level {
-     width: 100%;
-}
-
 .join-link {
      color: #767676;
     text-decoration: underline;
     -webkit-transition: color 0.1s ease-in-out, opacity 0.1s ease-in-out;
     transition: color 0.1s ease-in-out, opacity 0.1s ease-in-out;
 }
+
+ .form-control {
+      padding: 6px 12px;
+ }
