@@ -8,6 +8,7 @@ import { JoinComponent } from './main/join/join.component';
 import { ErrorComponent } from './common/error/error.component';
 import { HomeComponent } from './main/home/home.component';
 import { TopbarComponent } from './main/general/topbar/topbar.component';
+import { CarouselComponent } from './main/home/editorial/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TopbarComponent } from './main/general/topbar/topbar.component';
     JoinComponent,
     ErrorComponent,
     HomeComponent,
-    TopbarComponent
+    TopbarComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
