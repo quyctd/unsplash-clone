@@ -10,6 +10,45 @@ html {
      float: none;
 }
 
+.no-decor {
+     text-decoration: none;
+}
+
+.no-decor:hover {
+     text-decoration: none;
+}
+
+.pointer-auto {
+     pointer-events: auto;
+}
+
+.transition {
+     transition: opacity .1s ease-in-out,visibility .1s ease-in-out;
+}
+
+.dim {
+     opacity: .8;
+    transition: opacity .1s ease-in-out;
+}
+
+.dim:hover {
+     opacity: 1;
+}
+
+.relative {
+     position: relative;
+}
+
+.img-circle {
+     position: relative;
+    display: inline-block;
+    line-height: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: middle;
+    background-color: rgba(0,0,0,.1);
+}
+
 img {
      vertical-align: middle;
      border: 0;
