@@ -9,6 +9,9 @@ import { ErrorComponent } from './common/error/error.component';
 import { HomeComponent } from './main/home/home.component';
 import { TopbarComponent } from './main/general/topbar/topbar.component';
 import { CarouselComponent } from './main/home/editorial/carousel/carousel.component';
+import { PhotogridsComponent } from './main/home/photogrids/photogrids.component';
+import { SponsoreFigureComponent } from './main/home/photogrids/sponsore-figure/sponsore-figure.component';
+import { BasicFigureComponent } from './main/home/photogrids/basic-figure/basic-figure.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { CarouselComponent } from './main/home/editorial/carousel/carousel.compo
     ErrorComponent,
     HomeComponent,
     TopbarComponent,
-    CarouselComponent
+    CarouselComponent,
+    PhotogridsComponent,
+    SponsoreFigureComponent,
+    BasicFigureComponent
   ],
   imports: [
     BrowserModule,

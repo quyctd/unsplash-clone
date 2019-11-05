@@ -24,20 +24,39 @@
 
 .carousel__image {
      object-fit: cover;
+     font-family: "object-fit:cover";
      width: 100%;
      height: 100%;
 }
+
+.carousel__photo-of-day:after {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     background: linear-gradient(180deg,rgba(0,0,0,.38) 0,rgba(0,0,0,.38) 3.5%,rgba(0,0,0,.379) 7%,rgba(0,0,0,.377) 10.35%,rgba(0,0,0,.375) 13.85%,rgba(0,0,0,.372) 17.35%,rgba(0,0,0,.369) 20.85%,rgba(0,0,0,.366) 24.35%,rgba(0,0,0,.364) 27.85%,rgba(0,0,0,.361) 31.35%,rgba(0,0,0,.358) 34.85%,rgba(0,0,0,.355) 38.35%,rgba(0,0,0,.353) 41.85%,rgba(0,0,0,.351) 45.35%,rgba(0,0,0,.35) 48.85%,rgba(0,0,0,.353) 52.35%,rgba(0,0,0,.36) 55.85%,rgba(0,0,0,.371) 59.35%,rgba(0,0,0,.385) 62.85%,rgba(0,0,0,.402) 66.35%,rgba(0,0,0,.42) 69.85%,rgba(0,0,0,.44) 73.35%,rgba(0,0,0,.46) 76.85%,rgba(0,0,0,.48) 80.35%,rgba(0,0,0,.498) 83.85%,rgba(0,0,0,.515) 87.35%,rgba(0,0,0,.529) 90.85%,rgba(0,0,0,.54) 94.35%,rgba(0,0,0,.547) 97.85%,rgba(0,0,0,.55));
+ }
+
+ .carousel__photo-of-day:after {
+     width: 100%;
+     height: 100%;
+ }
 
 .carousel__content {
      position: relative;
 }
 
 .carousel__content-main-container {
-     padding-top: 144px;
+     padding-top: 200px;
     padding-bottom: 152px;
     position: relative;
     padding-left: 12px;
     padding-right: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    @media (min-width: 768px) {
+     max-width: 1320px;
+    }
 
 }
 
@@ -52,4 +71,148 @@
      font-size: 46px;
      line-height: 1.2;
      margin: 0 0 16px;
+}
+
+.carousel__content-sub-heading {
+     margin-top: 16px;
+     margin-bottom: 0;
+     font-weight: 400;
+     font-size: 18px;
+ }
+
+
+.carousel__content-body {
+     margin-top: 0;
+    margin-bottom: 24px;
+    font-weight: 400;
+     font-size: 18px;
+}
+
+.carousel__search {
+     margin-bottom: -16px;
+    margin-left: 0;
+}
+
+.carousel__form-container {
+     padding-bottom: 16px;
+    padding-left: 0;
+}
+
+.carousel__form {
+     border-radius: 4px;
+    background-color: #f5f5f5;
+    display: flex;
+    position: relative;
+    transition: all .1s ease-in-out;
+    height: 54px;
+}
+
+.carousel__form-button {
+     display: flex;
+     align-items: center;
+     border: none;
+    padding: 0;
+    background-color: transparent;
+    text-align: inherit;
+}
+
+.carousel__form-button, .carousel__form-button:hover {
+     box-shadow: none;
+ }
+
+.carousel__form-button-icon {
+     width: 20px;
+    height: 20px;
+    padding-left: 14px;
+    box-sizing: content-box;
+    fill: #767676;
+    transition: fill .1s ease-in-out;
+}
+
+.carousel__form-search {
+     position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    border: 0;
+}
+
+.carousel__search-box {
+     flex-grow: 1;
+    display: flex;
+}
+
+.carousel__search-input {
+     box-shadow: none;
+     padding-left: 14px;
+     flex-grow: 1;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #111;
+}
+
+.carousel__search-input:focus {
+     outline: none;
+}
+
+.carousel__content-credit {
+     padding-left: 20px;
+    padding-right: 20px;
+    font-size: 13px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    color: hsla(0,0%,100%,.55);
+    text-shadow: 0 1px 8px rgba(0,0,0,.1);
+}
+
+.carousel_credit-container {
+     margin-bottom: -8px;
+    margin-left: -8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.carousel__credit-left {
+     padding-bottom: 8px;
+    padding-left: 8px;
+    display: flex;
+    flex-basis: 33.33333%;
+    flex-grow: 1;
+}
+
+.carousel__wrapper a {
+     text-decoration: none;
+}
+
+.carousel__credit-link {
+     color: hsla(0,0%,100%,.8);
+}
+
+.carousel__credit-username {
+     position: relative;
+}
+
+.carousel__credit-center {
+     justify-content: center;
+     padding-bottom: 8px;
+    padding-left: 8px;
+    display: flex;
+    flex-basis: 33.33333%;
+    flex-grow: 1;
+}
+
+.carousel__credit-right {
+     justify-content: flex-end;
+     padding-bottom: 8px;
+    padding-left: 8px;
+    display: flex;
+    flex-basis: 33.33333%;
+    flex-grow: 1;
 }
