@@ -8,7 +8,7 @@ figure {
 }
 
 .figure-showup {
-     // cursor: zoom-in;
+     cursor: zoom-in;
 }
 
 .figure-img-container {
@@ -139,18 +139,6 @@ figure {
 .figure-hover-ava-link {
      min-width: 0;
      position: relative;
-}
-
-.figure-author-a {
-     color: #fff;
-    transform: translateZ(0);
-    text-shadow: 0 1px 8px rgba(0,0,0,.1);
-    line-height: 30px;
-    display: block;
-    font-size: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .figure-download-icon {
