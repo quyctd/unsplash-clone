@@ -1,15 +1,15 @@
 .navbar__container {
-     height: 62px;
-     z-index: 6;
-     align-items: center;
      position: fixed;
      display: flex;
      width: 100%;
      padding-right: 20px;
      padding-left: 20px;
      background-color: #fff;
-     box-shadow: 0 4px 12px rgba(0,0,0,.08), 0 0 1px rgba(1,0,0,.1);
+}
 
+.topbar-index {
+     z-index: 6;
+     align-items: center;
 }
 
 .navbar__action-section {
@@ -85,7 +85,6 @@
 }
 
 .btn-submit {
-     color: #767676;
     background-color: #fff;
     border-color: #d1d1d1;
     display: inline-block;

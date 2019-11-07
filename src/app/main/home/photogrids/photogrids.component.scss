@@ -21,6 +21,10 @@
      max-width: 1320px;
 }
 
+.photogrids {
+     overflow: hidden;
+}
+
 .grid-count-three:before, .grid-count-three:after {
      content: "";
      display: table;

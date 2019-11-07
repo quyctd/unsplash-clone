@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+$uf-grey: #767676;
+$white: #fff;
+$black: #000;
+
 html {
 	font-family: 'Roboto', sans-serif;
+}
+
+.h-topbar {
+     height: 62px;
 }
 
 .center-block {
@@ -62,7 +70,7 @@ p, .paragraph {
  }
 
  a {
-     color: #767676;
+     color: $uf-grey;
      text-decoration: underline;
      -webkit-transition: color 0.1s ease-in-out, opacity 0.1s ease-in-out;
      transition: color 0.1s ease-in-out, opacity 0.1s ease-in-out;
@@ -132,6 +140,14 @@ button {
      color: #fff;
     transform: translateZ(0);
     text-shadow: 0 1px 8px rgba(0,0,0,.1);
+}
+
+.uf-grey {
+     color: $uf-grey;
+}
+
+.uf-grey:hover {
+     color: $black;
 }
 
 .tw-shadow-08:hover {

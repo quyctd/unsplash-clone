@@ -16,6 +16,7 @@ import { SponsoreFigureComponent } from './main/home/photogrids/sponsore-figure/
 import { BasicFigureComponent } from './main/home/photogrids/basic-figure/basic-figure.component';
 import { UploadModalComponent } from './main/general/upload-modal/upload-modal.component';
 import { FooterComponent } from './main/general/footer/footer.component';
+import { UploadComponent } from './main/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FooterComponent } from './main/general/footer/footer.component';
     SponsoreFigureComponent,
     BasicFigureComponent,
     UploadModalComponent,
-    FooterComponent
+    FooterComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
