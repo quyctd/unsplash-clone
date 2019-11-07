@@ -12,8 +12,16 @@
 }
 
 .grid-col-4 {
-     width: 100/3%;
      padding-bottom: 0;
      padding-left: 24px;
      float: left;
+}
+
+.photogrids {
+     max-width: 1320px;
+}
+
+.grid-count-three:before, .grid-count-three:after {
+     content: "";
+     display: table;
 }

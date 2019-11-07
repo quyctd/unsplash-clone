@@ -14,6 +14,8 @@ import { CarouselComponent } from './main/home/editorial/carousel/carousel.compo
 import { PhotogridsComponent } from './main/home/photogrids/photogrids.component';
 import { SponsoreFigureComponent } from './main/home/photogrids/sponsore-figure/sponsore-figure.component';
 import { BasicFigureComponent } from './main/home/photogrids/basic-figure/basic-figure.component';
+import { UploadModalComponent } from './main/general/upload-modal/upload-modal.component';
+import { FooterComponent } from './main/general/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { BasicFigureComponent } from './main/home/photogrids/basic-figure/basic-
     CarouselComponent,
     PhotogridsComponent,
     SponsoreFigureComponent,
-    BasicFigureComponent
+    BasicFigureComponent,
+    UploadModalComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
