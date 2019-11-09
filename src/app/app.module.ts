@@ -18,6 +18,7 @@ import { UploadModalComponent } from './main/general/upload-modal/upload-modal.c
 import { FooterComponent } from './main/general/footer/footer.component';
 import { UploadComponent } from './main/upload/upload.component';
 import { PhotoViewerComponent } from './main/photo-viewer/photo-viewer.component';
+import { UserComponent } from './main/user/user.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PhotoViewerComponent } from './main/photo-viewer/photo-viewer.component
     UploadModalComponent,
     FooterComponent,
     UploadComponent,
-    PhotoViewerComponent
+    PhotoViewerComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
