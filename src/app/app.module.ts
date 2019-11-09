@@ -17,6 +17,7 @@ import { BasicFigureComponent } from './main/home/photogrids/basic-figure/basic-
 import { UploadModalComponent } from './main/general/upload-modal/upload-modal.component';
 import { FooterComponent } from './main/general/footer/footer.component';
 import { UploadComponent } from './main/upload/upload.component';
+import { PhotoViewerComponent } from './main/photo-viewer/photo-viewer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UploadComponent } from './main/upload/upload.component';
     BasicFigureComponent,
     UploadModalComponent,
     FooterComponent,
-    UploadComponent
+    UploadComponent,
+    PhotoViewerComponent
   ],
   imports: [
     BrowserModule,
