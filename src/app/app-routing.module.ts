@@ -7,6 +7,7 @@ import { UploadComponent } from './main/upload/upload.component';
 import { PhotoViewerComponent } from './main/photo-viewer/photo-viewer.component';
 import { UserComponent } from './main/user/user.component';
 import { SearchComponent } from './main/search/search.component';
+import { FollowingComponent } from './main/home/following/following.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 's/photos/query', component: SearchComponent },
   { path: 's/collections/query', component: SearchComponent },
   { path: 's/users/query', component: SearchComponent },
+  { path: 'following', component: FollowingComponent }
 
 ];
 

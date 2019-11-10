@@ -24,6 +24,7 @@ import { UserActionComponent } from './main/user/user-action/user-action.compone
 import { SearchComponent } from './main/search/search.component';
 import { SActionComponent } from './main/search/s-action/s-action.component';
 import { SHeaderComponent } from './main/search/s-header/s-header.component';
+import { FollowingComponent } from './main/home/following/following.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SHeaderComponent } from './main/search/s-header/s-header.component';
     UserActionComponent,
     SearchComponent,
     SActionComponent,
-    SHeaderComponent
+    SHeaderComponent,
+    FollowingComponent
   ],
   imports: [
     BrowserModule,
