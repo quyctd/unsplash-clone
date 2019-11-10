@@ -21,6 +21,9 @@ import { UploadComponent } from './main/upload/upload.component';
 import { PhotoViewerComponent } from './main/photo-viewer/photo-viewer.component';
 import { UserComponent } from './main/user/user.component';
 import { UserActionComponent } from './main/user/user-action/user-action.component';
+import { SearchComponent } from './main/search/search.component';
+import { SActionComponent } from './main/search/s-action/s-action.component';
+import { SHeaderComponent } from './main/search/s-header/s-header.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { UserActionComponent } from './main/user/user-action/user-action.compone
     UploadComponent,
     PhotoViewerComponent,
     UserComponent,
-    UserActionComponent
+    UserActionComponent,
+    SearchComponent,
+    SActionComponent,
+    SHeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,74 @@
+.s-header-wrapper {
+     position: relative;
+     padding-top: 48px;
+     padding-bottom: 48px;
+     @media (min-width: 768px) {
+          padding-top: 60px;
+          padding-bottom: 72px;
+     }
+}
+
+.s-header-title {
+     font-weight: 700;
+     margin: 0 0 16px;
+     font-size: 28px;
+     line-height: 1.25;
+     @media (min-width: 768px) {
+          font-size: 46px;
+          line-height: 1.2;
+     }
+}
+
+.s-recommend-container {
+     position: relative;
+     width: 100%;
+     overflow: hidden;
+}
+
+.s-recommend-container::after {
+     position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 100px;
+    height: 100%;
+    pointer-events: none;
+    content: "";
+    background: linear-gradient(90deg,hsla(0,0%,100%,0) 0,#fff 95%,#fff);
+}
+
+.s-recommend-list {
+     height: calc(100% + 15px);
+    box-sizing: content-box;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.s-recommend-wrapper {
+     flex-basis: 120px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    max-width: 250px;
+}
+
+.s-recommend-wrapper:first-child {
+     padding-left: 0;
+}
+
+.s-recommend-bd-style {
+     border-radius: 5px;
+    border-style: solid;
+    overflow: hidden;
+}
+
+.s-recommend-display {
+     text-align: center;
+    border-color: #d1d1d1;
+    text-transform: capitalize;
+    transition: border-color .1s ease-in-out;
+}
+
+.s-recommend-link {
+     padding: 13px;
+    font-size: 14px;
+}

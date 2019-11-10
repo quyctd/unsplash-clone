@@ -1,0 +1,57 @@
+.s-action-wrapper {
+     position: sticky;
+     top: 56px;
+     z-index: 5;
+     background-color: #fff;
+     box-shadow: inset 0 -1px 0 0 #d1d1d1;
+     padding-left: 20px;
+     padding-right: 20px;
+     @media (min-width: 768px) {
+          top: 62px;
+     }
+}
+
+.s-action-container {
+     line-height: 56px;
+     height: 56px;
+     display: flex;
+}
+
+.s-action-link {
+     margin-right: 24px;
+     @media (min-width: 768px) {
+          margin-right: 32px;
+     }
+    transition: fill .1s ease-in-out;
+}
+
+.s-action-link:first-child {
+     padding-left: 0;
+}
+
+.s-action-list {
+     line-height: 56px;
+     height: 56px;
+     display: flex;
+}
+
+.s-action-icon {
+     display: inline-block;
+    position: relative;
+    top: -2px;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+    fill: #d1d1d1;
+    transition: fill .1s ease-in-out;
+}
+
+.nav-link-active .s-action-icon {
+     fill: #111;
+}
+
+.s-action-link:hover a, .s-action-link:hover svg {
+     color: #111;
+     fill: #111;
+}
