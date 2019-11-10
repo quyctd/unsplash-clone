@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { FooterComponent } from './main/general/footer/footer.component';
 import { UploadComponent } from './main/upload/upload.component';
 import { PhotoViewerComponent } from './main/photo-viewer/photo-viewer.component';
 import { UserComponent } from './main/user/user.component';
+import { UserActionComponent } from './main/user/user-action/user-action.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +38,14 @@ import { UserComponent } from './main/user/user.component';
     FooterComponent,
     UploadComponent,
     PhotoViewerComponent,
-    UserComponent
+    UserComponent,
+    UserActionComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

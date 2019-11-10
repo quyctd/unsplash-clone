@@ -14,6 +14,10 @@ html {
 	font-family: 'Roboto', sans-serif;
 }
 
+a:hover {
+     color: #111;
+}
+
 .h-topbar {
      height: 62px;
 }
@@ -513,4 +517,8 @@ svg {
     text-transform: capitalize;
     line-height: 26px;
     height: 26px;
+}
+
+.fz-14 {
+     font-size: 14px;
 }

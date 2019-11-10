@@ -1,0 +1,56 @@
+.user-action-wrapper {
+     position: sticky;
+     z-index: 5;
+     background: #fff;
+     margin-bottom: 56px;
+     box-shadow: inset 0 -1px #d1d1d1;
+     @media (min-width: 768px) {
+          top: 62px;
+          padding-left: 20px;
+          padding-right: 20px;
+     }
+}
+
+.user-action-container {
+     display: flex;
+     align-items: center;
+     height: 56px;
+     @media (min-width: 768px) {
+          margin-bottom: 0;
+          margin-left: -32px;
+     }
+}
+
+.user-action-tab {
+     @media (min-width: 768px) {
+          padding-bottom: 0;
+          padding-left: 32px;
+     }
+    transition: fill .1s ease-in-out;
+}
+
+.user-action-active {
+     color: #111;
+    pointer-events: none;
+    box-shadow: inset 0 -2px #111;
+}
+
+.user-action-icon {
+     width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    fill: #d1d1d1;
+    transition: fill .1s ease-in-out;
+}
+
+.user-action-active .user-action-icon {
+     fill: #111;
+}
+
+.user-action-tab:hover a {
+     color: #111;
+}
+
+.user-action-tab:hover svg {
+     fill: #111;
+}

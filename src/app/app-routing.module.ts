@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'join', component: JoinComponent },
   { path: 'upload', component: UploadComponent },
   { path: 'photos/id', component: PhotoViewerComponent },
-  { path: '@user', component: UserComponent }
+  { path: '@user', component: UserComponent },
+  { path: '@user/likes', component: UserComponent },
+  { path: '@user/collections', component: UserComponent }
 ];
 
 @NgModule({
