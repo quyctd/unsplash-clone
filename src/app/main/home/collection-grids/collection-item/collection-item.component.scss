@@ -1,0 +1,57 @@
+.collection-card-pd {
+     padding-bottom: 48px;
+     padding-left: 24px;
+}
+
+.clt-card-imgs-wrapper {
+     position: relative;
+    margin-bottom: 16px;
+    padding-bottom: 70%;
+}
+
+.clt-card-imgs {
+     position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border-radius: 6px;
+    perspective: 1px;
+    overflow: hidden;
+    transition: all .1s ease-in-out;
+}
+
+.clt-card-img-no1 {
+     width: 70%;
+    background: #f5f5f5;
+}
+
+.clt-card-img-no2 {
+     display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: 2px;
+}
+
+.clt-card-img-no2>div:first-child {
+     margin-bottom: 2px;
+}
+
+.clt-card-name {
+     max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 3px;
+}
+
+.card-name-text {
+     font-weight: 700;
+     margin: 0;
+     font-size: 18px;
+     line-height: 1.34;
+}
+
+.card-name-author {
+     font-size: 14px;
+     color: #767676;
+     margin-bottom: 13px;
+}

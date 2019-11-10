@@ -111,6 +111,10 @@ img {
      margin-bottom: 24px;
 }
 
+.mg-bt-2 {
+     margin-bottom: 2px;
+}
+
  .btn {
       padding: 9px 18px;
       text-decoration: none;
@@ -168,6 +172,10 @@ button {
 .uf-grey {
      color: $uf-grey;
      transition: color .1s ease-in-out,opacity .1s ease-in-out;
+}
+
+.uf-semi-black {
+     color: #111;
 }
 
 .uf-grey:hover {
@@ -262,6 +270,10 @@ button {
      flex-grow: 1;
     display: flex;
     flex-direction: column;
+}
+
+.flex-grow-1 {
+     flex-grow: 1;
 }
 
 .fz-12 {
@@ -603,4 +615,32 @@ svg {
 
 .w-50 {
      width: 50%;
+}
+
+.max-width-750 {
+     max-width: 750px;
+}
+
+.tag-wrapper {
+     display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -8px;
+    margin-left: -8px;
+    overflow: hidden;
+}
+
+.obj-fit-cover {
+     object-fit: cover;
+     font-family: "object-fit:cover";
+}
+
+.figure-img {
+     position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+
+.fw-600 {
+     font-weight: 600!important;
 }

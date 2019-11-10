@@ -25,6 +25,8 @@ import { SearchComponent } from './main/search/search.component';
 import { SActionComponent } from './main/search/s-action/s-action.component';
 import { SHeaderComponent } from './main/search/s-header/s-header.component';
 import { FollowingComponent } from './main/home/following/following.component';
+import { CollectionGridsComponent } from './main/home/collection-grids/collection-grids.component';
+import { CollectionItemComponent } from './main/home/collection-grids/collection-item/collection-item.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { FollowingComponent } from './main/home/following/following.component';
     SearchComponent,
     SActionComponent,
     SHeaderComponent,
-    FollowingComponent
+    FollowingComponent,
+    CollectionGridsComponent,
+    CollectionItemComponent
   ],
   imports: [
     BrowserModule,

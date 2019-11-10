@@ -3,6 +3,7 @@
      <app-s-action></app-s-action>
      <app-s-header></app-s-header>
 
-     <app-photogrids></app-photogrids>
+     <app-photogrids *ngIf="currentState == 0"></app-photogrids>
+     <app-collection-grids *ngIf="currentState == 1"></app-collection-grids>
      <app-footer></app-footer>
 </div>
