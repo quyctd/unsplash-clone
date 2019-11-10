@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +28,8 @@ import { SHeaderComponent } from './main/search/s-header/s-header.component';
 import { FollowingComponent } from './main/home/following/following.component';
 import { CollectionGridsComponent } from './main/home/collection-grids/collection-grids.component';
 import { CollectionItemComponent } from './main/home/collection-grids/collection-item/collection-item.component';
+import { UsergridsComponent } from './main/home/usergrids/usergrids.component';
+import { UserItemComponent } from './main/home/usergrids/user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -51,10 +54,13 @@ import { CollectionItemComponent } from './main/home/collection-grids/collection
     SHeaderComponent,
     FollowingComponent,
     CollectionGridsComponent,
-    CollectionItemComponent
+    CollectionItemComponent,
+    UsergridsComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FontAwesomeModule,
     AppRoutingModule,
     NgbModule

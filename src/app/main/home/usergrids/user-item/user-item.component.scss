@@ -1,0 +1,39 @@
+.user-item-container {
+     display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-item-border {
+     border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    transition: border-color .1s ease-in-out;
+}
+
+.user-item-container:hover {
+     border-color: #767676;
+}
+
+.user-item-main {
+     padding: 16px;
+     color: #111;
+     flex-grow: 1;
+}
+
+.user-item-img-wrapper {
+     flex: 1;
+     background-color: #f5f5f5;
+}
+
+.user-item-info {
+     max-width: calc(100% - 80px);
+}
+
+.user-item-btn-wrapper {
+     display: flex;
+    padding: 0 16px 16px;
+}
+
+.user-item-btn {
+     fill: #fff;
+}
