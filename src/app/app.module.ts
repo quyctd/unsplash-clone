@@ -30,6 +30,7 @@ import { CollectionGridsComponent } from './main/home/collection-grids/collectio
 import { CollectionItemComponent } from './main/home/collection-grids/collection-item/collection-item.component';
 import { UsergridsComponent } from './main/home/usergrids/usergrids.component';
 import { UserItemComponent } from './main/home/usergrids/user-item/user-item.component';
+import { CollectionsComponent } from './main/collections/collections.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { UserItemComponent } from './main/home/usergrids/user-item/user-item.com
     CollectionGridsComponent,
     CollectionItemComponent,
     UsergridsComponent,
-    UserItemComponent
+    UserItemComponent,
+    CollectionsComponent
   ],
   imports: [
     BrowserModule,

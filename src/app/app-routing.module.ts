@@ -8,6 +8,7 @@ import { PhotoViewerComponent } from './main/photo-viewer/photo-viewer.component
 import { UserComponent } from './main/user/user.component';
 import { SearchComponent } from './main/search/search.component';
 import { FollowingComponent } from './main/home/following/following.component';
+import { CollectionsComponent } from './main/collections/collections.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 's/photos/query', component: SearchComponent },
   { path: 's/collections/query', component: SearchComponent },
   { path: 's/users/query', component: SearchComponent },
-  { path: 'following', component: FollowingComponent }
+  { path: 'following', component: FollowingComponent },
+  { path: 'collections', component: CollectionsComponent }
 
 ];
 
