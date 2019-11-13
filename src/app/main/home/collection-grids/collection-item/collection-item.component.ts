@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-collection-item',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollectionItemComponent implements OnInit {
 
+  @Input()
+  isLocked = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  isPrivate() {
+    return this.isLocked;
+  }
 }

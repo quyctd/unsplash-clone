@@ -12,4 +12,8 @@ export class CltViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  isPrivate() {
+    return false;
+  }
+
 }

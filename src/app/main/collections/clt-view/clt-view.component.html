@@ -10,7 +10,19 @@
                <div class="header-pd mg-x-auto pd-x-12">
                     <div>
                          <h1 class="width-8 header-title" data-test="page-header-title">
-                              <div class="d-flex align-items-center">Food Flatlays - Light + Bright</div>
+                              <div class="d-flex align-items-center">
+                                   <span class="d-inline-flex mg-r-16" *ngIf="isPrivate()">
+                                        <div class="relative fw-400 lh-135 d-inline-flex">
+                                             <svg class="lock-icon lock-icon-big" version="1.1" viewBox="0 0 32 32" width="32"
+                                                  height="32" aria-hidden="false">
+                                                  <path
+                                                       d="M27.4 15.2h-1.6v-5.4c0-2.5-1-5.1-2.9-7-1.5-1.8-4-2.8-6.9-2.8s-5.1 1.3-7 2.9c-1.9 1.9-2.8 4.1-2.8 6.9v5.4h-1.6c-.6 0-1.3.6-1.3 1.3v14.3c0 .6.7 1.2 1.3 1.2h22.8c.6 0 1.3-.6 1.3-1.3v-14.2c0-.7-.7-1.3-1.3-1.3zm-16.5-5.4c0-1.6.6-2.9 1.6-3.8 1-.9 2.2-1.6 3.5-1.6s2.5.6 3.5 1.6c1 .9 1.6 2.2 1.6 3.8v5.4h-10.2v-5.4z">
+                                                  </path>
+                                             </svg>
+                                        </div>
+                                   </span>
+                                   Food Flatlays - Light + Bright
+                              </div>
                          </h1>
                          <div class="w-50 fz-18">
                               <h2 class="mg-bt-24 fz-18 fw-400">Light + bright is everything on social media these days.
@@ -51,5 +63,8 @@
      <div class="clt-photo-count pd-x-12 mg-x-auto"><span><span><span>78 </span>photos</span></span></div>
      <!-- photo grid section -->
      <app-photogrids></app-photogrids>
+     <!-- No photo -->
+     <div class="clt-no-photo">No photos yet :(</div>
+     <!-- Footer -->
      <app-footer></app-footer>
 </div>

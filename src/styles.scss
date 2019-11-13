@@ -680,3 +680,19 @@ svg {
           padding-bottom: 72px;
      }
 }
+
+.lock-icon {
+     fill: #111;
+    width: 11px;
+    height: 11px;
+    position: relative;
+    transform: translateY(-1px);
+    margin-right: 8px;
+}
+
+.lock-icon-big {
+     width: 18px;
+     height: 18px;
+     fill: #767676;
+     margin-right: 0;
+}

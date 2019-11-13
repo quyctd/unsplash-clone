@@ -102,8 +102,8 @@
      <!-- Portfolio section -->
      <app-user-action></app-user-action>
 
-     <app-photogrids></app-photogrids>
-
+     <app-photogrids *ngIf="route !=  'collections'"></app-photogrids>
+     <app-collection-grids *ngIf="route ==  'collections'"></app-collection-grids>
      <!-- Footer -->
      <app-footer></app-footer>
 </div>
