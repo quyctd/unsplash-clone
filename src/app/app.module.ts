@@ -36,6 +36,7 @@ import { CltCreateModalComponent } from './main/collections/clt-create-modal/clt
 import { AccountComponent } from './main/account/account.component';
 import { PhotoInfoComponent } from './main/photo-viewer/photo-info/photo-info.component';
 import { ModalComponent } from './common/modal/modal.component';
+import { CollectionComponent } from './common/modal/collection/collection.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ModalComponent } from './common/modal/modal.component';
     CltCreateModalComponent,
     AccountComponent,
     PhotoInfoComponent,
-    ModalComponent
+    ModalComponent,
+    CollectionComponent
   ],
   imports: [
     BrowserModule,
