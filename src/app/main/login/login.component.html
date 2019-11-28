@@ -14,17 +14,17 @@
     </div>
     <div class="row">
       <div class="col-sm-8 col-md-6 center-block">
-        <form>
+        <form [formGroup]="form">
             <div class="form-group">
             <label for="exampleFormControlInput1">Email address</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" formControlName="email" [formGroup]="form">
             </div>
             <div class="form-group">
             <label for="exampleFormControlInput1">Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" formControlName="password" [formGroup]="form">
             </div>
             <div class="form-group">
-            <button type="submit" class="btn btn-dark btn-block-level">Login</button>
+            <button type="submit" class="btn btn-dark btn-block-level" (click)="login()">Login</button>
             </div>
         </form>
         
