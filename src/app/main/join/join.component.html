@@ -36,7 +36,7 @@
               </p>
             </div>
             <div class="form">
-              <form action="">
+              <form [formGroup]="form">
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
@@ -48,6 +48,8 @@
                         type="text"
                         name="user[first_name]"
                         id="user_first_name"
+                        formControlName="first_name"
+                        [formGroup]="form"
                       />
                     </div>
                   </div>
@@ -60,22 +62,26 @@
                         type="text"
                         name="user[last_name]"
                         id="user_last_name"
+                        formControlName="last_name"
+                        [formGroup]="form"
                       />
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="user_last_name">Email address</label>
+                  <label for="user_email">Email address</label>
                   <input
                     class="form-control"
                     required="required"
-                    type="text"
-                    name="user[last_name]"
-                    id="user_last_name"
+                    type="email"
+                    name="user[email]"
+                    id="user_email"
+                    formControlName="email"
+                    [formGroup]="form"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="user_last_name"
+                  <label for="user_username"
                     >Username
                     <span class="text-secondary"
                       >(only letters, numbers, and underscores)</span
@@ -86,12 +92,14 @@
                     pattern="[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*"
                     required="required"
                     type="text"
-                    name="user[last_name]"
-                    id="user_last_name"
+                    name="user[username]"
+                    id="user_username"
+                    formControlName="username"
+                    [formGroup]="form"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="user_last_name"
+                  <label for="user_password"
                     >Password
                     <span class="text-secondary">(min. 6 char)</span>
                   </label>
@@ -99,13 +107,15 @@
                     class="form-control"
                     minlength="6"
                     required="required"
-                    type="text"
-                    name="user[last_name]"
-                    id="user_last_name"
+                    type="password"
+                    name="user[password]"
+                    id="user_password"
+                    formControlName="password"
+                    [formGroup]="form"
                   />
                 </div>
                 <div class="form-group">
-                  <a href="" class="btn btn-dark btn-block-level">Join</a>
+                  <a href="" class="btn btn-dark btn-block-level" (click)="register()">Join</a>
                 </div>
                 <div class="form-group text-center">
                   <p class="text-secondary zeta">By joining, you agree to the <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
