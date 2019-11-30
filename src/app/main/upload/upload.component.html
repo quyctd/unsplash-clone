@@ -22,7 +22,7 @@
                                              <img class="_3rSeE" src="../../../assets/images/upload_empty.png">
                                              <div>Drop your images here or <span class="ReA9D">Browse</span></div>
                                         </div>
-                                        <input type="file" multiple="" accept="image/jpeg" class="upload-input">
+                                        <input type="file" multiple="" accept="image/jpeg" class="upload-input" (change)="handleFilesInput($event.target.files)">
                                    </label>
                               </div>
                               <div class="pd-b-l-16">
@@ -245,7 +245,7 @@
                                    <img class="_3rSeE" src="../../../assets/images/upload_empty.png">
                                    <div>Drop your images here or <span class="ReA9D">Browse</span></div>
                               </div>
-                              <div *ngIf="filesLength == 0" class="upload-guide mg-y-0 upload-guide-fz">
+                              <div class="upload-guide mg-y-0 upload-guide-fz">
                                    <ul class="upload-guide-ul">
                                         <li><strong>High quality photos</strong> (at least <strong>5MP</strong>)</li>
                                         <li>Photos are <strong>clear &amp; original</strong></li>
@@ -259,7 +259,7 @@
                                         <li>Read the <a href="/terms" target="_blank">UpFamous Terms</a></li>
                                    </ul>
                               </div>
-                              <input type="file" multiple="" accept="image/jpeg" class="upload-input">
+                              <input type="file" multiple="" accept="image/jpeg" class="upload-input" (change)="handleFilesInput($event.target.files)">
                          </label>
                     </div>
 

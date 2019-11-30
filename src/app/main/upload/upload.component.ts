@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  files = [1];
+  files: FileList;
   limit = 10;
 
   constructor() { }
@@ -16,10 +16,16 @@ export class UploadComponent implements OnInit {
   }
 
   get filesLength() {
-    return this.files.length;
+    return this.files === undefined ? 0 : this.files.length;
   }
 
   get remain() {
     return this.limit - this.filesLength;
+  }
+
+  handleFilesInput(files: FileList) {
+    console.log("Handling.....");
+    this.files = files;
+    console.log(files.item(0));
   }
 }
