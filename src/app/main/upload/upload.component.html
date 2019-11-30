@@ -259,7 +259,7 @@
                                         <li>Read the <a href="/terms" target="_blank">UpFamous Terms</a></li>
                                    </ul>
                               </div>
-                              <input type="file" multiple="" accept="image/jpeg" class="upload-input" (change)="handleFilesInput($event.target.files)">
+                              <input type="file" multiple="" accept="image/jpeg" #fileInput ng2FileSelect [uploader]="uploader" class="upload-input" (change)="handleFilesInput($event.target.files)">
                          </label>
                     </div>
 

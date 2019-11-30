@@ -6,6 +6,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
+import { Cloudinary } from '@cloudinary/angular-5.x/src/cloudinary.service';
+
+import { FileSelectDirective } from 'ng2-file-upload';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './main/login/login.component';
@@ -39,6 +45,13 @@ import { PhotoInfoComponent } from './main/photo-viewer/photo-info/photo-info.co
 import { ModalComponent } from './common/modal/modal.component';
 import { CollectionComponent } from './common/modal/collection/collection.component';
 
+import cloudinaryConfiguration from './config';
+
+export const cloudinary = {
+  Cloudinary: CloudinaryCore
+};
+export const config: CloudinaryConfiguration = cloudinaryConfiguration;
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +84,8 @@ import { CollectionComponent } from './common/modal/collection/collection.compon
     AccountComponent,
     PhotoInfoComponent,
     ModalComponent,
-    CollectionComponent
+    CollectionComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
@@ -80,7 +94,8 @@ import { CollectionComponent } from './common/modal/collection/collection.compon
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CloudinaryModule.forRoot(cloudinary, config),
   ],
   providers: [],
   bootstrap: [AppComponent]
