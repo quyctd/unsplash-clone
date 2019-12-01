@@ -11,7 +11,10 @@ import { HttpClient } from '@angular/common/http';
 export class UploadComponent implements OnInit {
 
   responses: Array<any>;
-  files: FileList;
+  files = [];
+  files1 = [];
+  files2 = [];
+  files3 = [];
   limit = 10;
   hasBaseDropZoneOver: boolean = false;
   uploader: FileUploader;
@@ -95,8 +98,14 @@ export class UploadComponent implements OnInit {
       });
     };
 
+    this.uploader.onBeforeUploadItem = (item: any) => {
+      console.log("ITEM: ", item.file);
+      this.files.push(item.file);
+      this.showProcessToView(item.filem, this.files.length);
+    };
+
     // Update model on completion of uploading a file
-    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) =>
+    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
       upsertResponse(
         {
           file: item.file,
@@ -104,6 +113,9 @@ export class UploadComponent implements OnInit {
           data: JSON.parse(response)
         }
       );
+      console.log('RESPONSE: ', JSON.parse(response));
+      console.log(this.responses);
+    };
 
     // Update model on upload progress event
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
@@ -156,8 +168,20 @@ export class UploadComponent implements OnInit {
     return this.limit - this.filesLength;
   }
 
-  handleFilesInput(files: FileList) {
-    this.files = files;
-    console.log(this.responses);
+  showProcessToView(file, index) {
+    index = index % 3;
+    switch (index) {
+      case 1:
+        this.files1.push(file);
+        break;
+      case 2:
+        this.files2.push(file);
+        break;
+      case 0:
+        this.files3.push(file);
+        break;
+      default:
+        break;
+    }
   }
 }
