@@ -18,4 +18,8 @@ export class HelpersService {
     const tokenHash = JSON.parse(localStorage.getItem('utoken'));
     return tokenHash.token;
   }
+
+  calImgDisplayHeight(img) {
+    return 100;
+  }
 }

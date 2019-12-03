@@ -1,7 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { FileUploader, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
+import { PhotoUpload } from '../../models/photoUpload.model';
 
 @Component({
   selector: 'app-upload',
@@ -16,9 +17,12 @@ export class UploadComponent implements OnInit {
   files2 = [];
   files3 = [];
   limit = 10;
-  hasBaseDropZoneOver: boolean = false;
+  hasBaseDropZoneOver = false;
   uploader: FileUploader;
   title: string;
+
+  message = '';
+  imgURL: any;
 
   constructor(
     private cloudinary: Cloudinary,
@@ -98,14 +102,27 @@ export class UploadComponent implements OnInit {
       });
     };
 
+    this.uploader.onAfterAddingFile = (item: any) => {
+      console.log('ITEM: ', item.file);
+
+      // Build new Upload Photo
+      const uploadPhoto = new PhotoUpload();
+      uploadPhoto.file = item.file.rawFile;
+      uploadPhoto.type = item.file.type;
+      uploadPhoto.originalFilename = item.file.name;
+
+      this.files.push(uploadPhoto);
+      this.showProcessToView(uploadPhoto, this.files.length);
+      this.readImageInfo(uploadPhoto);
+    };
+
     this.uploader.onBeforeUploadItem = (item: any) => {
-      console.log("ITEM: ", item.file);
-      this.files.push(item.file);
-      this.showProcessToView(item.filem, this.files.length);
     };
 
     // Update model on completion of uploading a file
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
+      console.log('RESPONSE: ', response);
+      console.log(this.responses);
       upsertResponse(
         {
           file: item.file,
@@ -113,13 +130,11 @@ export class UploadComponent implements OnInit {
           data: JSON.parse(response)
         }
       );
-      console.log('RESPONSE: ', JSON.parse(response));
-      console.log(this.responses);
     };
 
     // Update model on upload progress event
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
-      console.log('Progress: ', progress);
+      console.log('Progress: ', progress, fileItem.file);
       upsertResponse(
         {
           file: fileItem.file,
@@ -157,7 +172,7 @@ export class UploadComponent implements OnInit {
       return null;
     }
     return Object.keys(fileProperties)
-      .map((key) => ({ key: key, value: fileProperties[key] }));
+      .map((key) => ({ key, value: fileProperties[key] }));
   }
 
   get filesLength() {
@@ -168,20 +183,50 @@ export class UploadComponent implements OnInit {
     return this.limit - this.filesLength;
   }
 
-  showProcessToView(file, index) {
-    index = index % 3;
-    switch (index) {
+  showProcessToView(uploadPhoto, index) {
+    const i = index % 3;
+    switch (i) {
       case 1:
-        this.files1.push(file);
+        this.files1.push(uploadPhoto);
         break;
       case 2:
-        this.files2.push(file);
+        this.files2.push(uploadPhoto);
         break;
       case 0:
-        this.files3.push(file);
+        this.files3.push(uploadPhoto);
         break;
       default:
+        this.files1.push(uploadPhoto);
         break;
     }
+  }
+
+  readImageInfo(uploadPhoto) {
+    // Read image info
+    const url = URL.createObjectURL(uploadPhoto.file);
+    const img = new Image();
+    img.onload = () => {
+      uploadPhoto.naturalWidth = img.width;
+      uploadPhoto.naturalHeight = img.height;
+      console.log('width: ', uploadPhoto.naturalWidth, ' height: ', uploadPhoto.naturalHeight);
+      console.log('Padding: ', uploadPhoto.paddingBottom);
+    };
+
+    img.src = url;
+
+    // Get image blob
+    const reader = new FileReader();
+    const blob = new Blob([uploadPhoto.file], {type: uploadPhoto.type});
+
+    reader.readAsDataURL(blob);
+    // tslint:disable-next-line: variable-name
+    reader.onload = (_event) => {
+      uploadPhoto.imgBlob = (reader.result as string).replace('octet-stream', uploadPhoto.type);
+    };
+  }
+
+  hexToBase64(str) {
+    // tslint:disable-next-line: max-line-length
+    return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, '').replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').split(' ')));
   }
 }
