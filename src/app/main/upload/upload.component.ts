@@ -1,3 +1,4 @@
+import { HelpersService } from './../../services/helpers.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Cloudinary } from '@cloudinary/angular-5.x';
 import { FileUploader, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
@@ -13,9 +14,6 @@ export class UploadComponent implements OnInit {
 
   responses: Array<any>;
   files = [];
-  files1 = [];
-  files2 = [];
-  files3 = [];
   limit = 10;
   hasBaseDropZoneOver = false;
   uploader: FileUploader;
@@ -27,7 +25,8 @@ export class UploadComponent implements OnInit {
   constructor(
     private cloudinary: Cloudinary,
     private zone: NgZone,
-    private http: HttpClient
+    private http: HttpClient,
+    private helper: HelpersService
   ) {
     this.responses = [];
    }
@@ -112,8 +111,7 @@ export class UploadComponent implements OnInit {
       uploadPhoto.originalFilename = item.file.name;
 
       this.files.push(uploadPhoto);
-      this.showProcessToView(uploadPhoto, this.files.length);
-      this.readImageInfo(uploadPhoto);
+      this.readImageInfo(uploadPhoto, this.files.length - 1);
     };
 
     this.uploader.onBeforeUploadItem = (item: any) => {
@@ -183,33 +181,27 @@ export class UploadComponent implements OnInit {
     return this.limit - this.filesLength;
   }
 
-  showProcessToView(uploadPhoto, index) {
-    const i = index % 3;
-    switch (i) {
-      case 1:
-        this.files1.push(uploadPhoto);
-        break;
-      case 2:
-        this.files2.push(uploadPhoto);
-        break;
-      case 0:
-        this.files3.push(uploadPhoto);
-        break;
-      default:
-        this.files1.push(uploadPhoto);
-        break;
-    }
-  }
+  readImageInfo(uploadPhoto, index) {
+    // Get orientation of image
+    // tslint:disable-next-line: only-arrow-functions
+    let photoOrientation = 1;
+    this.helper.getOrientation(uploadPhoto.file, function(orientation) {
+      photoOrientation = orientation;
+    });
 
-  readImageInfo(uploadPhoto) {
+    const rotation = this.helper.getRotation(photoOrientation);
+
     // Read image info
     const url = URL.createObjectURL(uploadPhoto.file);
     const img = new Image();
     img.onload = () => {
-      uploadPhoto.naturalWidth = img.width;
-      uploadPhoto.naturalHeight = img.height;
-      console.log('width: ', uploadPhoto.naturalWidth, ' height: ', uploadPhoto.naturalHeight);
-      console.log('Padding: ', uploadPhoto.paddingBottom);
+      if (uploadPhoto.isJPG) {
+        uploadPhoto.naturalWidth = img.height;
+        uploadPhoto.naturalHeight = img.width;
+      } else {
+        uploadPhoto.naturalWidth = img.width;
+        uploadPhoto.naturalHeight = img.height;
+      }
     };
 
     img.src = url;
