@@ -9,6 +9,7 @@ export class PhotoUpload {
   file: any;
   imgBlob: any;
   type: any;
+  progress: any;
 
   get paddingBottom() {
     const ret = this.naturalHeight / this.naturalWidth * 100;

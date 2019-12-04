@@ -1056,3 +1056,27 @@ svg {
  .upload-description-area::-moz-placeholder {
      opacity: 1
  }
+
+ .img-processbar {
+     height: 100%;
+     background-color: hsla(0,0%,100%,.5);
+     transform: translate(var(--progressBarValue));
+     will-change: transform;
+     transition: transform .3s;
+ }
+
+ .bt-progressbar {
+     height: 3px;
+    width: var(--progressBarValue);
+    transition: width .3s,background-color .3s;
+    margin-top: -3px;
+    position: relative;
+ }
+
+.color-on-progress {
+     background-color: #007fff;
+}
+
+.color-transparent {
+     background-color: transparent;
+}
