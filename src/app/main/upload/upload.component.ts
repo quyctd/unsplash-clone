@@ -112,7 +112,6 @@ export class UploadComponent implements OnInit {
       uploadPhoto.type = item.file.type;
       uploadPhoto.originalFilename = item.file.name;
 
-      this.files.push(uploadPhoto);
       this.readImageInfo(uploadPhoto);
     };
 
@@ -210,11 +209,18 @@ export class UploadComponent implements OnInit {
     // tslint:disable-next-line: variable-name
     reader.onload = (_event) => {
       uploadPhoto.imgBlob = (reader.result as string).replace('octet-stream', uploadPhoto.type);
+      // Show image to view
+      this.files.push(uploadPhoto);
     };
   }
 
   hexToBase64(str) {
     // tslint:disable-next-line: max-line-length
     return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, '').replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').split(' ')));
+  }
+
+  doRemove(i) {
+    this.files.splice(i, 1);
+    this.responses.splice(i, 1);
   }
 }

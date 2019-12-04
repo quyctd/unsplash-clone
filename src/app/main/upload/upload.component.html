@@ -66,12 +66,10 @@
                                                                                           <div class="d-flex justify-content-end">
                                                                                                <div class="upload-discard-btn">
                                                                                                     <button type="button"
+                                                                                                         (click)="doRemove(i)"
                                                                                                          class="upload-discard-dp icon-outline-1"
-                                                                                                         aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
-                                                                                                         <svg
-                                                                                                         class="upload-discard-icon"
-                                                                                                         version="1.1"
-                                                                                                         viewBox="0 0 32 32"
+                                                                                                         aria-labelledby="uploader-form-valid-file-removeButton">
+                                                                                                         <svg class="upload-discard-icon" version="1.1" viewBox="0 0 32 32"
                                                                                                          width="32" height="32"
                                                                                                          aria-hidden="false">
                                                                                                               <path
@@ -80,7 +78,7 @@
                                                                                                          </svg>
                                                                                                     </button>
                                                                                                     <div role="tooltip"
-                                                                                                         id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
+                                                                                                         id="uploader-form-valid-file-removeButton"
                                                                                                          class="mytooltip">Remove</div>
                                                                                                </div>
                                                                                           </div>
@@ -141,6 +139,7 @@
                                                                                                     <div class="d-flex justify-content-end">
                                                                                                          <div class="upload-discard-btn">
                                                                                                               <button type="button"
+                                                                                                                   (click)="doRemove(i)"
                                                                                                                    class="upload-discard-dp icon-outline-1"
                                                                                                                    aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
                                                                                                                    <svg
@@ -216,6 +215,7 @@
                                                                                                     <div class="d-flex justify-content-end">
                                                                                                          <div class="upload-discard-btn">
                                                                                                               <button type="button"
+                                                                                                                   (click)="doRemove(i)"
                                                                                                                    class="upload-discard-dp icon-outline-1"
                                                                                                                    aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
                                                                                                                    <svg
