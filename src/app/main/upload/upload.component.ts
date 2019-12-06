@@ -53,15 +53,41 @@ export class UploadComponent implements OnInit {
     };
     this.uploader = new FileUploader(uploaderOptions);
 
-    this.uploader.addToQueue = (files: File[]) => {
-      // Do this tonight: if files length reach to limit, remove the top last files.
+    this.uploader.addToQueue = (files: File[], options?: FileUploaderOptions, filters?: FilterFunction[] | string) => {
       let list: File[] = [];
       for (const file of files) {
         list.push(file);
       }
+
+      // Validate limit number files
+      const totalFilesLen = this.filesLength + files.length;
+      const removeFiles = (totalFilesLen - this.limit) > 0 ? (totalFilesLen - this.limit) : 0;
+      list.splice(-1, removeFiles);
+
+      let arrayOfFilters = this.uploader.options.filters;
+      let count = this.uploader.queue.length;
+      let addedFileItems: FileItem[] = [];
+
       list.map((some: File) => {
-        const fileItem = new FileItem(this.uploader, some, null);
-        this.uploader.queue.push(fileItem);
+        if (!options) {
+          options = this.uploader.options;
+        }
+
+        let temp = new FileLikeObject(some);
+
+        if (true) {
+          let fileItem = new FileItem(this.uploader, some, options);
+          addedFileItems.push(fileItem);
+          this.uploader.queue.push(fileItem);
+          this.uploader.onAfterAddingFile(fileItem);
+        } else {
+          this.uploader.onWhenAddingFileFailed(temp, arrayOfFilters, options);
+        }
+
+        if (this.uploader.queue.length !== count) {
+          this.uploader.onAfterAddingAll(addedFileItems);
+          this.uploader.progress = this.getUploaderTotalProgress();
+        }
       });
 
       if (this.uploader.options.autoUpload) {
@@ -75,15 +101,7 @@ export class UploadComponent implements OnInit {
       uploadPhoto.file = item.file.rawFile;
       uploadPhoto.type = item.file.type;
       uploadPhoto.originalFilename = item.file.name;
-
-      // if ((this.filesLength + this.uploader.queue.length) < this.limit) {
       this.readImageInfo(uploadPhoto);
-      // } else {
-      //   const delFile = this.uploader.queue[this.uploader.queue.length - 1];
-      //   console.log('REMOVE FILE: ', delFile);
-      //   this.uploader.removeFromQueue(delFile);
-      //   this.uploader.cancelItem(delFile);
-      // }
     };
 
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
@@ -138,8 +156,6 @@ export class UploadComponent implements OnInit {
 
     // Update model on completion of uploading a file
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
-      // console.log('RESPONSE: ', response);
-      // console.log(this.responses);
       this.updateUploadInfoFromCloudinary(item.file.rawFile, JSON.parse(response));
       upsertResponse(
         {
@@ -180,6 +196,17 @@ export class UploadComponent implements OnInit {
       this.responses.splice(index, 1);
     });
   };
+
+  getUploaderTotalProgress = (value: number = 0) => {
+    if (this.uploader.options.removeAfterUpload) {
+      return value;
+    }
+    let notUploaded = this.uploader.getNotUploadedItems().length;
+    let uploaded = notUploaded ? this.uploader.queue.length - notUploaded : this.uploader.queue.length;
+    let ratio = 100 / this.uploader.queue.length;
+    let current = value * ratio / 100;
+    return Math.round(uploaded * ratio + current);
+  }
 
   fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
