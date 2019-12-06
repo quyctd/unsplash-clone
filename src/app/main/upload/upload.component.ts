@@ -1,7 +1,7 @@
 import { HelpersService } from './../../services/helpers.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Cloudinary } from '@cloudinary/angular-5.x';
-import { FileUploader, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject } from 'ng2-file-upload';
+import { FileUploader, FileUploaderOptions, ParsedResponseHeaders, FileLikeObject, FileItem, FilterFunction } from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
 import { PhotoUpload } from '../../models/photoUpload.model';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
@@ -53,6 +53,39 @@ export class UploadComponent implements OnInit {
     };
     this.uploader = new FileUploader(uploaderOptions);
 
+    this.uploader.addToQueue = (files: File[]) => {
+      // Do this tonight: if files length reach to limit, remove the top last files.
+      let list: File[] = [];
+      for (const file of files) {
+        list.push(file);
+      }
+      list.map((some: File) => {
+        const fileItem = new FileItem(this.uploader, some, null);
+        this.uploader.queue.push(fileItem);
+      });
+
+      if (this.uploader.options.autoUpload) {
+        this.uploader.uploadAll();
+      }
+    };
+
+    this.uploader.onAfterAddingFile = (item: any) => {
+      // Build new Upload Photo
+      const uploadPhoto = new PhotoUpload();
+      uploadPhoto.file = item.file.rawFile;
+      uploadPhoto.type = item.file.type;
+      uploadPhoto.originalFilename = item.file.name;
+
+      // if ((this.filesLength + this.uploader.queue.length) < this.limit) {
+      this.readImageInfo(uploadPhoto);
+      // } else {
+      //   const delFile = this.uploader.queue[this.uploader.queue.length - 1];
+      //   console.log('REMOVE FILE: ', delFile);
+      //   this.uploader.removeFromQueue(delFile);
+      //   this.uploader.cancelItem(delFile);
+      // }
+    };
+
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
       // Add Cloudinary's unsigned upload preset to the upload form
       form.append('upload_preset', this.cloudinary.config().upload_preset);
@@ -101,16 +134,6 @@ export class UploadComponent implements OnInit {
           this.responses.push(fileItem);
         }
       });
-    };
-
-    this.uploader.onAfterAddingFile = (item: any) => {
-      // Build new Upload Photo
-      const uploadPhoto = new PhotoUpload();
-      uploadPhoto.file = item.file.rawFile;
-      uploadPhoto.type = item.file.type;
-      uploadPhoto.originalFilename = item.file.name;
-
-      this.readImageInfo(uploadPhoto);
     };
 
     // Update model on completion of uploading a file
