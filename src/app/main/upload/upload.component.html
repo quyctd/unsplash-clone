@@ -17,12 +17,15 @@
                     <div *ngIf="filesLength != 0" class="upload-form-section">
                          <div class="mg-bt-l--16">
                               <div class="pd-b-l-16">
-                                   <label class="ul-fo-display ul-fo-pd ul-fo-animate ul-fo-color">
+                                   <label [class.upload-disable]="remain == 0" class="ul-fo-display ul-fo-pd ul-fo-animate ul-fo-color">
                                         <div class="flex-column-center">
-                                             <img class="_3rSeE" src="../../../assets/images/upload_empty.png">
-                                             <div>Drop your images here or <span class="ReA9D">Browse</span></div>
+                                             <img class="_3rSeE" src="../../../assets/images/upload_empty.png" />
+                                             <div>
+                                                  Drop your images here or <span class="ReA9D">Browse</span>
+                                             </div>
                                         </div>
-                                        <input type="file" multiple="" accept="image/jpeg" #fileInput ng2FileSelect [uploader]="uploader" class="upload-input">
+                                        <input [disabled]="remain == 0 ? true : null" type="file" multiple="" accept="image/jpeg" #fileInput ng2FileSelect
+                                             [uploader]="uploader" class="upload-input" />
                                    </label>
                               </div>
                               <div class="pd-b-l-16">
@@ -35,43 +38,64 @@
                                                                  <div *ngIf="i % 3 == 0" class="pd-bt-16-l-0">
                                                                       <div class="upload-file-wrapper">
                                                                            <div class="relative">
-                                                                                <div class="w-100 overflow-hidden d-inline-block-align-top">
+                                                                                <div
+                                                                                     class="w-100 overflow-hidden d-inline-block-align-top">
                                                                                      <div class="relative">
                                                                                           <div class="relative"
-                                                                                               [style.paddingBottom.%]='file.paddingBottom'><img
-                                                                                                    [id]="i"
+                                                                                               [style.paddingBottom.%]="
+                                        file.paddingBottom
+                                      ">
+                                                                                               <img [id]="i"
                                                                                                     [src]="file.imgBlob"
                                                                                                     alt="luis-villasmil-fadifl83vhA-unsplash.jpg"
-                                                                                                    class="bg-shadow figure-img"></div>
+                                                                                                    class="bg-shadow figure-img" />
+                                                                                          </div>
+
                                                                                           <div class="img-above-bg">
-                                                                                               <div class="img-processbar" role="progressbar"
+                                                                                               <div class="img-processbar"
+                                                                                                    role="progressbar"
                                                                                                     aria-valuemin="0"
                                                                                                     aria-valuemax="100"
                                                                                                     aria-valuenow="100"
-                                                                                                    [attr.style]="sanitizer.bypassSecurityTrustStyle('--progressBarValue: ' + file.progress + '%')">
-                                                                                               </div>
+                                                                                                    [attr.style]="
+                                          sanitizer.bypassSecurityTrustStyle(
+                                            '--progressBarValue: ' +
+                                              file.progress +
+                                              '%'
+                                          )
+                                        "></div>
                                                                                           </div>
                                                                                      </div>
                                                                                      <div [ngClass]="{
-                                                                                               'bt-progressbar': true,
-                                                                                               'color-on-progress': file.progress != 100,
-                                                                                               'color-transparent': file.progress == 100
-                                                                                          }" role="progressbar"
-                                                                                          aria-valuemin="0" aria-valuemax="100"
-                                                                                          aria-valuenow="100"
-                                                                                          [attr.style]="sanitizer.bypassSecurityTrustStyle('--progressBarValue: ' + file.progress + '%')"></div>
+                                      'bt-progressbar': true,
+                                      'color-on-progress': file.progress != 100,
+                                      'color-transparent': file.progress == 100
+                                    }" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"
+                                                                                          [attr.style]="
+                                      sanitizer.bypassSecurityTrustStyle(
+                                        '--progressBarValue: ' +
+                                          file.progress +
+                                          '%'
+                                      )
+                                    "></div>
                                                                                 </div>
                                                                                 <div class="img-above-bg">
                                                                                      <div class="upload-above-bg">
-                                                                                          <div class="d-flex justify-content-end">
-                                                                                               <div class="upload-discard-btn">
-                                                                                                    <button type="button"
+                                                                                          <div
+                                                                                               class="d-flex justify-content-end">
+                                                                                               <div
+                                                                                                    class="upload-discard-btn">
+                                                                                                    <button
+                                                                                                         type="button"
                                                                                                          (click)="doRemove(i)"
                                                                                                          class="upload-discard-dp icon-outline-1"
                                                                                                          aria-labelledby="uploader-form-valid-file-removeButton">
-                                                                                                         <svg class="upload-discard-icon" version="1.1" viewBox="0 0 32 32"
-                                                                                                         width="32" height="32"
-                                                                                                         aria-hidden="false">
+                                                                                                         <svg class="upload-discard-icon"
+                                                                                                              version="1.1"
+                                                                                                              viewBox="0 0 32 32"
+                                                                                                              width="32"
+                                                                                                              height="32"
+                                                                                                              aria-hidden="false">
                                                                                                               <path
                                                                                                                    d="M25.33 8.55l-1.88-1.88-7.45 7.45-7.45-7.45-1.88 1.88 7.45 7.45-7.45 7.45 1.88 1.88 7.45-7.45 7.45 7.45 1.88-1.88-7.45-7.45z">
                                                                                                               </path>
@@ -79,13 +103,18 @@
                                                                                                     </button>
                                                                                                     <div role="tooltip"
                                                                                                          id="uploader-form-valid-file-removeButton"
-                                                                                                         class="mytooltip">Remove</div>
+                                                                                                         class="mytooltip">
+                                                                                                         Remove
+                                                                                                    </div>
                                                                                                </div>
                                                                                           </div>
-                                                                                          <div class="mg-t-auto"><button type="button"
-                                                                                                    class="upload-location-wrapper icon-outline-1"><svg
-                                                                                                         class="add-location-icon" version="1.1"
-                                                                                                         viewBox="0 0 32 32" width="32"
+                                                                                          <div class="mg-t-auto">
+                                                                                               <button type="button"
+                                                                                                    class="upload-location-wrapper icon-outline-1">
+                                                                                                    <svg class="add-location-icon"
+                                                                                                         version="1.1"
+                                                                                                         viewBox="0 0 32 32"
+                                                                                                         width="32"
                                                                                                          height="32"
                                                                                                          aria-hidden="false">
                                                                                                          <path
@@ -93,10 +122,13 @@
                                                                                                          </path>
                                                                                                     </svg><span
                                                                                                          class="overflow-hidden pd-l-8">Add
-                                                                                                         location</span></button></div>
+                                                                                                         location</span>
+                                                                                               </button>
+                                                                                          </div>
                                                                                      </div>
                                                                                 </div>
-                                                                           </div><textarea class="upload-description-area"
+                                                                           </div>
+                                                                           <textarea class="upload-description-area"
                                                                                 placeholder="Add a description (optional)"
                                                                                 maxlength="600"></textarea>
                                                                       </div>
@@ -107,74 +139,100 @@
                                                             <div *ngFor="let file of files; let i = index">
                                                                  <div *ngIf="i % 3 == 1" class="pd-bt-16-l-0">
                                                                       <div class="upload-file-wrapper">
+                                                                           <div class="relative">
+                                                                                <div
+                                                                                     class="w-100 overflow-hidden d-inline-block-align-top">
                                                                                      <div class="relative">
-                                                                                          <div class="w-100 overflow-hidden d-inline-block-align-top">
-                                                                                               <div class="relative">
-                                                                                                    <div class="relative"
-                                                                                                         [style.paddingBottom.%]='file.paddingBottom'><img
-                                                                                                              [id]="i"
-                                                                                                              [src]="file.imgBlob"
-                                                                                                              alt="luis-villasmil-fadifl83vhA-unsplash.jpg"
-                                                                                                              class="bg-shadow figure-img"></div>
-                                                                                                    <div class="img-above-bg">
-                                                                                                         <div class="img-processbar" role="progressbar"
-                                                                                                              aria-valuemin="0"
-                                                                                                              aria-valuemax="100"
-                                                                                                              aria-valuenow="100"
-                                                                                                              [attr.style]="sanitizer.bypassSecurityTrustStyle('--progressBarValue: ' + file.progress + '%')">
-                                                                                                         </div>
-                                                                                                    </div>
-                                                                                               </div>
-                                                                                               <div [ngClass]="{
-                                                                                                         'bt-progressbar': true,
-                                                                                                         'color-on-progress': file.progress != 100,
-                                                                                                         'color-transparent': file.progress == 100
-                                                                                                    }" role="progressbar"
-                                                                                                    aria-valuemin="0" aria-valuemax="100"
-                                                                                                    aria-valuenow="100"
-                                                                                                    [attr.style]="sanitizer.bypassSecurityTrustStyle('--progressBarValue: ' + file.progress + '%')"></div>
+                                                                                          <div class="relative"
+                                                                                               [style.paddingBottom.%]="
+                                        file.paddingBottom
+                                      ">
+                                                                                               <img [id]="i"
+                                                                                                    [src]="file.imgBlob"
+                                                                                                    alt="luis-villasmil-fadifl83vhA-unsplash.jpg"
+                                                                                                    class="bg-shadow figure-img" />
                                                                                           </div>
+
                                                                                           <div class="img-above-bg">
-                                                                                               <div class="upload-above-bg">
-                                                                                                    <div class="d-flex justify-content-end">
-                                                                                                         <div class="upload-discard-btn">
-                                                                                                              <button type="button"
-                                                                                                                   (click)="doRemove(i)"
-                                                                                                                   class="upload-discard-dp icon-outline-1"
-                                                                                                                   aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
-                                                                                                                   <svg
-                                                                                                                   class="upload-discard-icon"
-                                                                                                                   version="1.1"
-                                                                                                                   viewBox="0 0 32 32"
-                                                                                                                   width="32" height="32"
-                                                                                                                   aria-hidden="false">
-                                                                                                                        <path
-                                                                                                                             d="M25.33 8.55l-1.88-1.88-7.45 7.45-7.45-7.45-1.88 1.88 7.45 7.45-7.45 7.45 1.88 1.88 7.45-7.45 7.45 7.45 1.88-1.88-7.45-7.45z">
-                                                                                                                        </path>
-                                                                                                                   </svg>
-                                                                                                              </button>
-                                                                                                              <div role="tooltip"
-                                                                                                                   id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
-                                                                                                                   class="mytooltip">Remove</div>
-                                                                                                         </div>
+                                                                                               <div class="img-processbar"
+                                                                                                    role="progressbar"
+                                                                                                    aria-valuemin="0"
+                                                                                                    aria-valuemax="100"
+                                                                                                    aria-valuenow="100"
+                                                                                                    [attr.style]="
+                                          sanitizer.bypassSecurityTrustStyle(
+                                            '--progressBarValue: ' +
+                                              file.progress +
+                                              '%'
+                                          )
+                                        "></div>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div [ngClass]="{
+                                      'bt-progressbar': true,
+                                      'color-on-progress': file.progress != 100,
+                                      'color-transparent': file.progress == 100
+                                    }" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"
+                                                                                          [attr.style]="
+                                      sanitizer.bypassSecurityTrustStyle(
+                                        '--progressBarValue: ' +
+                                          file.progress +
+                                          '%'
+                                      )
+                                    "></div>
+                                                                                </div>
+                                                                                <div class="img-above-bg">
+                                                                                     <div class="upload-above-bg">
+                                                                                          <div
+                                                                                               class="d-flex justify-content-end">
+                                                                                               <div
+                                                                                                    class="upload-discard-btn">
+                                                                                                    <button
+                                                                                                         type="button"
+                                                                                                         (click)="doRemove(i)"
+                                                                                                         class="upload-discard-dp icon-outline-1"
+                                                                                                         aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
+                                                                                                         <svg class="upload-discard-icon"
+                                                                                                              version="1.1"
+                                                                                                              viewBox="0 0 32 32"
+                                                                                                              width="32"
+                                                                                                              height="32"
+                                                                                                              aria-hidden="false">
+                                                                                                              <path
+                                                                                                                   d="M25.33 8.55l-1.88-1.88-7.45 7.45-7.45-7.45-1.88 1.88 7.45 7.45-7.45 7.45 1.88 1.88 7.45-7.45 7.45 7.45 1.88-1.88-7.45-7.45z">
+                                                                                                              </path>
+                                                                                                         </svg>
+                                                                                                    </button>
+                                                                                                    <div role="tooltip"
+                                                                                                         id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
+                                                                                                         class="mytooltip">
+                                                                                                         Remove
                                                                                                     </div>
-                                                                                                    <div class="mg-t-auto"><button type="button"
-                                                                                                              class="upload-location-wrapper icon-outline-1"><svg
-                                                                                                                   class="add-location-icon" version="1.1"
-                                                                                                                   viewBox="0 0 32 32" width="32"
-                                                                                                                   height="32"
-                                                                                                                   aria-hidden="false">
-                                                                                                                   <path
-                                                                                                                        d="M16 0c-6.7 0-12 5.3-12 12 0 8.6 8.6 17.3 11.2 19.7.4.4 1.1.4 1.5 0 2.7-2.4 11.3-11.1 11.3-19.7 0-6.7-5.3-12-12-12zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
-                                                                                                                   </path>
-                                                                                                              </svg><span
-                                                                                                                   class="overflow-hidden pd-l-8">Add
-                                                                                                                   location</span></button></div>
                                                                                                </div>
                                                                                           </div>
-                                                                                     </div><textarea class="upload-description-area"
-                                                                                          placeholder="Add a description (optional)"
-                                                                                          maxlength="600"></textarea>
+                                                                                          <div class="mg-t-auto">
+                                                                                               <button type="button"
+                                                                                                    class="upload-location-wrapper icon-outline-1">
+                                                                                                    <svg class="add-location-icon"
+                                                                                                         version="1.1"
+                                                                                                         viewBox="0 0 32 32"
+                                                                                                         width="32"
+                                                                                                         height="32"
+                                                                                                         aria-hidden="false">
+                                                                                                         <path
+                                                                                                              d="M16 0c-6.7 0-12 5.3-12 12 0 8.6 8.6 17.3 11.2 19.7.4.4 1.1.4 1.5 0 2.7-2.4 11.3-11.1 11.3-19.7 0-6.7-5.3-12-12-12zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
+                                                                                                         </path>
+                                                                                                    </svg><span
+                                                                                                         class="overflow-hidden pd-l-8">Add
+                                                                                                         location</span>
+                                                                                               </button>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                           <textarea class="upload-description-area"
+                                                                                placeholder="Add a description (optional)"
+                                                                                maxlength="600"></textarea>
                                                                       </div>
                                                                  </div>
                                                             </div>
@@ -183,74 +241,100 @@
                                                             <div *ngFor="let file of files; let i = index">
                                                                  <div *ngIf="i % 3 == 2" class="pd-bt-16-l-0">
                                                                       <div class="upload-file-wrapper">
+                                                                           <div class="relative">
+                                                                                <div
+                                                                                     class="w-100 overflow-hidden d-inline-block-align-top">
                                                                                      <div class="relative">
-                                                                                          <div class="w-100 overflow-hidden d-inline-block-align-top">
-                                                                                               <div class="relative">
-                                                                                                    <div class="relative"
-                                                                                                         [style.paddingBottom.%]='file.paddingBottom'><img
-                                                                                                              [id]="i"
-                                                                                                              [src]="file.imgBlob"
-                                                                                                              alt="luis-villasmil-fadifl83vhA-unsplash.jpg"
-                                                                                                              class="bg-shadow figure-img"></div>
-                                                                                                    <div class="img-above-bg">
-                                                                                                         <div class="img-processbar" role="progressbar"
-                                                                                                              aria-valuemin="0"
-                                                                                                              aria-valuemax="100"
-                                                                                                              aria-valuenow="100"
-                                                                                                              [attr.style]="sanitizer.bypassSecurityTrustStyle('--progressBarValue: ' + file.progress + '%')">
-                                                                                                         </div>
-                                                                                                    </div>
-                                                                                               </div>
-                                                                                               <div [ngClass]="{
-                                                                                                         'bt-progressbar': true,
-                                                                                                         'color-on-progress': file.progress != 100,
-                                                                                                         'color-transparent': file.progress == 100
-                                                                                                    }" role="progressbar"
-                                                                                                    aria-valuemin="0" aria-valuemax="100"
-                                                                                                    aria-valuenow="100"
-                                                                                                    [attr.style]="sanitizer.bypassSecurityTrustStyle('--progressBarValue: ' + file.progress + '%')"></div>
+                                                                                          <div class="relative"
+                                                                                               [style.paddingBottom.%]="
+                                        file.paddingBottom
+                                      ">
+                                                                                               <img [id]="i"
+                                                                                                    [src]="file.imgBlob"
+                                                                                                    alt="luis-villasmil-fadifl83vhA-unsplash.jpg"
+                                                                                                    class="bg-shadow figure-img" />
                                                                                           </div>
+
                                                                                           <div class="img-above-bg">
-                                                                                               <div class="upload-above-bg">
-                                                                                                    <div class="d-flex justify-content-end">
-                                                                                                         <div class="upload-discard-btn">
-                                                                                                              <button type="button"
-                                                                                                                   (click)="doRemove(i)"
-                                                                                                                   class="upload-discard-dp icon-outline-1"
-                                                                                                                   aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
-                                                                                                                   <svg
-                                                                                                                   class="upload-discard-icon"
-                                                                                                                   version="1.1"
-                                                                                                                   viewBox="0 0 32 32"
-                                                                                                                   width="32" height="32"
-                                                                                                                   aria-hidden="false">
-                                                                                                                        <path
-                                                                                                                             d="M25.33 8.55l-1.88-1.88-7.45 7.45-7.45-7.45-1.88 1.88 7.45 7.45-7.45 7.45 1.88 1.88 7.45-7.45 7.45 7.45 1.88-1.88-7.45-7.45z">
-                                                                                                                        </path>
-                                                                                                                   </svg>
-                                                                                                              </button>
-                                                                                                              <div role="tooltip"
-                                                                                                                   id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
-                                                                                                                   class="mytooltip">Remove</div>
-                                                                                                         </div>
+                                                                                               <div class="img-processbar"
+                                                                                                    role="progressbar"
+                                                                                                    aria-valuemin="0"
+                                                                                                    aria-valuemax="100"
+                                                                                                    aria-valuenow="100"
+                                                                                                    [attr.style]="
+                                          sanitizer.bypassSecurityTrustStyle(
+                                            '--progressBarValue: ' +
+                                              file.progress +
+                                              '%'
+                                          )
+                                        "></div>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                     <div [ngClass]="{
+                                      'bt-progressbar': true,
+                                      'color-on-progress': file.progress != 100,
+                                      'color-transparent': file.progress == 100
+                                    }" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"
+                                                                                          [attr.style]="
+                                      sanitizer.bypassSecurityTrustStyle(
+                                        '--progressBarValue: ' +
+                                          file.progress +
+                                          '%'
+                                      )
+                                    "></div>
+                                                                                </div>
+                                                                                <div class="img-above-bg">
+                                                                                     <div class="upload-above-bg">
+                                                                                          <div
+                                                                                               class="d-flex justify-content-end">
+                                                                                               <div
+                                                                                                    class="upload-discard-btn">
+                                                                                                    <button
+                                                                                                         type="button"
+                                                                                                         (click)="doRemove(i)"
+                                                                                                         class="upload-discard-dp icon-outline-1"
+                                                                                                         aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
+                                                                                                         <svg class="upload-discard-icon"
+                                                                                                              version="1.1"
+                                                                                                              viewBox="0 0 32 32"
+                                                                                                              width="32"
+                                                                                                              height="32"
+                                                                                                              aria-hidden="false">
+                                                                                                              <path
+                                                                                                                   d="M25.33 8.55l-1.88-1.88-7.45 7.45-7.45-7.45-1.88 1.88 7.45 7.45-7.45 7.45 1.88 1.88 7.45-7.45 7.45 7.45 1.88-1.88-7.45-7.45z">
+                                                                                                              </path>
+                                                                                                         </svg>
+                                                                                                    </button>
+                                                                                                    <div role="tooltip"
+                                                                                                         id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
+                                                                                                         class="mytooltip">
+                                                                                                         Remove
                                                                                                     </div>
-                                                                                                    <div class="mg-t-auto"><button type="button"
-                                                                                                              class="upload-location-wrapper icon-outline-1"><svg
-                                                                                                                   class="add-location-icon" version="1.1"
-                                                                                                                   viewBox="0 0 32 32" width="32"
-                                                                                                                   height="32"
-                                                                                                                   aria-hidden="false">
-                                                                                                                   <path
-                                                                                                                        d="M16 0c-6.7 0-12 5.3-12 12 0 8.6 8.6 17.3 11.2 19.7.4.4 1.1.4 1.5 0 2.7-2.4 11.3-11.1 11.3-19.7 0-6.7-5.3-12-12-12zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
-                                                                                                                   </path>
-                                                                                                              </svg><span
-                                                                                                                   class="overflow-hidden pd-l-8">Add
-                                                                                                                   location</span></button></div>
                                                                                                </div>
                                                                                           </div>
-                                                                                     </div><textarea class="upload-description-area"
-                                                                                          placeholder="Add a description (optional)"
-                                                                                          maxlength="600"></textarea>
+                                                                                          <div class="mg-t-auto">
+                                                                                               <button type="button"
+                                                                                                    class="upload-location-wrapper icon-outline-1">
+                                                                                                    <svg class="add-location-icon"
+                                                                                                         version="1.1"
+                                                                                                         viewBox="0 0 32 32"
+                                                                                                         width="32"
+                                                                                                         height="32"
+                                                                                                         aria-hidden="false">
+                                                                                                         <path
+                                                                                                              d="M16 0c-6.7 0-12 5.3-12 12 0 8.6 8.6 17.3 11.2 19.7.4.4 1.1.4 1.5 0 2.7-2.4 11.3-11.1 11.3-19.7 0-6.7-5.3-12-12-12zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
+                                                                                                         </path>
+                                                                                                    </svg><span
+                                                                                                         class="overflow-hidden pd-l-8">Add
+                                                                                                         location</span>
+                                                                                               </button>
+                                                                                          </div>
+                                                                                     </div>
+                                                                                </div>
+                                                                           </div>
+                                                                           <textarea class="upload-description-area"
+                                                                                placeholder="Add a description (optional)"
+                                                                                maxlength="600"></textarea>
                                                                       </div>
                                                                  </div>
                                                             </div>
@@ -266,24 +350,34 @@
                     <div *ngIf="filesLength == 0" class="upload-form-section">
                          <label class="ul-fo-display ul-fo-pd ul-fo-animate ul-fo-color">
                               <div class="flex-column-center">
-                                   <img class="_3rSeE" src="../../../assets/images/upload_empty.png">
-                                   <div>Drop your images here or <span class="ReA9D">Browse</span></div>
+                                   <img class="_3rSeE" src="../../../assets/images/upload_empty.png" />
+                                   <div>
+                                        Drop your images here or <span class="ReA9D">Browse</span>
+                                   </div>
                               </div>
                               <div class="upload-guide mg-y-0 upload-guide-fz">
                                    <ul class="upload-guide-ul">
-                                        <li><strong>High quality photos</strong> (at least <strong>5MP</strong>)</li>
+                                        <li>
+                                             <strong>High quality photos</strong> (maximum
+                                             <strong>10MP</strong>)
+                                        </li>
                                         <li>Photos are <strong>clear &amp; original</strong></li>
                                    </ul>
                                    <ul class="upload-guide-ul">
-                                        <li>Only upload photos you <strong>own the rights</strong> to</li>
+                                        <li>
+                                             Only upload photos you <strong>own the rights</strong> to
+                                        </li>
                                         <li>Zero tolerance for nudity, violence or hate</li>
                                    </ul>
                                    <ul class="upload-guide-ul">
                                         <li>Respect the intellectual property of others</li>
-                                        <li>Read the <a href="/terms" target="_blank">UpFamous Terms</a></li>
+                                        <li>
+                                             Read the <a href="/terms" target="_blank">UpFamous Terms</a>
+                                        </li>
                                    </ul>
                               </div>
-                              <input type="file" multiple="" accept="image/jpeg" #fileInput ng2FileSelect [uploader]="uploader" class="upload-input">
+                              <input type="file" multiple="" accept="image/jpeg" #fileInput ng2FileSelect
+                                   [uploader]="uploader" class="upload-input" />
                          </label>
                     </div>
 
@@ -293,11 +387,15 @@
                                    License</a>
                          </div>
                          <div class="mg-l-auto d-flex">
-                              <button type="button"
-                                   class="uf-btn-white mr-8 uf-btn-text uf-btn-border no-decor fw-500">Cancel</button>
-                              <button type="submit" disabled=""
-                                   class="uf-btn-text uf-btn-grey uf-btn-border no-decor fw-500">Publish to
-                                   UpFamous</button>
+                              <button type="button" class="uf-btn-white mr-8 uf-btn-text uf-btn-border no-decor fw-500">
+                                   Cancel
+                              </button>
+                              <button type="submit"
+                                   [disabled]="canBePublished ? null : true"
+                                   [ngClass]="canBePublished ? 'uf-btn-black' : 'uf-btn-grey'"
+                                   class="uf-btn-text uf-btn-border no-decor fw-500">
+                                   {{ publishText }}
+                              </button>
                          </div>
                     </div>
                </form>

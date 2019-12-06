@@ -9,17 +9,13 @@ export class PhotoUpload {
   file: any;
   imgBlob: any;
   type: any;
-  progress: any;
+  progress = 0;
+  cloudVersion: string;
+  cloudId: string;
+  format: string;
 
   get paddingBottom() {
     const ret = this.naturalHeight / this.naturalWidth * 100;
     return ret;
-  }
-
-  get isJPG() {
-    if (this.originalFilename.includes('.JPG')) {
-      return true;
-    }
-    return false;
   }
 }

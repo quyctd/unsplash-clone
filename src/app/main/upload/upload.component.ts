@@ -104,8 +104,6 @@ export class UploadComponent implements OnInit {
     };
 
     this.uploader.onAfterAddingFile = (item: any) => {
-      console.log('ITEM: ', item.file);
-
       // Build new Upload Photo
       const uploadPhoto = new PhotoUpload();
       uploadPhoto.file = item.file.rawFile;
@@ -115,13 +113,11 @@ export class UploadComponent implements OnInit {
       this.readImageInfo(uploadPhoto);
     };
 
-    this.uploader.onBeforeUploadItem = (item: any) => {
-    };
-
     // Update model on completion of uploading a file
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
-      console.log('RESPONSE: ', response);
-      console.log(this.responses);
+      // console.log('RESPONSE: ', response);
+      // console.log(this.responses);
+      this.updateUploadInfoFromCloudinary(item.file.rawFile, JSON.parse(response));
       upsertResponse(
         {
           file: item.file,
@@ -134,7 +130,7 @@ export class UploadComponent implements OnInit {
     // Update model on upload progress event
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
       const uploadEle = this.getUploadEleByFile(fileItem.file.rawFile);
-      uploadEle.progress = progress;
+      if (uploadEle) { uploadEle.progress = progress; }
       upsertResponse(
         {
           file: fileItem.file,
@@ -189,6 +185,16 @@ export class UploadComponent implements OnInit {
     }
   }
 
+  updateUploadInfoFromCloudinary(upFile, newData) {
+    const upPhoto = this.getUploadEleByFile(upFile);
+    upPhoto.naturalWidth = newData.width;
+    upPhoto.naturalHeight = newData.height;
+    upPhoto.originalFilename = newData.original_filename;
+    upPhoto.cloudVersion = newData.version;
+    upPhoto.cloudId = newData.public_id;
+    upPhoto.format = newData.format;
+  }
+
   readImageInfo(uploadPhoto) {
 
     // Read image info
@@ -222,5 +228,28 @@ export class UploadComponent implements OnInit {
   doRemove(i) {
     this.files.splice(i, 1);
     this.responses.splice(i, 1);
+  }
+
+  get publishText() {
+    if (this.filesLength === 0) {
+      return 'Publish to UpFamous';
+    } else {
+      return 'Publish ' + this.filesLength + ' photo' + (this.filesLength === 1 ? '' : 's');
+    }
+  }
+
+  isUploading() {
+    let isUpload = false;
+    for (const file of this.files) {
+      if (file.progress !== 100) {
+        isUpload = true;
+        break;
+      }
+    }
+    return isUpload;
+  }
+
+  get canBePublished() {
+    return this.files.length !== 0 && !this.isUploading();
   }
 }
