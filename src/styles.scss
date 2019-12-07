@@ -610,6 +610,10 @@ svg {
      padding-right: 12px;
 }
 
+.pd-r-16 {
+     padding-right: 16px;
+}
+
 .mg-t-24 {
      margin-top: 24px;
 }
@@ -828,6 +832,23 @@ svg {
 
 .list-style-none {
      list-style: none;
+}
+
+.mg-bt-l--10 {
+     margin-bottom: -10px;
+    margin-left: -10px;
+}
+
+.pd-bt-l-10 {
+     padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.img-err-icon {
+     width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    fill: #e25c3d;
 }
 
 .pd-l-0 {
@@ -1079,4 +1100,50 @@ svg {
 
 .color-transparent {
      background-color: transparent;
+}
+
+.upload-err-bg {
+     padding: 16px;
+     background-color: #fceeeb;
+     border-radius: 2px;
+}
+
+.upload-err-text {
+     font-size: 12px;
+    color: #767676;
+}
+
+.upload-err-img-list {
+     font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: -4px;
+    margin-left: -8px;
+}
+
+.pd-bt-4 {
+     padding-bottom: 4px;
+}
+
+.pd-l-8 {
+     padding-left: 8px;
+}
+
+.mg-bt-l--4 {
+     margin-bottom: -4px;
+     margin-left: -4px;
+}
+
+.w-80px {
+     width: 80px;
+}
+
+.pd-bt-l-4 {
+     padding-bottom: 4px;
+     padding-left: 4px;
+}
+
+.upload-err-img {
+     height: 53.33333px;
+    background-color: #d1d1d1;
 }

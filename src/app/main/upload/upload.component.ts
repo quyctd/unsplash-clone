@@ -15,6 +15,7 @@ export class UploadComponent implements OnInit {
 
   responses: Array<any>;
   files = [];
+  filesErr = [];
   limit = 10;
   hasBaseDropZoneOver = false;
   uploader: FileUploader;
@@ -56,7 +57,22 @@ export class UploadComponent implements OnInit {
     this.uploader.addToQueue = (files: File[], options?: FileUploaderOptions, filters?: FilterFunction[] | string) => {
       let list: File[] = [];
       for (const file of files) {
-        list.push(file);
+        if (file.size > 10 * 1024 * 1024) {
+          const errFile = new PhotoUpload();
+          // Get image blob
+          const reader = new FileReader();
+          const blob = new Blob([file], {type: file.type});
+
+          reader.readAsDataURL(blob);
+          // tslint:disable-next-line: variable-name
+          reader.onload = (_event) => {
+            errFile.imgBlob = (reader.result as string).replace('octet-stream', file.type);
+            // Show image to view
+            this.filesErr.push(errFile);
+          };
+        } else {
+          list.push(file);
+        }
       }
 
       // Validate limit number files
@@ -168,6 +184,7 @@ export class UploadComponent implements OnInit {
 
     // Update model on upload progress event
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
+      console.log('Progress: ', progress);
       const uploadEle = this.getUploadEleByFile(fileItem.file.rawFile);
       if (uploadEle) { uploadEle.progress = progress; }
       upsertResponse(
@@ -237,12 +254,14 @@ export class UploadComponent implements OnInit {
 
   updateUploadInfoFromCloudinary(upFile, newData) {
     const upPhoto = this.getUploadEleByFile(upFile);
-    upPhoto.naturalWidth = newData.width;
-    upPhoto.naturalHeight = newData.height;
-    upPhoto.originalFilename = newData.original_filename;
-    upPhoto.cloudVersion = newData.version;
-    upPhoto.cloudId = newData.public_id;
-    upPhoto.format = newData.format;
+    if (upPhoto) {
+      upPhoto.naturalWidth = newData.width;
+      upPhoto.naturalHeight = newData.height;
+      upPhoto.originalFilename = newData.original_filename;
+      upPhoto.cloudVersion = newData.version;
+      upPhoto.cloudId = newData.public_id;
+      upPhoto.format = newData.format;
+    }
   }
 
   readImageInfo(uploadPhoto) {
@@ -301,5 +320,9 @@ export class UploadComponent implements OnInit {
 
   get canBePublished() {
     return this.files.length !== 0 && !this.isUploading();
+  }
+
+  removeErrFiles() {
+    this.filesErr = [];
   }
 }
