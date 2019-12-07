@@ -13,9 +13,7 @@ export class PhotoUpload {
   cloudVersion: string;
   cloudId: string;
   format: string;
-
-  get paddingBottom() {
-    const ret = this.naturalHeight / this.naturalWidth * 100;
-    return ret;
-  }
+  cancelOnFinish = false;
+  fileIndex: any;
+  paddingBottom: any;
 }

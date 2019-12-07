@@ -5,6 +5,7 @@ import { FileUploader, FileUploaderOptions, ParsedResponseHeaders, FileLikeObjec
 import { HttpClient } from '@angular/common/http';
 import { PhotoUpload } from '../../models/photoUpload.model';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -29,7 +30,8 @@ export class UploadComponent implements OnInit {
     private zone: NgZone,
     private http: HttpClient,
     private helper: HelpersService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {
     this.responses = [];
    }
@@ -184,7 +186,6 @@ export class UploadComponent implements OnInit {
 
     // Update model on upload progress event
     this.uploader.onProgressItem = (fileItem: any, progress: any) => {
-      console.log('Progress: ', progress);
       const uploadEle = this.getUploadEleByFile(fileItem.file.rawFile);
       if (uploadEle) { uploadEle.progress = progress; }
       upsertResponse(
@@ -205,10 +206,10 @@ export class UploadComponent implements OnInit {
     const headers = new Headers({ 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' });
     const options = { headers };
     const body = {
-      token: data.delete_token
+      token: data.deleteToken
     };
     this.http.post(url, body, options).subscribe(response => {
-      console.log(`Deleted image - ${data.public_id} ${response.result}`);
+      console.log(`Deleted image - ${data.cloudId} ${response.result}`);
       // Remove deleted item for responses
       this.responses.splice(index, 1);
     });
@@ -261,6 +262,7 @@ export class UploadComponent implements OnInit {
       upPhoto.cloudVersion = newData.version;
       upPhoto.cloudId = newData.public_id;
       upPhoto.format = newData.format;
+      upPhoto.deleteToken = newData.delete_token;
     }
   }
 
@@ -272,6 +274,7 @@ export class UploadComponent implements OnInit {
     img.onload = () => {
       uploadPhoto.naturalWidth = img.width;
       uploadPhoto.naturalHeight = img.height;
+      uploadPhoto.paddingBottom = uploadPhoto.naturalHeight / uploadPhoto.naturalWidth * 100;
     };
 
     img.src = url;
@@ -295,8 +298,13 @@ export class UploadComponent implements OnInit {
   }
 
   doRemove(i) {
-    this.files.splice(i, 1);
-    this.responses.splice(i, 1);
+    const upPhoto = this.files[i];
+    if (upPhoto.progress != 100) {
+      // do nothing
+    } else {
+      this.deleteImage(upPhoto, i);
+      this.files.splice(i, 1);
+    }
   }
 
   get publishText() {
@@ -324,5 +332,21 @@ export class UploadComponent implements OnInit {
 
   removeErrFiles() {
     this.filesErr = [];
+  }
+
+  cancelUpload() {
+    this.router.navigateByUrl('/');
+  }
+
+  removeFileText(progress) {
+    if (progress !== 100) {
+      return 'You can not remove when item uploading';
+    } else {
+      return 'Remove';
+    }
+  }
+
+  uploadPhotos() {
+    
   }
 }

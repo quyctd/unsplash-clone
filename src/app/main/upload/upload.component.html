@@ -145,6 +145,7 @@
                                                                                                     <button
                                                                                                          type="button"
                                                                                                          (click)="doRemove(i)"
+                                                                                                         [disabled]='file.progress != 100 ? true : null'
                                                                                                          class="upload-discard-dp icon-outline-1"
                                                                                                          aria-labelledby="uploader-form-valid-file-removeButton">
                                                                                                          <svg class="upload-discard-icon"
@@ -161,7 +162,7 @@
                                                                                                     <div role="tooltip"
                                                                                                          id="uploader-form-valid-file-removeButton"
                                                                                                          class="mytooltip">
-                                                                                                         Remove
+                                                                                                         {{ removeFileText(file.progress) }}
                                                                                                     </div>
                                                                                                </div>
                                                                                           </div>
@@ -247,6 +248,7 @@
                                                                                                     <button
                                                                                                          type="button"
                                                                                                          (click)="doRemove(i)"
+                                                                                                         [disabled]='file.progress != 100 ? true : null'
                                                                                                          class="upload-discard-dp icon-outline-1"
                                                                                                          aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
                                                                                                          <svg class="upload-discard-icon"
@@ -263,7 +265,7 @@
                                                                                                     <div role="tooltip"
                                                                                                          id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
                                                                                                          class="mytooltip">
-                                                                                                         Remove
+                                                                                                         {{ removeFileText(file.progress) }}
                                                                                                     </div>
                                                                                                </div>
                                                                                           </div>
@@ -349,6 +351,7 @@
                                                                                                     <button
                                                                                                          type="button"
                                                                                                          (click)="doRemove(i)"
+                                                                                                         [disabled]='file.progress != 100 ? true : null'
                                                                                                          class="upload-discard-dp icon-outline-1"
                                                                                                          aria-labelledby="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton">
                                                                                                          <svg class="upload-discard-icon"
@@ -365,7 +368,7 @@
                                                                                                     <div role="tooltip"
                                                                                                          id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
                                                                                                          class="mytooltip">
-                                                                                                         Remove
+                                                                                                         {{ removeFileText(file.progress) }}
                                                                                                     </div>
                                                                                                </div>
                                                                                           </div>
@@ -444,10 +447,10 @@
                                    License</a>
                          </div>
                          <div class="mg-l-auto d-flex">
-                              <button type="button" class="uf-btn-white mr-8 uf-btn-text uf-btn-border no-decor fw-500">
+                              <button type="button" (click)='cancelUpload()' class="uf-btn-white mr-8 uf-btn-text uf-btn-border no-decor fw-500">
                                    Cancel
                               </button>
-                              <button type="submit" [disabled]="canBePublished ? null : true"
+                              <button type="submit" (click)="uploadPhotos()" [disabled]="canBePublished ? null : true"
                                    [ngClass]="canBePublished ? 'uf-btn-black' : 'uf-btn-grey'"
                                    class="uf-btn-text uf-btn-border no-decor fw-500">
                                    {{ publishText }}
