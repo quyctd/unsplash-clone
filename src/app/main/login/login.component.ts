@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     };
     this.api.login(formData).subscribe(
       data => {
-        localStorage.setItem('utoken', JSON.stringify({token: data.authentication_token }));
+        localStorage.setItem('utoken', JSON.stringify({token: data.body.user.authentication_token }));
         this.router.navigateByUrl('/');
       },
       error => {
