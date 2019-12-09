@@ -1,6 +1,6 @@
 export class PhotoUpload {
-  naturalWidth: number;
-  naturalHeight: number;
+  width: number;
+  height: number;
   originalFilename: string;
   uploadStatus: string;
   uploadHost: string;
@@ -16,4 +16,5 @@ export class PhotoUpload {
   cancelOnFinish = false;
   fileIndex: any;
   paddingBottom: any;
+  deleteToken: any;
 }

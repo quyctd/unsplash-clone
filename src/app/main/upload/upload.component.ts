@@ -1,3 +1,4 @@
+import { UploadService } from './../../services/upload/upload.service';
 import { HelpersService } from './../../services/helpers.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Cloudinary } from '@cloudinary/angular-5.x';
@@ -6,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { PhotoUpload } from '../../models/photoUpload.model';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-upload',
@@ -20,7 +22,6 @@ export class UploadComponent implements OnInit {
   limit = 10;
   hasBaseDropZoneOver = false;
   uploader: FileUploader;
-  title: string;
 
   message = '';
   imgURL: any;
@@ -31,7 +32,8 @@ export class UploadComponent implements OnInit {
     private http: HttpClient,
     private helper: HelpersService,
     private sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private api: UploadService
   ) {
     this.responses = [];
    }
@@ -125,19 +127,11 @@ export class UploadComponent implements OnInit {
     this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
       // Add Cloudinary's unsigned upload preset to the upload form
       form.append('upload_preset', this.cloudinary.config().upload_preset);
-      // Add built-in and custom tags for displaying the uploaded photo in the list
-      let tags = 'upfamous';
-      if (this.title) {
-        form.append('context', `photo=${this.title}`);
-        tags = `upfamous,${this.title}`;
-      }
       // Upload to a custom folder
       // Note that by default, when uploading via the API, folders are not automatically created in your Media Library.
       // In order to automatically create the folders based on the API requests,
       // please go to your account upload settings and set the 'Auto-create folders' option to enabled.
       form.append('folder', 'Upfamous');
-      // Add custom tags
-      form.append('tags', tags);
       // Add file to upload
       form.append('file', fileItem);
 
@@ -175,6 +169,7 @@ export class UploadComponent implements OnInit {
     // Update model on completion of uploading a file
     this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) => {
       this.updateUploadInfoFromCloudinary(item.file.rawFile, JSON.parse(response));
+      console.log('Upload completed: ', JSON.parse(response));
       upsertResponse(
         {
           file: item.file,
@@ -256,8 +251,8 @@ export class UploadComponent implements OnInit {
   updateUploadInfoFromCloudinary(upFile, newData) {
     const upPhoto = this.getUploadEleByFile(upFile);
     if (upPhoto) {
-      upPhoto.naturalWidth = newData.width;
-      upPhoto.naturalHeight = newData.height;
+      upPhoto.width = newData.width;
+      upPhoto.height = newData.height;
       upPhoto.originalFilename = newData.original_filename;
       upPhoto.cloudVersion = newData.version;
       upPhoto.cloudId = newData.public_id;
@@ -272,9 +267,9 @@ export class UploadComponent implements OnInit {
     const url = URL.createObjectURL(uploadPhoto.file);
     const img = new Image();
     img.onload = () => {
-      uploadPhoto.naturalWidth = img.width;
-      uploadPhoto.naturalHeight = img.height;
-      uploadPhoto.paddingBottom = uploadPhoto.naturalHeight / uploadPhoto.naturalWidth * 100;
+      uploadPhoto.width = img.width;
+      uploadPhoto.height = img.height;
+      uploadPhoto.paddingBottom = uploadPhoto.height / uploadPhoto.width * 100;
     };
 
     img.src = url;
@@ -347,6 +342,38 @@ export class UploadComponent implements OnInit {
   }
 
   uploadPhotos() {
-    
+    let listUploads = [];
+    for (const upPhoto of this.files) {
+      const itemUpload = {
+        description: '',
+        width: upPhoto.width,
+        height: upPhoto.height,
+        uploaded_at: Date.now(),
+        cloudinary_id: upPhoto.cloudId,
+        cloudinary_ver: upPhoto.cloudVersion,
+        format: upPhoto.format,
+        original_file_name: upPhoto.originalFilename
+      };
+      listUploads.push(itemUpload);
+    }
+
+    let params = {
+      auth_token: this.helper.token,
+      list_upload: listUploads
+    };
+    console.log('Send params: ', params);
+
+    this.api.upload(params).subscribe(
+      data => {
+        console.log('Upload successful', data.body);
+        this.router.navigateByUrl('/');
+      },
+      error => {
+        console.log('Upload error: ', error, error.body);
+      },
+      () => {
+        console.log();
+      }
+    );
   }
 }
