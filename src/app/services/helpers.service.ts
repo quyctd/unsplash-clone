@@ -97,4 +97,8 @@ export class HelpersService {
         break;
     }
   }
+
+  getImgUrl(ver, id, format) {
+    return 'https://res.cloudinary.com/flask-image/image/upload/v' + ver + '/' + id + '.' + format;
+  }
 }
