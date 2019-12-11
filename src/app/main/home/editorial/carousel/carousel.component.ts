@@ -16,7 +16,13 @@ export class CarouselComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initItem();
     this.getThumbnail();
+  }
+
+  initItem() {
+    this.item = {};
+    this.item['username'] = '';
   }
 
   getThumbnail = () => {
@@ -35,7 +41,8 @@ export class CarouselComponent implements OnInit {
   }
 
   get imgUrl() {
-    return this.helper.getImgUrl(this.item.cloudinary_ver, this.item.cloudinary_id, this.item.format);
+    if (this.item) {
+      return this.helper.getImgUrl(this.item.cloudinary_ver, this.item.cloudinary_id, this.item.format);
+    }
   }
-
 }
