@@ -3,9 +3,9 @@
           <div class="figure-container">
                <a title="View the photo by Francisco Delgado" class="figure-showup"
                     href="/photos/id">
-                    <div class="figure-img-container" style="padding-bottom: 150%;">
+                    <div class="figure-img-container" [style.paddingBottom.%]="itemPadding">
                          <img width="100px"
-                              src="https://images.unsplash.com/photo-1572935030973-7adfbb1d7d77?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1000&amp;q=80"
+                              [src]="imgUrl"
                               class="figure-img"/>
                     </div>
                </a>

@@ -16,4 +16,8 @@ export class HomeService extends BaseService {
   getHomeThumbnail(): Observable<any> {
     return this.http.get(this.baseUrl + '/homepage', {headers: this.httpHeaders});
   }
+
+  getEndlessItem(): Observable<any> {
+    return this.http.get(this.baseUrl + '/all', {headers: this.httpHeaders});
+  }
 }

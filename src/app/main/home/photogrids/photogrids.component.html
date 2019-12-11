@@ -2,19 +2,13 @@
      <div>
           <div class="grid-count-three">
                <div class="width-4 grid-col-4">
-                    <app-basic-figure></app-basic-figure>
-                    <app-sponsore-figure></app-sponsore-figure>
-                    <app-basic-figure></app-basic-figure>
+                    <app-basic-figure *ngFor="let item of list1" [item]='item'></app-basic-figure>
                </div>
                <div class="width-4 grid-col-4">
-                    <app-basic-figure></app-basic-figure>
-                    <app-basic-figure></app-basic-figure>
-                    <app-basic-figure></app-basic-figure>
+                    <app-basic-figure *ngFor="let item of list2" [item]='item'></app-basic-figure>
                </div>
                <div class="width-4 grid-col-4">
-                    <app-basic-figure></app-basic-figure>
-                    <app-basic-figure></app-basic-figure>
-                    <app-basic-figure></app-basic-figure>
+                    <app-basic-figure *ngFor="let item of list3" [item]='item'></app-basic-figure>
                </div>
           </div>
      </div>

@@ -99,6 +99,7 @@ export class HelpersService {
   }
 
   getImgUrl(ver, id, format) {
+    if (ver === undefined || id === undefined || format === undefined) { return ''; }
     return 'https://res.cloudinary.com/flask-image/image/upload/v' + ver + '/' + id + '.' + format;
   }
 }
