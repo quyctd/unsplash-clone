@@ -20,4 +20,9 @@ export class HomeService extends BaseService {
   getEndlessItem(): Observable<any> {
     return this.http.get(this.baseUrl + '/all', {headers: this.httpHeaders});
   }
+
+  getFollowingItem(id): Observable<any> {
+    const body = {user_id: id};
+    return this.http.post(this.baseUrl + '/following', body, { headers: this.httpHeaders });
+  }
 }

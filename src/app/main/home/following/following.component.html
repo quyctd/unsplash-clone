@@ -11,6 +11,6 @@
           </div>
      </div>
 
-     <div class="pd-x-12 mg-x-auto d-none">No photos to display. Follow some Unsplash photographers and check back soon.</div>
-     <app-photogrids></app-photogrids>
+     <div [ngClass]="{'d-none': items.length != 0 }" class="pd-x-12 mg-x-auto">No photos to display. Follow some UpFamous photographers and check back soon.</div>
+     <app-photogrids [items]='items'></app-photogrids>
 </div>
