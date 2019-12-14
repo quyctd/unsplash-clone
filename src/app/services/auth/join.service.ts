@@ -8,13 +8,18 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class JoinService extends BaseService {
-
+  joinUrl: any;
+  
   constructor(http: HttpClient) {
     super(http);
-    this.baseUrl += 'users';
+    this.joinUrl = this.baseUrl + 'users/';
   }
 
   register(joinData): Observable<any> {
-    return this.http.post(this.baseUrl, joinData, {headers: this.httpHeaders}).pipe(map((res: Response) => res.json()));
+    return this.http.post(this.joinUrl, joinData, {headers: this.httpHeaders}).pipe(map((res: Response) => res.json()));
+  }
+
+  joinPhoto(): Observable<any> {
+    return this.http.get(this.baseUrl + 'join_photo', { headers: this.httpHeaders });
   }
 }

@@ -2,7 +2,7 @@
   <div class="registration__containers">
     <div
       class="sheet sheet-inverse registration__left-panel"
-      style="background-image: url(https://images.unsplash.com/photo-1548699979-eb3d8e05ba40?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max);"
+      [ngStyle]="{'background-image':'url('+photoUrl+')'}"
     >
       <div class="registration__content">
         <div class="registration__logo">
@@ -19,7 +19,7 @@
         </div>
         <div>
           <p class="registration__credit">
-            Uploaded 9 months ago by Freddy Marschall
+            Uploaded {{ photoUploadDate }} by {{ joinPhoto.username }}
           </p>
         </div>
       </div>

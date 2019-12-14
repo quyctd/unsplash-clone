@@ -107,4 +107,189 @@ export class HelpersService {
     if (ver === undefined || id === undefined || format === undefined) { return ''; }
     return 'https://res.cloudinary.com/flask-image/image/upload/v' + ver + '/' + id + '.' + format;
   }
+
+  ISODateString(date) {
+    let d = new Date(date);
+    return d.getFullYear() + '-'
+        + this.pad(d.getUTCMonth() + 1) + '-'
+        + this.pad(d.getUTCDate()) + 'T'
+        + this.pad(d.getUTCHours()) + ':'
+        + this.pad(d.getUTCMinutes()) + ':'
+        + this.pad(d.getUTCSeconds()) + 'Z';
+  }
+
+  pad(n: any) {return n < 10 ? '0' + n : n; }
+
+  dateToText(createdTime) {
+    let updateTime = new Date(createdTime);
+    const d = new Date();
+    // parse both time stamps into dates
+    const finalCurrentTime = Date.parse(this.ISODateString(d));
+    const finalPostDateTime = Date.parse(this.ISODateString(updateTime));
+
+    // find the difference between the original post date/time and the current date/time (in milliseconds)
+    const responseTimeFinal = Math.abs(finalCurrentTime - finalPostDateTime);
+    const days: any = Math.floor(responseTimeFinal / (24 * 60 * 60 * 1000));
+    let timeDifference: any;
+    if (days >= 1) {
+      if (updateTime.getFullYear() == d.getFullYear()) {
+        if (updateTime.getMonth() == d.getMonth() && Math.abs(updateTime.getDate() - d.getDate()) < 7) {
+          timeDifference = this.formatWeekDate(updateTime);
+        } else {
+          timeDifference = this.formatMediumDate(updateTime);
+        }
+      } else {
+        timeDifference = this.formatFarDate(updateTime);
+      }
+    } else {
+      // pass the milliseconds from responseTimeFinal into the dhm function to convert it back to a date
+      timeDifference = this.formatInDays(responseTimeFinal);
+    }
+    return timeDifference;  // final result
+  }
+
+  formatFarDate(d) {
+    // tslint:disable:variable-name
+    const m_names = new Array('January', 'February', 'March',
+      'April', 'May', 'June', 'July', 'August', 'September',
+      'October', 'November', 'December');
+
+    d = new Date(d);
+    const curr_date = d.getDate();
+    let sup = '';
+    if (curr_date == 1 || curr_date == 21 || curr_date == 31) {
+      sup = 'st';
+    } else if (curr_date == 2 || curr_date == 22) {
+      sup = 'nd';
+    } else if (curr_date == 3 || curr_date == 23) {
+      sup = 'rd';
+    } else {
+      sup = 'th';
+    }
+    const curr_month = d.getMonth();
+    const curr_year = d.getFullYear();
+
+    return m_names[curr_month] + ' ' + curr_date + sup + ', ' + curr_year;
+  }
+
+  formatMediumDate(d) {
+    d = new Date(d);
+    // tslint:disable:variable-name
+    const m_names = new Array('January', 'February', 'March',
+      'April', 'May', 'June', 'July', 'August', 'September',
+      'October', 'November', 'December');
+
+    const curr_date = d.getDate();
+    let sup = '';
+    if (curr_date == 1 || curr_date == 21 || curr_date == 31) {
+      sup = 'st';
+    } else if (curr_date == 2 || curr_date == 22) {
+      sup = 'nd';
+    } else if (curr_date == 3 || curr_date == 23) {
+      sup = 'rd';
+    } else {
+      sup = 'th';
+    }
+    const curr_month = d.getMonth();
+
+    // determine the time hours
+    let a_p = '';
+    let curr_hour = d.getUTCHours();
+    if (curr_hour < 12) {
+      a_p = 'AM';
+    } else {
+      a_p = 'PM';
+    }
+    if (curr_hour == 0) {
+      curr_hour = 12;
+    }
+    if (curr_hour > 12) {
+      curr_hour = curr_hour - 12;
+    }
+    curr_hour = (curr_hour < 10) ? '0' + curr_hour : curr_hour;
+
+    let curr_minute = d.getUTCMinutes();
+    curr_minute = (curr_minute < 10) ? '0' + curr_minute : curr_minute;
+    return m_names[curr_month] + ' ' + curr_date + sup + ', ' + curr_hour + ':' + curr_minute + ' ' + a_p;
+  }
+
+  formatWeekDate(d) {
+    // tslint:disable:variable-name
+    d = new Date(d);
+    // determine days
+    const d_names = new Array('Sunday', 'Monday', 'Tuesday',
+      'Wednesday', 'Thursday', 'Friday', 'Saturday');
+
+    const curr_day = d.getDay();
+    // determine the time hours
+    let a_p = '';
+    let curr_hour = d.getUTCHours();
+    if (curr_hour < 12) {
+      a_p = 'AM';
+    } else {
+      a_p = 'PM';
+    }
+    if (curr_hour == 0) {
+      curr_hour = 12;
+    }
+    if (curr_hour > 12) {
+      curr_hour = curr_hour - 12;
+    }
+    curr_hour = (curr_hour < 10) ? '0' + curr_hour : curr_hour;
+
+    let curr_minute = d.getUTCMinutes();
+    curr_minute = (curr_minute < 10) ? '0' + curr_minute : curr_minute;
+
+    return d_names[curr_day] + ', ' + curr_hour + ':' + curr_minute + ' ' + a_p;
+  }
+
+  formatInDays(ms: number) {
+    let days2: any = Math.floor(ms / (24 * 60 * 60 * 1000));
+    const daysms: any = ms % (24 * 60 * 60 * 1000);
+    let hours2: any = Math.floor((daysms) / (60 * 60 * 1000));
+    const hoursms: any = ms % (60 * 60 * 1000);
+    let minutes2: any = Math.floor((hoursms) / (60 * 1000));
+    const minutesms: any = ms % (60 * 1000);
+    let sec: any = Math.floor((minutesms) / (1000));
+
+    days2 = (days2 < 10) ? '0' + days2 : days2;
+    hours2 = (hours2 < 10) ? '0' + hours2 : hours2;
+    minutes2 = (minutes2 < 10) ? '0' + minutes2 : minutes2;
+    sec = (sec < 10) ? '0' + sec : sec;
+
+    // tslint:disable:triple-equals
+    if (days2 == '00' && hours2 == '00' && minutes2 == '00' && sec != '00') {
+      if (sec < '30') {
+        return 'less then a minute';
+      } else {
+        return 'about a minute ago';
+      }
+    }
+
+    if (days2 == '00' && hours2 == '00' && minutes2 != '00') {
+      if (minutes2 == '01') {
+        return 'about a minute ago';
+      } else {
+        return 'about ' + minutes2 + ' minutes ago';
+      }
+    }
+
+    if (days2 == '00' && hours2 != '00') {
+      if (hours2 == '01') {
+        return 'about an hour ago';
+      } else {
+        return 'about ' + hours2 + ' hours ago';
+      }
+    }
+
+    if (days2 != '00') {
+      if (days2 == '01') {
+        return 'about a day ago';
+      } else {
+        return 'about ' + days2 + ' days ago';
+      }
+    }
+
+    return 'less then a minute';
+  }
 }

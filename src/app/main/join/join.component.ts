@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { JoinService } from 'src/app/services/auth/join.service';
 import { Router } from '@angular/router';
+import { HelpersService } from 'src/app/services/helpers.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-join',
@@ -11,14 +13,26 @@ import { Router } from '@angular/router';
 export class JoinComponent implements OnInit {
 
   form: FormGroup;
+  joinPhoto: any;
 
   constructor(
     private fbuilder: FormBuilder,
     private api: JoinService,
-    private router: Router
+    private router: Router,
+    private helper: HelpersService,
+    private sanitization: DomSanitizer
   ) { }
 
   ngOnInit() {
+    this.joinPhoto = {
+      cloudinary_ver: undefined,
+      cloudinary_id: undefined,
+      format: undefined,
+      created_at: Date(),
+      width: 0,
+      height: 0,
+      username: ''
+    };
     this.form = this.fbuilder.group({
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
@@ -26,6 +40,7 @@ export class JoinComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
+    this.getJoinPhoto();
   }
 
   get first_name() {
@@ -75,4 +90,23 @@ export class JoinComponent implements OnInit {
     );
   }
 
+  getJoinPhoto() {
+    this.api.joinPhoto().subscribe(
+      data => {
+        this.joinPhoto = data.body;
+      },
+      error => {
+        this.router.navigateByUrl('/');
+      }
+    );
+  }
+
+  get photoUrl() {
+    return this.helper.getImgUrl(this.joinPhoto.cloudinary_ver, this.joinPhoto.cloudinary_id, this.joinPhoto.format);
+    // return this.sanitization.bypassSecurityTrustStyle(`url(${imgUrl})`);
+  }
+
+  get photoUploadDate() {
+    return this.helper.dateToText(this.joinPhoto.created_at);
+  }
 }
