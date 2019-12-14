@@ -31,6 +31,15 @@ export class HelpersService {
     }
   }
 
+  get currentUser() {
+    const userLocal = localStorage.getItem('currentUser');
+    if (userLocal !== null && userLocal !== undefined) {
+      return JSON.parse(userLocal).user;
+    } else {
+      return null;
+    }
+  }
+
   calImgDisplayHeight(img) {
     return 100;
   }

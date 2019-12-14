@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.api.login(formData).subscribe(
       data => {
         localStorage.setItem('utoken', JSON.stringify({token: data.body.user.authentication_token }));
+        localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
         this.router.navigateByUrl('/');
       },
       error => {
