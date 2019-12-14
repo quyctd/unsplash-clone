@@ -25,4 +25,8 @@ export class HomeService extends BaseService {
     const body = {user_id: id};
     return this.http.post(this.baseUrl + '/following', body, { headers: this.httpHeaders });
   }
+
+  getPhotoInfo(id): Observable<any> {
+    return this.http.get(this.baseUrl + '/show/' + id, { headers: this.httpHeaders });
+  }
 }

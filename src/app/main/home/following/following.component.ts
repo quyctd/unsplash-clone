@@ -32,8 +32,7 @@ export class FollowingComponent implements OnInit {
   getFollowingItem() {
     this.api.getFollowingItem(this.helper.currentUser.id).subscribe(
       data => {
-        console.log(data);
-        this.items = data.body.items;
+        this.items = data.body;
       },
       error => {
         console.log(error);
