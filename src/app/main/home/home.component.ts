@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   getEndlessItem = () => {
     this.api.getEndlessItem().subscribe(
       data => {
-        console.log(data);
         this.items = data.body;
       },
       error => {

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'join', component: JoinComponent },
   { path: 'upload', component: UploadComponent },
-  { path: 'photos/id', component: PhotoViewerComponent },
+  { path: 'photos/:id', component: PhotoViewerComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'user/:id/likes', component: UserComponent },
   { path: 'user/:id/collections', component: UserComponent },
