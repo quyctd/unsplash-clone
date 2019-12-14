@@ -411,6 +411,9 @@ button[disabled] {
 .mg-x-auto {
      margin-left: auto;
      margin-right: auto;
+}
+
+.limit-width {
      @media (min-width: 768px) {
           max-width: 1320px;
      }
@@ -418,6 +421,14 @@ button[disabled] {
 
 .cursor-zoom-in {
      cursor: zoom-in!important;
+}
+
+.cursor-zoom-out {
+     cursor: zoom-out !important;
+}
+
+.btn-no-out-set:active {
+     border-style: outset;
 }
 
 .box-shadow-none {

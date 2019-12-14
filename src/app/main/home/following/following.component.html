@@ -1,6 +1,6 @@
 <app-topbar></app-topbar>
 <div data-set="following-route">
-     <div class="following-header pd-x-12 mg-x-auto header-wrapper">
+     <div class="following-header pd-x-12 mg-x-auto limit-width header-wrapper">
           <div class="pd-t-16">
                <h1 class="width-8 header-title" data-test="page-header-title">Following</h1>
                <div class="fz-18 w-50">
@@ -11,6 +11,6 @@
           </div>
      </div>
 
-     <div [ngClass]="{'d-none': items.length != 0 }" class="pd-x-12 mg-x-auto">No photos to display. Follow some UpFamous photographers and check back soon.</div>
+     <div [ngClass]="{'d-none': items.length != 0 }" class="pd-x-12 mg-x-auto limit-width">No photos to display. Follow some UpFamous photographers and check back soon.</div>
      <app-photogrids [items]='items'></app-photogrids>
 </div>

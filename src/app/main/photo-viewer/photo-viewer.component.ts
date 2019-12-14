@@ -1,6 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/services/home/home.service';
+import { HelpersService } from 'src/app/services/helpers.service';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-photo-viewer',
@@ -11,14 +13,21 @@ export class PhotoViewerComponent implements OnInit {
 
   photoId: string;
   item: any;
+  zoom: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private api: HomeService,
-    private router: Router
+    private router: Router,
+    private helper: HelpersService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
+    this.zoom = false;
+    this.item = {
+      user: { username: ''}
+    };
     this.photoId = this.route.snapshot.paramMap.get('id');
     this.getPhotoInfo();
   }
@@ -34,5 +43,34 @@ export class PhotoViewerComponent implements OnInit {
         this.router.navigateByUrl('/400');
       }
     );
+  }
+
+  get imgUrl() {
+    return this.helper.getImgUrl(this.item.cloudinary_ver, this.item.cloudinary_id, this.item.format);
+  }
+
+  get downloadUrl() {
+    return '/photos/' + this.item.id + '/download?force=true';
+  }
+
+  get imgPadding() {
+    if (this.item.width && this.item.height) {
+      return this.item.height / this.item.width * 100;
+    } else { return 1; }
+  }
+
+  get maxWidthPercent() {
+    return 'calc((100vh - 200px) *' + 100 / this.imgPadding + ')';
+  }
+
+  get minWidth() {
+    if (this.item.width && this.item.height) {
+      if (this.item.width >= this.item.height) { return 500; } else { return 334; }
+    } else { return 500; }
+  }
+
+  toggleZoom() {
+    this.zoom = !this.zoom;
+    console.log('toggle: ', this.zoom);
   }
 }

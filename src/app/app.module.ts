@@ -41,7 +41,6 @@ import { CollectionsComponent } from './main/collections/collections.component';
 import { CltViewComponent } from './main/collections/clt-view/clt-view.component';
 import { CltCreateModalComponent } from './main/collections/clt-create-modal/clt-create-modal.component';
 import { AccountComponent } from './main/account/account.component';
-import { PhotoInfoComponent } from './main/photo-viewer/photo-info/photo-info.component';
 import { ModalComponent } from './common/modal/modal.component';
 import { CollectionComponent } from './common/modal/collection/collection.component';
 
@@ -82,7 +81,6 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     CltViewComponent,
     CltCreateModalComponent,
     AccountComponent,
-    PhotoInfoComponent,
     ModalComponent,
     CollectionComponent,
     FileSelectDirective

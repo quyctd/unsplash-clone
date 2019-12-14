@@ -10,18 +10,17 @@
               <div class="mr-8">
                 <div class="relative">
                   <div class="img-circle" style="width:32px;height:32px">
-                    <a href="/@skulkingfaux"><img class="user-avatar"
-                        src="https://images.unsplash.com/profile-1571457177669-46ab9db1186bimage?dpr=1&amp;auto=format&amp;fit=crop&amp;w=32&amp;h=32&amp;q=60&amp;crop=faces&amp;bg=fff"
-                        role="presentation" alt="Go to Jing Shi's profile" />
+                    <a href="/user/{{ item.user.username }}"><img class="user-avatar"
+                        src="../../../assets/images/undefined_ava.jpg"
+                        role="presentation" alt="Go to {{ item.user_fullname }}'s profile" />
                     </a>
                   </div>
                 </div>
               </div>
               <div class="relative min-width-0">
                 <div class="relative">
-                  <a class="color-inherit fz-15 lh-135 no-decor fw-500 photo-author-name" href="/@skulkingfaux">Jing
-                    Shi</a>
-                  <a class="lh-135 photo-author-name no-decor photo-username" href="/@skulkingfaux">@skulkingfaux</a>
+                  <a class="color-inherit fz-15 lh-135 no-decor fw-500 photo-author-name" href="/user/{{ item.user.username }}">{{ item.user_fullname }}</a>
+                  <a class="lh-135 photo-author-name no-decor photo-username" href="/user/{{ item.user.username }}">@{{ item.user.username }}</a>
                 </div>
               </div>
             </span>
@@ -47,23 +46,26 @@
               </button>
             </div>
             <div class="width-180 flex-shrink-0 pd-4">
-              <button title="Download photo" href="https://unsplash.com/photos/7DGtphxbB7g/download?force=true"
+              <a title="Download photo" [href]="downloadUrl"
                 rel="nofollow" download="" target="_blank"
                 class="d-inline-flex uf-btn-white uf-btn-border uf-btn-text no-decor fw-500 btn-block-level justify-center">
                 <svg class="uf-btn-icon d-none" version="1.1" viewBox="0 0 32 32" width="32" height="32"
                   aria-hidden="false">
                   <path d="M25.8 15.5l-7.8 7.2v-20.7h-4v20.7l-7.8-7.2-2.7 3 12.5 11.4 12.5-11.4z"></path>
                 </svg><span class="_2Aga-">Download</span>
-              </button>
+              </a>
             </div>
           </div>
         </header>
       </div>
       <div class="photo-main">
-        <div style="padding: 10px 16px;">
-          <div style="min-width: 334px; max-width: calc((100vh - 220px) * 0.666667);" class="mg-x-auto">
-            <button class="btn-zoom-in-container box-shadow-none cursor-zoom-in photo-display photo-border"
-              type="button">
+        <div [style.padding]="zoom ? null : '10px 16px'">
+          <div [ngStyle]="{'min-width': zoom ? null : minWidth +'px'}"
+            [style.max-width]="zoom ? null : sanitizer.bypassSecurityTrustStyle(maxWidthPercent)"
+            class="mg-x-auto">
+            <button [ngClass]="{'cursor-zoom-out': zoom, 'cursor-zoom-in': !zoom}"
+             class="btn-zoom-in-container box-shadow-none photo-display photo-border btn-no-out-set"
+              type="button" (click)='toggleZoom()'>
               <div class="btn-zoom-in">
                 <div class="pd-4">
                   <svg class="zoom-in-icon" version="1.1" viewBox="0 0 32 32" width="32" height="32"
@@ -72,10 +74,9 @@
                   </svg>
                 </div>
               </div>
-              <div class="bg-f5 relative" style="padding-bottom: 150%;">
+              <div class="bg-f5 relative" [style.paddingBottom.%]="imgPadding">
                 <img
-                  sizes="(max-width: 767px) 100vw, (max-width: 366px) 334px, (max-height: 721px) 334px, (min-aspect-ratio: 3912/5868) calc((calc(100vh - 220px)) * 0.666667), calc(100vw - 32px)"
-                  src="https://images.unsplash.com/photo-1573258759625-f40df05cfee3?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80"
+                  [src]="imgUrl"
                   class="img-fit left-0" />
               </div>
             </button>
@@ -95,7 +96,7 @@
           <div class="max-width-100 pd-4">
             <div class="max-width-500 uf-grey">
               <p class="d-inline mg-x-auto">
-                My roommate going on social media after waking up.
+                {{ item.description }}
               </p>
             </div>
           </div>
