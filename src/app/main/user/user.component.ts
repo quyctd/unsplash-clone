@@ -22,7 +22,16 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userdata = { full_name: ''};
     this.username = this.route.snapshot.paramMap.get('id');
+    const tab = this.router.url.replace('user/', '').replace(this.username, '').replace(/\//g, '');
+    if (tab === 'collections') {
+      this.tab = tab;
+    } else if (tab === 'likes') {
+      this.tab = tab;
+    } else {
+      this.tab = 'photos';
+    }
     this.getUserInfo();
   }
 

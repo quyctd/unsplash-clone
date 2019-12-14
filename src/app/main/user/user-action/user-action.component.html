@@ -1,7 +1,7 @@
 <div class="user-action-wrapper">
      <div class="user-action-container">
           <div class="h-100 user-action-tab">
-               <a class="d-flex align-items-center h-100 no-decor nav-link-active" data-test="user-nav-link-photos" href="/@kevinmueller" aria-current="page">
+               <a [ngClass]="{'nav-link-active': tab == 'photos'}" class="d-flex align-items-center h-100 no-decor" href="/user/{{ user.username }}" aria-current="page">
                     <svg class="user-action-icon" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
                          <path
                               d="M10.8 18.2667L14.5333 22.6667L19.7333 16L26.4 24.9333H5.6L10.8 18.2667ZM29.3333 28V4C29.3333 3.2 28.8 2.66667 28 2.66667H4C3.2 2.66667 2.66667 3.2 2.66667 4V28C2.66667 28.8 3.2 29.3333 4 29.3333H28C28.8 29.3333 29.3333 28.8 29.3333 28Z">
@@ -9,12 +9,12 @@
                     </svg>
                     <span class="fz-14">
                          <span class="fw-500">Photos </span> 
-                         <span class="">148</span>
+                         <span class="">{{ photoNumber }}</span>
                     </span>
                </a>
           </div>
           <div class="h-100 user-action-tab">
-               <a class="d-flex align-items-center h-100 no-decor" data-test="user-nav-link-likes" href="/@kevinmueller/likes">
+               <a [ngClass]="{'nav-link-active': tab == 'likes'}" class="d-flex align-items-center h-100 no-decor" href="/user/{{ user.username }}/likes">
                     <svg class="user-action-icon" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
                          <path
                               d="M17.4 29c-.8.8-2 .8-2.8 0l-12.3-12.8c-3.1-3.1-3.1-8.2 0-11.4 3.1-3.1 8.2-3.1 11.3 0l2.4 2.8 2.3-2.8c3.1-3.1 8.2-3.1 11.3 0 3.1 3.1 3.1 8.2 0 11.4l-12.2 12.8z">
@@ -22,12 +22,12 @@
                     </svg>
                     <span class="fz-14">
                          <span class="fw-500">Likes </span>
-                         <span class="">177</span>
+                         <span class="">{{ likeNumber }}</span>
                     </span>
                </a>
           </div>
           <div class="h-100 user-action-tab">
-               <a class="d-flex align-items-center h-100 no-decor" data-test="user-nav-link-collections" href="/@kevinmueller/collections">
+               <a [ngClass]="{'nav-link-active': tab == 'collections'}" class="d-flex align-items-center h-100 no-decor" href="/user/{{ user.username }}/collections">
                     <svg class="user-action-icon" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
                          <path
                               d="M.57 9.42c4.76 2.22 9.54 4.46 14.32 6.66a2.28 2.28 0 0 0 2.21 0c4.76-2.18 9.56-4.44 14.28-6.64.27-.13.61-.2.61-.55s-.34-.45-.61-.57c-4.72-2.21-9.58-4.5-14.32-6.7a3.16 3.16 0 0 0-2.06-.02c-4.8 2.22-9.67 4.51-14.45 6.75-.23.11-.55.2-.55.52s.32.44.57.55zm19 .72v-4.14l8.09 2.3-11.66 5.43v-4.73zM31.83 22.71a1.31 1.31 0 0 0-.36-.21c-.83-.39-1.67-.8-2.52-1.18a2.63 2.63 0 0 0-2.29 0l-9.48 4.44a2.61 2.61 0 0 1-2.34 0l-9.51-4.4a2.71 2.71 0 0 0-2.36 0c-.78.38-1.58.75-2.37 1.12-.26.13-.6.2-.6.55s.34.45.59.57c4.74 2.22 9.52 4.46 14.3 6.67a3.57 3.57 0 0 0 1.1.32 3.08 3.08 0 0 0 1.18-.36c4.74-2.19 9.49-4.35 14.19-6.61a2.48 2.48 0 0 0 .47-.27.36.36 0 0 0 0-.64zM.6 16.51c4.73 2.24 9.49 4.44 14.26 6.68a6 6 0 0 0 1.13.3 4 4 0 0 0 1.09-.3c4.8-2.22 9.58-4.44 14.39-6.72a1.62 1.62 0 0 0 .32-.17.39.39 0 0 0 0-.68 2 2 0 0 0-.34-.2l-2.45-1.17a2.54 2.54 0 0 0-2.22 0q-4.83 2.23-9.62 4.5a2.54 2.54 0 0 1-2.22 0c-3.2-1.49-6.4-3-9.56-4.44a2.55 2.55 0 0 0-2.38-.06l-2.38 1.14c-.26.12-.62.19-.62.57s.36.44.6.55z">
@@ -35,7 +35,7 @@
                     </svg>
                     <span class="fz-14">
                          <span class="fw-500">Collections </span> 
-                         <span class="">6</span>
+                         <span class="">{{ collectionNumber }}</span>
                     </span>
                </a>
           </div>

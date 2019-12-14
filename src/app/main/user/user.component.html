@@ -19,7 +19,7 @@
                               <div class="user-info-wrapper">
                                    <div class="user-info-pd">
                                         <div class="user-info-action">
-                                             <div class="fz-40 user-info-act-pd fw-700 lh-12">{{ userdata.first_name }} {{ userdata.last_name }}</div>
+                                             <div class="fz-40 user-info-act-pd fw-700 lh-12">{{ userdata.full_name }}</div>
                                              <div class="user-info-act-pd">
                                                   <div class="user-info-act-btn-wrapper">
                                                        <div class="pd-bt-l-8 ">
@@ -34,7 +34,7 @@
                                                                       </svg>Follow</span>
                                                             </button>
                                                        </div>
-                                                       <div class="pd-bt-l-8 ">
+                                                       <div class="pd-bt-l-8 " [ngStyle]="{display: 'none'}">
                                                             <button type="button"
                                                                  class="uf-btn-black uf-btn-border uf-btn-text no-decor fw-500">
                                                                  Message
@@ -61,7 +61,7 @@
                                                   </div>
                                              </div>
                                              <div class="pd-bt-l-16 overwrap-break max-width-70">
-                                                  Download free, beautiful high-quality photos curated by Dinh.
+                                                  Download free, beautiful high-quality photos curated by {{ userdata.first_name | titlecase }}.
                                              </div>
                                              <div class="pd-bt-l-16 uf-grey">Interests</div>
                                              <div class="d-flex align-items-center flex-wrap-center">
@@ -100,10 +100,11 @@
      </div>
 
      <!-- Portfolio section -->
-     <app-user-action></app-user-action>
+     <app-user-action [user]='userdata' [tab]='tab'></app-user-action>
 
-     <app-photogrids *ngIf="tab !=  'collections'"></app-photogrids>
-     <app-collection-grids *ngIf="tab ==  'collections'"></app-collection-grids>
+     <app-photogrids *ngIf="tab == 'photos'" [items]='userdata.photos'></app-photogrids>
+     <app-photogrids *ngIf="tab == 'likes'"></app-photogrids>
+     <app-collection-grids *ngIf="tab == 'collections'"></app-collection-grids>
      <!-- Footer -->
      <app-footer></app-footer>
 </div>
