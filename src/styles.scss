@@ -722,6 +722,10 @@ svg {
      margin-right: 0;
 }
 
+.mg-r-0 {
+     margin-right: 0;
+}
+
 .modal-pos {
      position: fixed;
     top: 0;
@@ -1146,4 +1150,20 @@ svg {
 .upload-err-img {
      height: 53.33333px;
     background-color: #d1d1d1;
+}
+
+.btn-no-border {
+     border-color: transparent;
+     border-radius: 0;
+     box-shadow: none;
+}
+
+.join-btn {
+     color: #fff!important;
+    fill: #3cb46e!important;
+    background-color: #3cb46e;
+}
+
+.mg-r-14 {
+     margin-right: 14px;
 }

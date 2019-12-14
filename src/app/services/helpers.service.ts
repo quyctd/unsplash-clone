@@ -22,8 +22,13 @@ export class HelpersService {
   }
 
   get token() {
-    const tokenHash = JSON.parse(localStorage.getItem('utoken'));
-    return tokenHash.token;
+    const tokenLocal = localStorage.getItem('utoken');
+    if (tokenLocal !== null && tokenLocal !== undefined) {
+      const tokenHash = JSON.parse(tokenLocal);
+      return tokenHash.token;
+    } else {
+      return null;
+    }
   }
 
   calImgDisplayHeight(img) {

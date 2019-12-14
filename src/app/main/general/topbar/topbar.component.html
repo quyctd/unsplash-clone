@@ -23,7 +23,7 @@
                     </a>
                </li>
                <li class="navbar__li-collection">
-                    <a class="navbar__collection" href="">
+                    <a class="navbar__collection" href='/following'>
                          Following
                     </a>
                </li>
@@ -31,7 +31,7 @@
      </div>
      <div class="navbar__devider"></div>
 
-     <div class="navbar__user-section">
+     <div *ngIf="isLogin" class="navbar__user-section">
           <div>
                <div class="navbar__submit-photo">
                     <button type="button" class="btn uf-btn-text uf-btn-white uf-btn-border"><a class="uf-grey no-decor" href="/upload">Submit a photo</a></button>
@@ -52,6 +52,11 @@
                     <img class="user-avatar" src="https://images.unsplash.com/profile-fb-1564720054-f09a2804ca97.jpg?dpr=1&amp;auto=format&amp;fit=crop&amp;w=32&amp;h=32&amp;q=60&amp;crop=faces&amp;bg=fff" role="presentation" alt="Go to Dinh Quy's profile">
                </a>
           </div>
+     </div>
+
+     <div *ngIf="!isLogin" class="d-flex d-inline-flex align-items-center">
+          <a href="/login" rel="nofollow" class="btn-no-border mg-r-14 uf-btn-white uf-btn-text uf-btn-border no-decor fw-500">Login</a>
+          <a href="/join" rel="nofollow" class="join-btn mg-r-0 uf-btn-white uf-btn-text uf-btn-border no-decor fw-500">Join free</a>
      </div>
 </nav>
 <div class="h-topbar"></div>

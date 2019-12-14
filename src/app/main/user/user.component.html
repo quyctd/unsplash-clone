@@ -19,7 +19,7 @@
                               <div class="user-info-wrapper">
                                    <div class="user-info-pd">
                                         <div class="user-info-action">
-                                             <div class="fz-40 user-info-act-pd fw-700 lh-12">Jing Shi</div>
+                                             <div class="fz-40 user-info-act-pd fw-700 lh-12">{{ userdata.first_name }} {{ userdata.last_name }}</div>
                                              <div class="user-info-act-pd">
                                                   <div class="user-info-act-btn-wrapper">
                                                        <div class="pd-bt-l-8 ">
@@ -46,7 +46,7 @@
                                    </div>
                                    <div class="user-info-pd">
                                         <div class="lh-14 mg-bt-l--16">
-                                             <div class="pd-bt-l-16">
+                                             <div class="pd-bt-l-16" [style.display]="'none'">
                                                   <div class="user-location-wrapper">
                                                        <div class="user-location-pd">
                                                             <a class="no-decor" href="/s/photos/california"
@@ -61,7 +61,7 @@
                                                   </div>
                                              </div>
                                              <div class="pd-bt-l-16 overwrap-break max-width-70">
-                                                  I shoot mainly on 35mm. Analog person. Sometimes digital. Black and white enthusiast. Ig @skulkingfaux
+                                                  Download free, beautiful high-quality photos curated by Dinh.
                                              </div>
                                              <div class="pd-bt-l-16 uf-grey">Interests</div>
                                              <div class="d-flex align-items-center flex-wrap-center">
@@ -102,8 +102,8 @@
      <!-- Portfolio section -->
      <app-user-action></app-user-action>
 
-     <app-photogrids *ngIf="route !=  'collections'"></app-photogrids>
-     <app-collection-grids *ngIf="route ==  'collections'"></app-collection-grids>
+     <app-photogrids *ngIf="tab !=  'collections'"></app-photogrids>
+     <app-collection-grids *ngIf="tab ==  'collections'"></app-collection-grids>
      <!-- Footer -->
      <app-footer></app-footer>
 </div>
