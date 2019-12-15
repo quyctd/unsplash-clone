@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
   tab = 'collections';
   username: string;
   userdata: any;
+  showAction = false;
 
   constructor(
     private helper: HelpersService,
@@ -33,6 +34,22 @@ export class UserComponent implements OnInit {
       this.tab = 'photos';
     }
     this.getUserInfo();
+  }
+
+  get isCurrentUser() {
+    if (this.username === this.helper.currentUser.username) {
+      return true;
+    } else { return false; }
+  }
+
+  toggleMoreAction() {
+    if (this.isCurrentUser) {
+      this.showAction = !this.showAction;
+    }
+  }
+
+  moreActionClickOutside() {
+    this.showAction = false;
   }
 
   getUserInfo() {

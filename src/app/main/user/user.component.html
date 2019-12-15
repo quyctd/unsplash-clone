@@ -19,9 +19,10 @@
                               <div class="user-info-wrapper">
                                    <div class="user-info-pd">
                                         <div class="user-info-action">
-                                             <div class="fz-40 user-info-act-pd fw-700 lh-12">{{ userdata.full_name }}</div>
+                                             <div class="fz-40 user-info-act-pd fw-700 lh-12">{{ userdata.full_name }}
+                                             </div>
                                              <div class="user-info-act-pd">
-                                                  <div class="user-info-act-btn-wrapper">
+                                                  <div *ngIf="!isCurrentUser" class="user-info-act-btn-wrapper">
                                                        <div class="pd-bt-l-8 ">
                                                             <button type="button"
                                                                  class="uf-btn-blue uf-btn-border uf-btn-text no-decor fw-500">
@@ -41,6 +42,34 @@
                                                             </button>
                                                        </div>
                                                   </div>
+                                                  <div *ngIf="isCurrentUser" class="user-info-act-btn-wrapper">
+                                                       <div class="pd-bt-l-8">
+                                                            <a href="/account"
+                                                                 class="uf-btn-white uf-btn-border uf-btn-text no-decor fw-500">Edit
+                                                                 profile</a>
+                                                            </div>
+                                                       <div class="relative pd-bt-l-8">
+                                                            <button type="button" (click)="toggleMoreAction()" (clickOutside)="moreActionClickOutside()"
+                                                                 title="More"
+                                                                 class="uf-btn-white uf-btn-border uf-btn-text no-decor fw-500">
+                                                                 <span class="more-action relative">…</span>
+                                                            </button>
+                                                            <div [ngClass]="{'popup-menu-show': showAction}" class="action-popup-pd action-popup-transform action-popup-style">
+                                                                 <div>
+                                                                      <ul class="list-style-none pd-l-0 mg-y-0">
+                                                                           <li><button type="button"
+                                                                                     class="popup-li no-decor fw-400 lh-16 popup-li-border">Submit
+                                                                                     a photo</button>
+                                                                           </li>
+                                                                           <li><a class="popup-li no-decor fw-400 lh-16 popup-li-border"
+                                                                                     href="/logout"
+                                                                                     data-type="PopoverLink">Logout</a>
+                                                                           </li>
+                                                                      </ul>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
+                                                  </div>
                                              </div>
                                         </div>
                                    </div>
@@ -50,9 +79,9 @@
                                                   <div class="user-location-wrapper">
                                                        <div class="user-location-pd">
                                                             <a class="no-decor" href="/s/photos/california"
-                                                                 rel="nofollow"><svg class="mr-8 location-icon" version="1.1"
-                                                                      viewBox="0 0 32 32" width="32" height="32"
-                                                                      aria-hidden="false">
+                                                                 rel="nofollow"><svg class="mr-8 location-icon"
+                                                                      version="1.1" viewBox="0 0 32 32" width="32"
+                                                                      height="32" aria-hidden="false">
                                                                       <path
                                                                            d="M16 0c-6.7 0-12 5.3-12 12 0 8.6 8.6 17.3 11.2 19.7.4.4 1.1.4 1.5 0 2.7-2.4 11.3-11.1 11.3-19.7 0-6.7-5.3-12-12-12zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
                                                                       </path>
@@ -61,30 +90,35 @@
                                                   </div>
                                              </div>
                                              <div class="pd-bt-l-16 overwrap-break max-width-70">
-                                                  Download free, beautiful high-quality photos curated by {{ userdata.first_name | titlecase }}.
+                                                  Download free, beautiful high-quality photos curated by
+                                                  {{ userdata.first_name | titlecase }}.
                                              </div>
                                              <div class="pd-bt-l-16 uf-grey">Interests</div>
                                              <div class="d-flex align-items-center flex-wrap-center">
                                                   <div class="pd-bt-l-16">
                                                        <div class="tag-wrapper">
                                                             <div class="pd-bt-l-8">
-                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey" title="landscape images"
+                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey"
+                                                                      title="landscape images"
                                                                       href="/images/nature/landscape">landscape</a>
                                                             </div>
                                                             <div class="pd-bt-l-8">
-                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey" title="nature images"
+                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey"
+                                                                      title="nature images"
                                                                       href="/images/nature">nature</a>
                                                             </div>
                                                             <div class="pd-bt-l-8">
-                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey" title="film images"
-                                                                      href="/s/photos/film">film</a>
+                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey"
+                                                                      title="film images" href="/s/photos/film">film</a>
                                                             </div>
                                                             <div class="pd-bt-l-8">
-                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey" title="animals images"
+                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey"
+                                                                      title="animals images"
                                                                       href="/images/animals">animals</a>
                                                             </div>
                                                             <div class="pd-bt-l-8">
-                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey" title="street images"
+                                                                 <a class="tag bg-eee d-inline-block no-decor uf-grey"
+                                                                      title="street images"
                                                                       href="/s/photos/street">street</a>
                                                             </div>
                                                        </div>

@@ -23,7 +23,7 @@ export class BasicFigureComponent implements OnInit {
   }
 
   get itemLikeMaps() {
-    if (this.item) { return this.item.item_like_maps; } else { return []; }
+    if (this.item && this.item.item_like_maps) { return this.item.item_like_maps; } else { return []; }
   }
 
   get imgUrl() {

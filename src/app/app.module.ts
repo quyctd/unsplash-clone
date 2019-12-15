@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
 import { Cloudinary } from '@cloudinary/angular-5.x/src/cloudinary.service';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 import { FileSelectDirective } from 'ng2-file-upload';
 
@@ -94,6 +95,7 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     FormsModule,
     ReactiveFormsModule,
     CloudinaryModule.forRoot(cloudinary, config),
+    ClickOutsideModule
   ],
   providers: [],
   bootstrap: [AppComponent]
