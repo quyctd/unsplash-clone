@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HelpersService } from 'src/app/services/helpers.service';
 import { HomeService } from 'src/app/services/home/home.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class BasicFigureComponent implements OnInit {
 
   @Input() item: any;
+  @Output() showCollectionModal = new EventEmitter();
 
   constructor(
     private helper: HelpersService,
@@ -53,5 +54,9 @@ export class BasicFigureComponent implements OnInit {
         this.router.navigateByUrl('/500');
       }
     );
+  }
+
+  _showCollectionModal() {
+    this.showCollectionModal.emit(this.item);
   }
 }

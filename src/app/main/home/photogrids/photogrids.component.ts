@@ -9,6 +9,8 @@ import { HelpersService } from 'src/app/services/helpers.service';
 export class PhotogridsComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   private _items = [];
+  showModal = false;
+  modalItem: any;
 
   get items(): any {
     return this._items;
@@ -43,5 +45,10 @@ export class PhotogridsComponent implements OnInit {
         if (i % 3 === 2) { this.list3.push(this.items[i]); }
       }
     }
+  }
+
+  showCollectionModal(item) {
+    this.showModal = true;
+    this.modalItem = item;
   }
 }

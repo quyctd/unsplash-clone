@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
 
   // tslint:disable-next-line:align
-  currentState = 2;
+  currentState = 0;
 
   constructor() { }
 

@@ -1,5 +1,5 @@
 <div class="float-left modal-img-collection"
-     style="background-image: url(&quot;https://images.unsplash.com/photo-1573162201267-83bddd2a5f0d?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjEyMDd9&quot;);">
+     [ngStyle]="{'background-image': 'url(' + imgUrl + ')'}">
 </div>
 <div class="_3eozC"></div>
 <div class="modal-collection-action">
@@ -14,8 +14,7 @@
                          <button class="modal-li-style box-shadow-none modal-li-style-border" type="button">
                               <div class="relative">
                                    <img class="obj-fit-cover w-100"
-                                        srcset="https://images.unsplash.com/photo-1573494116958-96c5c5bbef6c?ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=480&amp;h=80&amp;q=60 1x, https://images.unsplash.com/photo-1573494116958-96c5c5bbef6c?ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format&amp;fit=crop&amp;w=480&amp;h=80&amp;q=60 2x"
-                                        src="https://images.unsplash.com/photo-1573494116958-96c5c5bbef6c?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=480&amp;h=80&amp;q=60"
+                                        [src]="imgUrl"
                                         width="480" height="80">
                                    <div class="modal-li-info-bg modal-li-info-style">
                                         <div class="modal-collection-add"><svg class="_3A5GM VcQr8" version="1.1" viewBox="0 0 32 32"

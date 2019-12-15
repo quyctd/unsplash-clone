@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Component({
   selector: 'app-modal',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  constructor() { }
+  @Input() item: any;
+
+  constructor(
+    private helper: HelpersService
+  ) { }
 
   ngOnInit() {
   }

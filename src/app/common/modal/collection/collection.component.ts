@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Component({
   selector: 'app-modal-collection',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollectionComponent implements OnInit {
 
-  constructor() { }
+  @Input() item: any;
+
+  constructor(
+    private helper: HelpersService
+  ) { }
 
   ngOnInit() {
+  }
+
+  get imgUrl() {
+    // tslint:disable-next-line: max-line-length
+    if (this.item) { return this.helper.getImgUrl(this.item.cloudinary_ver, this.item.cloudinary_id, this.item.format); } else { return ''; }
   }
 
 }
