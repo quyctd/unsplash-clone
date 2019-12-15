@@ -14,8 +14,9 @@
                     <div class="figure-hover-top">
                          <div class="figure-hover-top-container">
                               <button title="Like photo" type="button" (click)="doLikeItem(item.id)"
-                                   class="pointer-auto d-inline-flex uf-btn-white uf-btn-border uf-btn-text no-decor fw-500 icon-liked">
-                                   <svg class="figure-like-icon fill-w" version="1.1" viewBox="0 0 32 32" width="32" height="32"
+                                   [ngClass]="{'icon-liked': isLikedByCurrentUser}"
+                                   class="pointer-auto d-inline-flex uf-btn-white uf-btn-border uf-btn-text no-decor fw-500">
+                                   <svg class="figure-like-icon" [ngClass]="{'fill-w': isLikedByCurrentUser}" version="1.1" viewBox="0 0 32 32" width="32" height="32"
                                         aria-hidden="false">
                                         <path
                                              d="M17.4 29c-.8.8-2 .8-2.8 0l-12.3-12.8c-3.1-3.1-3.1-8.2 0-11.4 3.1-3.1 8.2-3.1 11.3 0l2.4 2.8 2.3-2.8c3.1-3.1 8.2-3.1 11.3 0 3.1 3.1 3.1 8.2 0 11.4l-12.2 12.8z">

@@ -23,6 +23,10 @@ export class BasicFigureComponent implements OnInit {
     // console.log('Item: ', this.item);
   }
 
+  get itemLikeMaps() {
+    if (this.item) { return this.item.item_like_maps; } else { return []; }
+  }
+
   get imgUrl() {
     if (this.item) { return this.helper.getImgUrl(this.item.cloudinary_ver, this.item.cloudinary_id, this.item.format); }
   }
@@ -31,11 +35,19 @@ export class BasicFigureComponent implements OnInit {
     if (this.item) { return this.item.height / this.item.width * 100; } else { return 0; }
   }
 
+  get isLikedByCurrentUser() {
+    for (const map of this.itemLikeMaps) {
+      if (map.user_id === this.helper.currentUser.id && map.liked_flag) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   doLikeItem(itemId) {
     this.api.likePhoto(itemId, this.helper.currentUser.id).subscribe(
       data => {
-        console.log(data);
-        this.likeResult = data.body;
+        this.item = data;
       },
       error => {
         console.log(error);
