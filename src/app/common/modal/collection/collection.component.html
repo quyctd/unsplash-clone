@@ -12,7 +12,7 @@
                </button>
                <ul class="mg-y-0 list-style-none pd-l-0">
                     <li class="mg-bt-12" *ngFor="let clt of userCollections; let i = index">
-                         <button class="modal-li-style box-shadow-none modal-li-style-border" type="button">
+                         <button class="modal-li-style box-shadow-none modal-li-style-border" (click)="doToggleCollection(i)" type="button">
                               <div class="relative">
 
                                    <img *ngIf="clt.feature_imgs.length != 0" class="obj-fit-cover w-100"
@@ -20,20 +20,20 @@
                                         width="480" height="80">
                                    <div *ngIf="clt.feature_imgs.length == 0" style="height: 80px;"></div>
 
-                                   <div class="modal-li-black modal-li-info-style" [ngClass]="{'collection-added': false}">
-                                        <div class="modal-collection-add" (click)="doToggleCollection(i)">
+                                   <div class="modal-li-black modal-li-info-style" [ngClass]="{'collection-added': isInThisClt(i) }">
+                                        <div class="modal-collection-add">
                                              <svg class="icon-added icon-action" version="1.1" viewBox="0 0 32 32"
                                                   width="32" height="32" id='added-icon' aria-hidden="false">
                                                   <path d="M28.1 5.2L11.7 21.6l-7.8-7.8-3.4 3.3 11.2 11.2L31.5 8.6z">
                                                   </path>
                                              </svg>
-                                             <svg *ngIf="true" class="icon-do-add icon-action" version="1.1" viewBox="0 0 32 32" width="32"
+                                             <svg *ngIf="!isInThisClt(i)" class="icon-do-add icon-action" version="1.1" viewBox="0 0 32 32" width="32"
                                                   height="32" aria-hidden="false" id='add-icon'>
                                                   <path
                                                        d="M18.4 13.6V3.5h-4.8v10.1H3.5v4.8h10.1v10.1h4.8V18.4h10.1v-4.8z">
                                                   </path>
                                              </svg>
-                                             <svg *ngIf="false" class="icon-do-add icon-action" version="1.1" viewBox="0 0 32 32" width="32"
+                                             <svg *ngIf="isInThisClt(i)" class="icon-do-add icon-action" version="1.1" viewBox="0 0 32 32" width="32"
                                                   height="32" aria-hidden="false" id='remove-icon'>
                                                   <path d="M3.5 13.6h25v4.9h-25z"></path>
                                              </svg>

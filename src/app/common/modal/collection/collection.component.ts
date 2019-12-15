@@ -78,7 +78,45 @@ export class CollectionComponent implements OnInit {
     if (this.clickCreate) { return '...'; } else { return 'Create collection'; }
   }
 
+  isInThisClt(index) {
+    const clt = this.userCollections[index];
+    for (const itemId of clt.item_ids) {
+      if (itemId === this.item.id) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   doToggleCollection(index) {
     const clt = this.userCollections[index];
+    const body = {
+      item_id: this.item.id,
+      collection_id: clt.id,
+      user_id: this.helper.currentUser.id
+    };
+    if (this.isInThisClt(index)) {
+      this.api.remove(body).subscribe(
+        data => {
+          localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
+          this.cancelCreateClt();
+        },
+        error => {
+          console.log(error);
+          this.router.navigateByUrl('/500');
+        }
+      );
+    } else {
+      this.api.add(body).subscribe(
+        data => {
+          localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
+          this.cancelCreateClt();
+        },
+        error => {
+          console.log(error);
+          this.router.navigateByUrl('/500');
+        }
+      );
+    }
   }
 }

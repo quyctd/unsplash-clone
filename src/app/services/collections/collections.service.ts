@@ -16,4 +16,12 @@ export class CollectionsService extends BaseService {
   createNewClt(body): Observable<any> {
     return this.http.post(this.baseUrl, body, { headers: this.httpHeaders });
   }
+
+  add(body): Observable<any> {
+    return this.http.post(this.baseUrl + 'add', body, { headers: this.httpHeaders });
+  }
+
+  remove(body): Observable<any> {
+    return this.http.post(this.baseUrl + 'remove', body, { headers: this.httpHeaders });
+  }
 }
