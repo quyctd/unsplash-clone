@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HelpersService } from 'src/app/services/helpers.service';
+import { HomeService } from 'src/app/services/home/home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-basic-figure',
@@ -9,9 +11,12 @@ import { HelpersService } from 'src/app/services/helpers.service';
 export class BasicFigureComponent implements OnInit {
 
   @Input() item: any;
+  likeResult: any;
 
   constructor(
-    private helper: HelpersService
+    private helper: HelpersService,
+    private api: HomeService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,5 +29,18 @@ export class BasicFigureComponent implements OnInit {
 
   get itemPadding() {
     if (this.item) { return this.item.height / this.item.width * 100; } else { return 0; }
+  }
+
+  doLikeItem(itemId) {
+    this.api.likePhoto(itemId, this.helper.currentUser.id).subscribe(
+      data => {
+        console.log(data);
+        this.likeResult = data.body;
+      },
+      error => {
+        console.log(error);
+        this.router.navigateByUrl('/500');
+      }
+    );
   }
 }

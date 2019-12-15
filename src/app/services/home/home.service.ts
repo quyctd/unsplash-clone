@@ -29,4 +29,9 @@ export class HomeService extends BaseService {
   getPhotoInfo(id): Observable<any> {
     return this.http.get(this.baseUrl + '/show/' + id, { headers: this.httpHeaders });
   }
+
+  likePhoto(itemId, userId): Observable<any> {
+    const body = {item_id: itemId, user_id: userId};
+    return this.http.post(this.baseUrl + '/like', body, { headers: this.httpHeaders });
+  }
 }
