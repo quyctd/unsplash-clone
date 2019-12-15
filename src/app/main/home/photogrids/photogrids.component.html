@@ -16,4 +16,4 @@
 
      </div>
 </div>
-<app-modal *ngIf="showModal" [item]="modalItem"></app-modal>
+<app-modal *ngIf="showModal" [item]="modalItem" (eventHideModal)="hideModal()"></app-modal>

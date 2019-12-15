@@ -50,5 +50,11 @@ export class PhotogridsComponent implements OnInit {
   showCollectionModal(item) {
     this.showModal = true;
     this.modalItem = item;
+    console.log('Modal showed');
+  }
+
+  hideModal() {
+    this.showModal = false;
+    this.modalItem = null;
   }
 }

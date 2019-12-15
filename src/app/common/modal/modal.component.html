@@ -3,13 +3,16 @@
           <div class="h-100 modal-outline modal-pd" tabindex="-1" role="dialog"
                aria-label="Modal">
                <div class="modal-close-container modal-close-fixed pointer-auto">
-                    <button class="modal-close-btn fill-w box-shadow-none modal-close-btn-outline" type="button">
+                    <button (click)="_hideModal()"
+                         class="modal-close-btn fill-w box-shadow-none modal-close-btn-outline" type="button">
                          <svg class="modal-close-size" version="1.1"
                               viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
                               <path
                                    d="M25.33 8.55l-1.88-1.88-7.45 7.45-7.45-7.45-1.88 1.88 7.45 7.45-7.45 7.45 1.88 1.88 7.45-7.45 7.45 7.45 1.88-1.88-7.45-7.45z">
                               </path>
-                         </svg></button></div>
+                         </svg>
+                    </button>
+               </div>
                <div class="modal-content modal-content-outline pointer-auto">
                     <div class="relative modal-content-height">
                          <app-modal-collection [item]='item'></app-modal-collection>

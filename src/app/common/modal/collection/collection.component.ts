@@ -17,9 +17,14 @@ export class CollectionComponent implements OnInit {
   ngOnInit() {
   }
 
-  get imgUrl() {
+  getImgUrl(item) {
     // tslint:disable-next-line: max-line-length
-    if (this.item) { return this.helper.getImgUrl(this.item.cloudinary_ver, this.item.cloudinary_id, this.item.format); } else { return ''; }
+    if (item) { return this.helper.getImgUrl(item.cloudinary_ver, item.cloudinary_id, item.format); } else { return ''; }
   }
 
+  get userCollections() {
+    if (this.helper.currentUser) {
+      return this.helper.currentUser.collections;
+    } else { return []; }
+  }
 }
