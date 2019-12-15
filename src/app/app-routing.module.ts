@@ -10,6 +10,7 @@ import { SearchComponent } from './main/search/search.component';
 import { FollowingComponent } from './main/home/following/following.component';
 import { CollectionsComponent } from './main/collections/collections.component';
 import { CltViewComponent } from './main/collections/clt-view/clt-view.component';
+import { LogoutComponent } from './main/logout/logout/logout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -25,8 +26,8 @@ const routes: Routes = [
   { path: 's/users/query', component: SearchComponent },
   { path: 'following', component: FollowingComponent },
   { path: 'collections', component: CollectionsComponent },
-  { path: 'collections/id/name', component: CltViewComponent }
-
+  { path: 'collections/id/name', component: CltViewComponent },
+  { path: 'logout', component: LogoutComponent },
 ];
 
 @NgModule({

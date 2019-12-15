@@ -36,6 +36,7 @@ export class BasicFigureComponent implements OnInit {
   }
 
   get isLikedByCurrentUser() {
+    if (!this.helper.currentUser) { return false; }
     for (const map of this.itemLikeMaps) {
       if (map.user_id === this.helper.currentUser.id && map.liked_flag) {
         return true;

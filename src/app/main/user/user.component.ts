@@ -37,6 +37,7 @@ export class UserComponent implements OnInit {
   }
 
   get isCurrentUser() {
+    if (!this.helper.currentUser) { return false; }
     if (this.username === this.helper.currentUser.username) {
       return true;
     } else { return false; }
