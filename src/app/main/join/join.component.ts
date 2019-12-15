@@ -76,9 +76,8 @@ export class JoinComponent implements OnInit {
 
     this.api.register(formData).subscribe(
       data => {
-        localStorage.setItem('utoken', JSON.stringify({token: data.data.user.authentication_token }));
-        const tokenHash = JSON.parse(localStorage.getItem('utoken'));
-        console.log('HELPER: ', tokenHash);
+        localStorage.setItem('utoken', JSON.stringify({token: data.body.user.authentication_token }));
+        localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
         this.router.navigateByUrl('/');
       },
       error => {

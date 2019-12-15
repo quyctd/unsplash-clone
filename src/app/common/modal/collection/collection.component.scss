@@ -68,7 +68,7 @@
     overflow: hidden;
 }
 
-.modal-li-info-bg {
+.modal-li-black {
      background-color: rgba(0,0,0,.4);
     transition: all .1s ease-in-out;
     padding: 17px 20px;
@@ -96,6 +96,10 @@
     transform: translateY(-50%);
     fill: #fff;
     z-index: 2;
+}
+
+.modal-collection-add:hover {
+     display: block;
 }
 
 .modal-clt-name, .modal-clt-img-count {
@@ -172,4 +176,43 @@
      resize: none;
      vertical-align: bottom;
      overflow: hidden;
+}
+
+.icon-action {
+     position: absolute;
+    width: 16px;
+    height: 16px;
+}
+
+.collection-added {
+     background-color: rgba(40,160,90,.7);
+}
+
+.icon-do-add, .icon-added {
+     visibility: hidden;
+}
+
+.modal-li-black:focus,.modal-li-black:hover {
+     background-color: rgba(0,0,0,.5)
+}
+
+.modal-li-black:hover .icon-do-add {
+     visibility: visible;
+}
+
+ .modal-li-black:hover .modal-collection-add {
+     display: block;
+ }
+
+.collection-added .modal-collection-add {
+     display: block;
+}
+
+
+.collection-added .icon-added {
+     visibility: visible;
+}
+
+.modal-li-black:hover .icon-added {
+     visibility: hidden;
 }
