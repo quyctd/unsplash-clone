@@ -9,9 +9,8 @@
                               <div class="mg-l-auto mg-r-32">
                                    <div class="img-circle" style="width: 150px; height: 150px;">
                                         <img class="user-avatar"
-                                             src="https://images.unsplash.com/profile-1571457177669-46ab9db1186bimage?dpr=1&amp;auto=format&amp;fit=crop&amp;w=150&amp;h=150&amp;q=60&amp;crop=faces&amp;bg=fff"
-                                             srcset="https://images.unsplash.com/profile-1571457177669-46ab9db1186bimage?dpr=1&auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff 1x, https://images.unsplash.com/profile-1571457177669-46ab9db1186bimage?dpr=2&auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff 2x"
-                                             role="presentation" alt="Avatar of user Jing Shi" />
+                                             src="../../../assets/images/undefined_ava.jpg"
+                                             role="presentation" alt="Avatar of user {{ userdata.full_name }}" />
                                    </div>
                               </div>
                          </div>
@@ -137,7 +136,7 @@
      <app-user-action [user]='userdata' [tab]='tab'></app-user-action>
 
      <app-photogrids *ngIf="tab == 'photos'" [items]='userdata.photos'></app-photogrids>
-     <app-photogrids *ngIf="tab == 'likes'"></app-photogrids>
+     <app-photogrids *ngIf="tab == 'likes'" [items]='userdata.likes'></app-photogrids>
      <app-collection-grids *ngIf="tab == 'collections'"></app-collection-grids>
      <!-- Footer -->
      <app-footer></app-footer>
