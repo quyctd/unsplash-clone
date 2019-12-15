@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class BasicFigureComponent implements OnInit {
 
   @Input() item: any;
-  likeResult: any;
 
   constructor(
     private helper: HelpersService,

@@ -45,6 +45,10 @@ export class PhotoViewerComponent implements OnInit {
     );
   }
 
+  get itemLikeMaps() {
+    if (this.item && this.item.item_like_maps) { return this.item.item_like_maps; } else { return []; }
+  }
+
   get imgUrl() {
     return this.helper.getImgUrl(this.item.cloudinary_ver, this.item.cloudinary_id, this.item.format);
   }
@@ -72,5 +76,26 @@ export class PhotoViewerComponent implements OnInit {
   toggleZoom() {
     this.zoom = !this.zoom;
     console.log('toggle: ', this.zoom);
+  }
+
+  get isLikedByCurrentUser() {
+    for (const map of this.itemLikeMaps) {
+      if (map.user_id === this.helper.currentUser.id && map.liked_flag) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  doLikeItem(itemId) {
+    this.api.likePhoto(itemId, this.helper.currentUser.id).subscribe(
+      data => {
+        this.item = data;
+      },
+      error => {
+        console.log(error);
+        this.router.navigateByUrl('/500');
+      }
+    );
   }
 }
