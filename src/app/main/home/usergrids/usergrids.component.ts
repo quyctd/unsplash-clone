@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-usergrids',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usergrids.component.scss']
 })
 export class UsergridsComponent implements OnInit {
+
+  @Input() users = [];
 
   constructor() { }
 

@@ -4,11 +4,11 @@
       [photoCount]="sData.photo_count" 
       [cltCount]="sData.collection_count"
       [userCount]="sData.user_count"></app-s-action>
-     <app-s-header [query]="query"></app-s-header>
+     <app-s-header [query]="query" [sData]='sData'></app-s-header>
 
      <app-photogrids *ngIf="route == 'photos'" [items]="sData.items"></app-photogrids>
      <app-collection-grids *ngIf="route == 'collections'" [clts]="sData.collections"></app-collection-grids>
-     <app-usergrids *ngIf="route == 'users'"></app-usergrids>
+     <app-usergrids *ngIf="route == 'users'" [users]='sData.users'></app-usergrids>
 
      <app-footer></app-footer>
 </div>

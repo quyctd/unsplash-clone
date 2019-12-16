@@ -1,42 +1,38 @@
 <div class="d-flex mg-bt-24 pd-x-12">
      <div class="user-item-container user-item-border">
-          <a class="user-item-main no-decor" href="/@helloimnik">
+          <a class="user-item-main no-decor" href="/user/{{ user.username }}">
                <div class="d-flex align-items-center display-table">
                     <div class="mg-r-16">
                          <div class="img-circle" style="width: 64px; height: 64px;">
                               <img class="user-avatar"
-                                   src="https://images.unsplash.com/profile-1531298357193-487f8092716c?dpr=1&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=60&amp;crop=faces&amp;bg=fff"
-                                   srcset="https://images.unsplash.com/profile-1531298357193-487f8092716c?dpr=1&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=60&amp;crop=faces&amp;bg=fff 1x, https://images.unsplash.com/profile-1531298357193-487f8092716c?dpr=2&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=60&amp;crop=faces&amp;bg=fff 2x"
-                                   role="presentation" alt="Avatar of user Hello I'm Nik 🇬🇧">
+                                   src="../../../../../assets/images/undefined_ava.jpg"
+                                   role="presentation" alt="Avatar of user {{ user.fullname }}">
                          </div>
                     </div>
                     <div class="user-item-info">
-                         <h5 class="lh-135 overflow-hidden max-width-100 mg-0">Hello I'm Nik 🇬🇧</h5>
-                         <p class="max-width-100 mg-0 over-flow-hidden uf-grey fz-15">@helloimnik</p>
+                         <h5 class="lh-135 overflow-hidden max-width-100 mg-0">{{ user.fullname }}</h5>
+                         <p class="max-width-100 mg-0 over-flow-hidden uf-grey fz-15">@{{ user.username }}</p>
                     </div>
                </div>
-               <div *ngIf="isOk" class="pd-t-16 d-flex">
+               <div class="pd-t-16 d-flex">
                     <div class="user-item-img-wrapper mr-8">
                          <div class="relative" style="padding-bottom: 75%;">
-                              <img class="obj-fit img-fit left-0"
-                                   srcset="https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60&amp;crop=entropy 1x, https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60&amp;crop=entropy 2x"
-                                   src="https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&amp;auto=format&amp;fit=max&amp;w=200&amp;q=60&amp;crop=entropy"
+                              <img *ngIf="user.feature_items && user.feature_items[0]" class="obj-fit-cover img-fit left-0"
+                                   [src]="getImgUrl(user.feature_items[0])"
                                    width="200">
                          </div>
                     </div>
                     <div class="user-item-img-wrapper mr-8">
                          <div class="relative" style="padding-bottom: 75%;">
-                              <img class="obj-fit img-fit left-0"
-                                   srcset="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60&amp;crop=entropy 1x, https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60&amp;crop=entropy 2x"
-                                   src="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?ixlib=rb-1.2.1&amp;auto=format&amp;fit=max&amp;w=200&amp;q=60&amp;crop=entropy"
+                              <img *ngIf="user.feature_items && user.feature_items[1]" class="obj-fit-cover img-fit left-0"
+                                   [src]="getImgUrl(user.feature_items[1])"
                                    width="200">
                          </div>
                     </div>
                     <div class="user-item-img-wrapper mr-8">
                          <div class="relative" style="padding-bottom: 75%;">
-                              <img class="obj-fit img-fit left-0"
-                                   srcset="https://images.unsplash.com/photo-1507289872412-523fc6b2db5f?ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60&amp;crop=entropy 1x, https://images.unsplash.com/photo-1507289872412-523fc6b2db5f?ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format&amp;fit=crop&amp;w=200&amp;q=60&amp;crop=entropy 2x"
-                                   src="https://images.unsplash.com/photo-1507289872412-523fc6b2db5f?ixlib=rb-1.2.1&amp;auto=format&amp;fit=max&amp;w=200&amp;q=60&amp;crop=entropy"
+                              <img *ngIf="user.feature_items && user.feature_items[2]" class="obj-fit-cover img-fit left-0"
+                                   [src]="getImgUrl(user.feature_items[2])"
                                    width="200">
                          </div>
                     </div>

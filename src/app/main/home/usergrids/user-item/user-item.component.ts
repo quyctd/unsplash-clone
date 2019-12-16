@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Component({
   selector: 'app-user-item',
@@ -7,19 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserItemComponent implements OnInit {
 
-  @Input()
-  var: string;
+  @Input() user: any;
 
-  constructor() { }
+  constructor(
+    private helper: HelpersService
+  ) { }
 
   ngOnInit() {
-    console.log(this.var);
   }
 
-  isOk() {
-    // tslint:disable:curly
-    if (this.var === 'y') {
-      return true;
-    } else return false;
+  getImgUrl(item) {
+    // tslint:disable-next-line: max-line-length
+    if (item) { return this.helper.getImgUrl(item.cloudinary_ver, item.cloudinary_id, item.format); } else { return ''; }
   }
 }
