@@ -45,6 +45,17 @@ export class BasicFigureComponent implements OnInit {
     return false;
   }
 
+  get isInUserCollection() {
+    const itemClts = this.item.collections;
+    if (!this.helper.currentUser) { return false; }
+    for (const clt of this.helper.userCollections) {
+      if (itemClts.includes(clt.id)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   doLikeItem(itemId) {
     this.api.likePhoto(itemId, this.helper.currentUser.id).subscribe(
       data => {

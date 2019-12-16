@@ -21,6 +21,20 @@ export class HelpersService {
     return (false);
   }
 
+  get userCollections() {
+    if (this.currentUser) {
+      return this.currentUser.collections;
+    } else {
+      return [];
+    }
+  }
+
+  set userCollections(val) {
+    const current = this.currentUser;
+    current.collections = val;
+    localStorage.setItem('currentUser', JSON.stringify({ user: current }));
+  }
+
   get token() {
     const tokenLocal = localStorage.getItem('utoken');
     if (tokenLocal !== null && tokenLocal !== undefined) {

@@ -78,6 +78,7 @@ export class JoinComponent implements OnInit {
       data => {
         localStorage.setItem('utoken', JSON.stringify({token: data.body.user.authentication_token }));
         localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
+        this.helper.userCollections = this.helper.currentUser.collections;
         this.router.navigateByUrl('/');
       },
       error => {

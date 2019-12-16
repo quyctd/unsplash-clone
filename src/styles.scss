@@ -1183,10 +1183,15 @@ svg {
   box-shadow: none;
 }
 
-.join-btn {
+.green-btn {
   color: #fff !important;
-  fill: #3cb46e !important;
+  fill: #fff !important;
   background-color: #3cb46e;
+  border-color: #3cb46e;
+}
+
+.green-btn:hover {
+  border-color: #3cb46e;
 }
 
 .mg-r-14 {

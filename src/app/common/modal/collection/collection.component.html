@@ -11,7 +11,7 @@
                     collection
                </button>
                <ul class="mg-y-0 list-style-none pd-l-0">
-                    <li class="mg-bt-12" *ngFor="let clt of userCollections; let i = index">
+                    <li class="mg-bt-12" *ngFor="let clt of helper.userCollections; let i = index">
                          <button class="modal-li-style box-shadow-none modal-li-style-border" (click)="doToggleCollection(i)" type="button">
                               <div class="relative">
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/auth/login.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fbuilder: FormBuilder,
+    private helper: HelpersService,
     private api: LoginService,
     private router: Router
   ) {}
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
       data => {
         localStorage.setItem('utoken', JSON.stringify({token: data.body.user.authentication_token }));
         localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
+        this.helper.userCollections = this.helper.currentUser.collections;
         this.router.navigateByUrl('/');
       },
       error => {

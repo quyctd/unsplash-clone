@@ -15,7 +15,6 @@ export class CollectionComponent implements OnInit {
   createClt = false;
   clickCreate = false;
   form: FormGroup;
-  userCollections: any;
 
   constructor(
     private helper: HelpersService,
@@ -41,7 +40,7 @@ export class CollectionComponent implements OnInit {
   getUserCollections() {
     this.api.userClt({user_id: this.helper.currentUser.id}).subscribe(
       data => {
-        this.userCollections = data;
+        this.helper.userCollections = data;
       },
       error => {
         console.log(error);
@@ -72,7 +71,7 @@ export class CollectionComponent implements OnInit {
     };
     this.api.createNewClt(formData).subscribe(
       data => {
-        this.userCollections = data.body.user.collections;
+        this.helper.userCollections = data;
         this.cancelCreateClt();
       },
       error => {
@@ -87,7 +86,7 @@ export class CollectionComponent implements OnInit {
   }
 
   isInThisClt(index) {
-    const clt = this.userCollections[index];
+    const clt = this.helper.userCollections[index];
     for (const itemId of clt.item_ids) {
       if (itemId === this.item.id) {
         return true;
@@ -97,7 +96,7 @@ export class CollectionComponent implements OnInit {
   }
 
   doToggleCollection(index) {
-    const clt = this.userCollections[index];
+    const clt = this.helper.userCollections[index];
     const body = {
       item_id: this.item.id,
       collection_id: clt.id,
@@ -106,7 +105,7 @@ export class CollectionComponent implements OnInit {
     if (this.isInThisClt(index)) {
       this.api.remove(body).subscribe(
         data => {
-          this.userCollections = data;
+          this.helper.userCollections = data;
           this.cancelCreateClt();
         },
         error => {
@@ -117,7 +116,7 @@ export class CollectionComponent implements OnInit {
     } else {
       this.api.add(body).subscribe(
         data => {
-          this.userCollections = data;
+          this.helper.userCollections = data;
           this.cancelCreateClt();
         },
         error => {
