@@ -15,6 +15,7 @@ export class CollectionComponent implements OnInit {
   createClt = false;
   clickCreate = false;
   form: FormGroup;
+  userCollections: any;
 
   constructor(
     private helper: HelpersService,
@@ -29,6 +30,7 @@ export class CollectionComponent implements OnInit {
       description: new FormControl(''),
       isPrivate: new FormControl(false)
     });
+    this.getUserCollections();
   }
 
   getImgUrl(item) {
@@ -36,10 +38,16 @@ export class CollectionComponent implements OnInit {
     if (item) { return this.helper.getImgUrl(item.cloudinary_ver, item.cloudinary_id, item.format); } else { return ''; }
   }
 
-  get userCollections() {
-    if (this.helper.currentUser) {
-      return this.helper.currentUser.collections;
-    } else { return []; }
+  getUserCollections() {
+    this.api.userClt({user_id: this.helper.currentUser.id}).subscribe(
+      data => {
+        this.userCollections = data;
+      },
+      error => {
+        console.log(error);
+        this.router.navigateByUrl('/500');
+      }
+    );
   }
 
   get userId() {
@@ -64,7 +72,7 @@ export class CollectionComponent implements OnInit {
     };
     this.api.createNewClt(formData).subscribe(
       data => {
-        localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
+        this.userCollections = data.body.user.collections;
         this.cancelCreateClt();
       },
       error => {
@@ -98,7 +106,7 @@ export class CollectionComponent implements OnInit {
     if (this.isInThisClt(index)) {
       this.api.remove(body).subscribe(
         data => {
-          localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
+          this.userCollections = data;
           this.cancelCreateClt();
         },
         error => {
@@ -109,7 +117,7 @@ export class CollectionComponent implements OnInit {
     } else {
       this.api.add(body).subscribe(
         data => {
-          localStorage.setItem('currentUser', JSON.stringify({ user: data.body.user }));
+          this.userCollections = data;
           this.cancelCreateClt();
         },
         error => {
