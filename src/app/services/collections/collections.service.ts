@@ -13,6 +13,10 @@ export class CollectionsService extends BaseService {
     this.baseUrl += 'collections/';
   }
 
+  getAllCollections(): Observable<any> {
+    return this.http.get(this.baseUrl, { headers: this.httpHeaders });
+  }
+
   userClt(body): Observable<any> {
     return this.http.post(this.baseUrl + 'user', body, { headers: this.httpHeaders });
   }
