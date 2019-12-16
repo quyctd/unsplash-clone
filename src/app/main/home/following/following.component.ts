@@ -20,7 +20,7 @@ export class FollowingComponent implements OnInit {
 
   ngOnInit() {
     if (!this.userToken) {
-      this.router.navigateByUrl('/404');
+      this.router.navigateByUrl('/join');
     }
     this.getFollowingItem();
   }

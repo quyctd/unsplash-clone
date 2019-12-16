@@ -53,6 +53,12 @@ export class UserComponent implements OnInit {
     this.showAction = false;
   }
 
+  doFollow() {
+    if (!this.helper.token) {
+      this.router.navigateByUrl('/join');
+    }
+  }
+
   getUserInfo() {
     this.api.userInfo(this.username).subscribe(
       data => {

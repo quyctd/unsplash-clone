@@ -90,6 +90,9 @@ export class PhotoViewerComponent implements OnInit {
   }
 
   doLikeItem(itemId) {
+    if (!this.helper.token) {
+      this.router.navigateByUrl('/join');
+    }
     this.api.likePhoto(itemId, this.helper.currentUser.id).subscribe(
       data => {
         this.item = data;
@@ -102,7 +105,11 @@ export class PhotoViewerComponent implements OnInit {
   }
 
   _showCollectionModal() {
-    this.isShowModal = true;
+    if (!this.helper.token) {
+      this.router.navigateByUrl('/join');
+    } else {
+      this.isShowModal = true;
+    }
   }
 
   hideModal() {
