@@ -1,0 +1,65 @@
+#app {
+  height: 100vh;
+}
+
+.not-found-float-bg {
+  width: 100%;
+    height: 100%;
+    position: fixed;
+    background: transparent;
+    background: linear-gradient(180deg,rgba(0,0,0,.8) 0,rgba(0,0,0,.5) 40%,rgba(0,0,0,.5) 70%,rgba(0,0,0,.8))
+}
+
+.not-found-bg-wrapper {
+  height: 100%;
+    background-color: #111;
+    color: #fff;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.nf-logo {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+  top: 18px;
+
+}
+
+.nf-logo-opacity {
+  opacity: .8;
+    transition: opacity .1s ease-in-out;
+}
+
+.nf-text-ctn {
+  position: relative;
+  display: table;
+  height: 100%;
+  width: 100%;
+  max-width: 580px;
+  z-index: 1;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.nf-text-center {
+  display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.nf-404 {
+  font-size: 90px;
+    margin: 0 0 -24px;
+    line-height: 1;
+}
+
+.nf-shadow {
+  text-shadow: 0 1px 1px rgba(0,0,0,.15);
+}
+
+.nf-desc-text {
+  font-size: 18px;
+    margin: 36px auto 48px;
+}
