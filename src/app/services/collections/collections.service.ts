@@ -32,4 +32,8 @@ export class CollectionsService extends BaseService {
   remove(body): Observable<any> {
     return this.http.post(this.baseUrl + 'remove', body, { headers: this.httpHeaders });
   }
+
+  cltInfo(cltId): Observable<any> {
+    return this.http.get(this.baseUrl + cltId, { headers: this.httpHeaders });
+  }
 }

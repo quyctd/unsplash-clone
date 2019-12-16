@@ -2,10 +2,11 @@
 <div data-set="collections-info-dataset">
      <!-- Collections header info section -->
      <div class="relative">
-          <div class="clt-bg-container"><img class="w-100 obj-fit-cover clt-img-bg"
-                    srcset="https://images.unsplash.com/photo-1505253892657-6fcc8796949c?ixlib=rb-1.2.1&amp;dpr=1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;h=500&amp;q=60 1x, https://images.unsplash.com/photo-1505253892657-6fcc8796949c?ixlib=rb-1.2.1&amp;dpr=2&amp;auto=format&amp;fit=crop&amp;w=1600&amp;h=500&amp;q=60 2x"
-                    src="https://images.unsplash.com/photo-1505253892657-6fcc8796949c?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;h=500&amp;q=60"
-                    width="1600" height="500"></div>
+          <div class="clt-bg-container">
+               <img *ngIf="clt.feature_imgs && clt.feature_imgs[0]" class="w-100 obj-fit-cover clt-img-bg"
+                    [src]="getImgUrl(clt.feature_imgs[0])"
+                    width="1600" height="500">
+               </div>
           <div class="display-table">
                <div class="header-pd mg-x-auto limit-width pd-x-12">
                     <div>
@@ -21,28 +22,26 @@
                                              </svg>
                                         </div>
                                    </span>
-                                   Food Flatlays - Light + Bright
+                                   {{ clt.name | titlecase }}
                               </div>
                          </h1>
                          <div class="w-50 fz-18">
-                              <h2 class="mg-bt-24 fz-18 fw-400">Light + bright is everything on social media these days.
-                                   Food bloggers, small business owners, influencers, and the like can make good use of
-                                   these gorgeous images. 
+                              <h2 class="mg-bt-24 fz-18 fw-400">
+                                   {{ clt.describe }}
                               </h2>
                               <span class="relative max-width-100 pointer-auto d-inline-flex align-items-center">
                                    <div class="mr-8">
                                         <div class="relative">
-                                             <div class="img-circle" style="width: 32px; height: 32px;"><a
-                                                       href="/@morganmyers/collections"><img class="_1FdcY"
-                                                            src="https://images.unsplash.com/profile-fb-1476216875-93a7b9edc099.jpg?dpr=1&amp;auto=format&amp;fit=crop&amp;w=32&amp;h=32&amp;q=60&amp;crop=faces&amp;bg=fff"
-                                                            srcset="https://images.unsplash.com/profile-fb-1476216875-93a7b9edc099.jpg?dpr=1&amp;auto=format&amp;fit=crop&amp;w=32&amp;h=32&amp;q=60&amp;crop=faces&amp;bg=fff 1x, https://images.unsplash.com/profile-fb-1476216875-93a7b9edc099.jpg?dpr=2&amp;auto=format&amp;fit=crop&amp;w=32&amp;h=32&amp;q=60&amp;crop=faces&amp;bg=fff 2x"
-                                                            role="presentation" alt="Go to Morgan Myers's profile"></a>
+                                             <div class="img-circle" *ngIf="clt.user" style="width: 32px; height: 32px;"><a
+                                                       href="/user/{{ clt.user.username }}/collections"><img class="_1FdcY"
+                                                            src="../../../../assets/images/undefined_ava.jpg"
+                                                            role="presentation" alt="Go to {{ clt.user.fullname | titlecase }}'s profile"></a>
                                              </div>
                                         </div>
                                    </div>
                                    <div class="relative min-width-0">
-                                        <div class="relative"><a class="lh-30px d-block fz-15 overflow-hidden"
-                                                  href="/@morganmyers/collections">Morgan Myers</a></div>
+                                        <div class="relative"><a *ngIf="clt.user" class="lh-30px d-block fz-15 overflow-hidden"
+                                                  href="/user/{{ clt.user.username }}/collections">{{ clt.user.fullname | titlecase }}</a></div>
                                    </div>
                               </span>
                               <div class="d-flex clt-share-wrapper"><button type="button"
@@ -60,11 +59,11 @@
           </div>
      </div>
      <!-- Photo count section -->
-     <div class="clt-photo-count pd-x-12 mg-x-auto limit-width"><span><span><span>78 </span>photos</span></span></div>
+     <div class="clt-photo-count pd-x-12 mg-x-auto limit-width"><span><span><span>{{ clt.img_count }} </span>{{ clt.img_count | i18nPlural: photoMapping }}</span></span></div>
      <!-- photo grid section -->
-     <app-photogrids></app-photogrids>
+     <app-photogrids *ngIf="clt.img_count && clt.img_count != 0" [items]='cltItems'></app-photogrids>
      <!-- No photo -->
-     <div class="clt-no-photo">No photos yet :(</div>
+     <div *ngIf="clt.img_count == 0 || !clt.img_count" class="clt-no-photo">No photos yet :(</div>
      <!-- Footer -->
      <app-footer></app-footer>
 </div>
