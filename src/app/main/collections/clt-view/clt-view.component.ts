@@ -33,6 +33,17 @@ export class CltViewComponent implements OnInit {
     return false;
   }
 
+  validatePrivateClt() {
+    if (this.clt.status === true) {
+      for (const clt of this.helper.userCollections) {
+        if (clt.id === this.cltId) {
+          return true;
+        }
+      }
+    }
+    this.router.navigateByUrl('/');
+  }
+
   getImgUrl(item) {
     if (item) { return this.helper.getImgUrl(item.cloudinary_ver, item.cloudinary_id, item.format); } else { return ''; }
   }
@@ -43,6 +54,7 @@ export class CltViewComponent implements OnInit {
         console.log(data);
         this.clt = data.body.clt;
         this.cltItems = data.body.items;
+        this.validatePrivateClt();
       },
       error => {
         console.log(error);

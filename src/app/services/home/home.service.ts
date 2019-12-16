@@ -34,4 +34,8 @@ export class HomeService extends BaseService {
     const body = {item_id: itemId, user_id: userId};
     return this.http.post(this.baseUrl + '/like', body, { headers: this.httpHeaders });
   }
+
+  search(query): Observable<any> {
+    return this.http.get(this.baseUrl + '/search/' + query, { headers: this.httpHeaders });
+  }
 }
