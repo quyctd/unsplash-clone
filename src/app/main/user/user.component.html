@@ -137,7 +137,7 @@
 
      <app-photogrids *ngIf="tab == 'photos'" [items]='userdata.photos'></app-photogrids>
      <app-photogrids *ngIf="tab == 'likes'" [items]='userdata.likes'></app-photogrids>
-     <app-collection-grids *ngIf="tab == 'collections'"></app-collection-grids>
+     <app-collection-grids *ngIf="tab == 'collections'" [clts]="userdata.collections"></app-collection-grids>
      <!-- Footer -->
      <app-footer></app-footer>
 </div>

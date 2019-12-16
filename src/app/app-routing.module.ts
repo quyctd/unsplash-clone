@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 's/users/query', component: SearchComponent },
   { path: 'following', component: FollowingComponent },
   { path: 'collections', component: CollectionsComponent },
-  { path: 'collections/id/name', component: CltViewComponent },
+  { path: 'collections/id', component: CltViewComponent },
   { path: 'logout', component: LogoutComponent },
 ];
 

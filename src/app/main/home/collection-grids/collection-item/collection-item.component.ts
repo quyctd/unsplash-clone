@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HelpersService } from 'src/app/services/helpers.service';
 
 @Component({
   selector: 'app-collection-item',
@@ -7,15 +8,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CollectionItemComponent implements OnInit {
 
-  @Input()
-  isLocked = false;
+  @Input() clt: any;
+  photoMapping:
+      {[k: string]: string} = {'=0': 'photos', '=1': 'photo', other: 'photos'};
 
-  constructor() { }
+  constructor(
+    private helper: HelpersService
+  ) { }
 
   ngOnInit() {
   }
 
   isPrivate() {
-    return this.isLocked;
+    return this.clt.status;
+  }
+
+  getImgUrl(item) {
+    if (item) { return this.helper.getImgUrl(item.cloudinary_ver, item.cloudinary_id, item.format); } else { return ''; }
   }
 }
