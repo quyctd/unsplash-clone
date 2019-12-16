@@ -1,6 +1,9 @@
 <app-topbar></app-topbar>
 <div data-set="search-route">
-     <app-s-action [query]="query" [route]="route"></app-s-action>
+     <app-s-action [query]="query" [route]="route" 
+      [photoCount]="sData.photo_count" 
+      [cltCount]="sData.collection_count"
+      [userCount]="sData.user_count"></app-s-action>
      <app-s-header [query]="query"></app-s-header>
 
      <app-photogrids *ngIf="route == 'photos'" [items]="sData.items"></app-photogrids>

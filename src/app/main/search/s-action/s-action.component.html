@@ -9,7 +9,7 @@
                     </svg>
                     <span class="_3CrUz xLon9">Photos</span>
                     <span class="_2EBkY">
-                         &nbsp;<span class="_3vsmH">100</span>
+                         &nbsp;<span class="_3vsmH">{{ photoCount }}</span>
                     </span>
                </a>
                <a [ngClass]="{'nav-link-active': route == 'collections'}" class="s-action-link no-decor" data-test="search-nav-link-collections" href="/s/collections/{{ query }}">
@@ -20,7 +20,7 @@
                     </svg>
                     <span class="_3CrUz xLon9">Collections</span>
                     <span class="_2EBkY">
-                         &nbsp;<span class="_3vsmH">15</span>
+                         &nbsp;<span class="_3vsmH">{{ cltCount }}</span>
                     </span>
                </a>
                <a [ngClass]="{'nav-link-active': route == 'users'}" class="s-action-link no-decor" data-test="search-nav-link-users" href="/s/users/{{ query }}">
@@ -31,7 +31,7 @@
                     </svg>
                     <span class="_3CrUz xLon9">Users</span>
                     <span class="_2EBkY">
-                         &nbsp;<span class="_3vsmH">6</span>
+                         &nbsp;<span class="_3vsmH">{{ userCount }}</span>
                     </span>
                </a>
           </div>

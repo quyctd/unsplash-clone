@@ -37,8 +37,8 @@ export class SearchComponent implements OnInit {
     this.api.search(this.query).subscribe(
       data => {
         console.log(data);
-        localStorage.setItem('search-' + this.query, data);
-        this.sData = data;
+        localStorage.setItem('search-' + this.query, data.body);
+        this.sData = data.body;
       },
       error => {
         console.log(error);

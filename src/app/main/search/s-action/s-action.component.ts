@@ -9,6 +9,9 @@ export class SActionComponent implements OnInit {
 
   @Input() query: string;
   @Input() route: string;
+  @Input() userCount: any;
+  @Input() cltCount: any;
+  @Input() photoCount: any;
 
   constructor() { }
 
