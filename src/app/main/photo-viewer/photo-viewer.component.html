@@ -38,8 +38,8 @@
               </button>
             </div>
             <div class="flex-shrink-0 pd-4">
-              <button type="button" title="Add to collection"
-                class="d-inline-flex uf-btn-white uf-btn-border uf-btn-text no-decor fw-500">
+              <button type="button" title="Add to collection" (click)="_showCollectionModal()"
+                class="d-inline-flex uf-btn-white uf-btn-border uf-btn-text no-decor fw-500" [ngClass]="{'green-btn': isInUserCollection}">
                 <svg class="uf-btn-icon" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
                   <path d="M14 3h4v26h-4zM29 14v4h-26v-4z"></path>
                 </svg>
@@ -138,3 +138,4 @@
 <script>
   {"@context":"https://schema.org","@type":"ImageObject","author":{"@type":"Person","name":"Jing Shi"},"contentLocation":{"@type":"Place","name":"Irvine, CA, USA"},"contentUrl":"https://images.unsplash.com/photo-1573258759625-f40df05cfee3?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjEyMDd9","thumbnail":{"@type":"ImageObject","url":"https://images.unsplash.com/photo-1573258759625-f40df05cfee3?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9"},"datePublished":"2019-11-08T19:20:05-05:00","license":"https://unsplash.com/license","width":"3912px","height":"5868px","isAccessibleForFree":true,"isFamilyFriendly":true,"caption":"My roommate going on social media after waking up.","representativeOfPage":true}
 </script> -->
+<app-modal *ngIf="isShowModal" [item]="item" [type]="'viewer'" (viewerHideModal)="hideModal()"></app-modal>

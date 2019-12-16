@@ -9,7 +9,9 @@ import { HelpersService } from 'src/app/services/helpers.service';
 export class ModalComponent implements OnInit {
 
   @Input() item: any;
+  @Input() type: string;
   @Output() eventHideModal = new EventEmitter();
+  @Output() viewerHideModal = new EventEmitter();
 
   constructor(
     private helper: HelpersService
@@ -20,7 +22,12 @@ export class ModalComponent implements OnInit {
 
   _hideModal() {
     if (this.item) {
-      this.eventHideModal.emit();
+      if (this.type === 'grids') {
+        this.eventHideModal.emit();
+      } else {
+        this.viewerHideModal.emit();
+      }
+      this.item = null;
     }
   }
 

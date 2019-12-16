@@ -14,6 +14,7 @@ export class PhotoViewerComponent implements OnInit {
   photoId: string;
   item: any;
   zoom: boolean;
+  isShowModal = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -98,5 +99,24 @@ export class PhotoViewerComponent implements OnInit {
         this.router.navigateByUrl('/500');
       }
     );
+  }
+
+  _showCollectionModal() {
+    this.isShowModal = true;
+  }
+
+  hideModal() {
+    this.isShowModal = false;
+  }
+
+  get isInUserCollection() {
+    const itemClts = this.item.collections;
+    if (!this.helper.currentUser) { return false; }
+    for (const clt of this.helper.userCollections) {
+      if (itemClts.includes(clt.id)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
