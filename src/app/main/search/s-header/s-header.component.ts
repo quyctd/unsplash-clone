@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SHeaderComponent implements OnInit {
 
   @Input() query: string;
-  @Input() sData: any;
+  @Input() recommends = [];
 
   constructor() { }
 
