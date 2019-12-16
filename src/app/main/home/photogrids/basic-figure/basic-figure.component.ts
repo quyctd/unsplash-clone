@@ -78,4 +78,12 @@ export class BasicFigureComponent implements OnInit {
       this.showCollectionModal.emit(this.item);
     }
   }
+
+  downloadFile() {
+    const link = document.createElement('a');
+    link.setAttribute('type', 'hidden');
+    link.href = this.imgUrl;
+    link.target = '_blank';
+    link.click();
+  }
 }

@@ -47,8 +47,8 @@
               </button>
             </div>
             <div class="width-180 flex-shrink-0 pd-4">
-              <a title="Download photo" [href]="downloadUrl"
-                rel="nofollow" download="" target="_blank"
+              <a title="Download photo" (click)="downloadFile()"
+                rel="nofollow"
                 class="d-inline-flex uf-btn-white uf-btn-border uf-btn-text no-decor fw-500 btn-block-level justify-center">
                 <svg class="uf-btn-icon d-none" version="1.1" viewBox="0 0 32 32" width="32" height="32"
                   aria-hidden="false">

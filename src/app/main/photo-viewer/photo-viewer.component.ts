@@ -126,4 +126,12 @@ export class PhotoViewerComponent implements OnInit {
     }
     return false;
   }
+
+  downloadFile() {
+    const link = document.createElement('a');
+    link.setAttribute('type', 'hidden');
+    link.href = this.imgUrl;
+    link.target = '_blank';
+    link.click();
+  }
 }
