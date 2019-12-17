@@ -40,8 +40,8 @@ export class CltViewComponent implements OnInit {
           return true;
         }
       }
+      this.router.navigateByUrl('/');
     }
-    this.router.navigateByUrl('/');
   }
 
   getImgUrl(item) {

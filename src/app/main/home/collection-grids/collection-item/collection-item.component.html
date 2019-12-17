@@ -38,14 +38,9 @@
           </div>
      </div>
      <div class="tag-wrapper">
-          <div class="pd-bt-l-8">
-               <a class="bg-eee tag d-inline-block" title="silhouette images" href="/s/photos/silhouette">silhouette</a>
+          <div class="pd-bt-l-8" *ngFor="let tag of clt.tags">
+               <a class="bg-eee tag d-inline-block" title="{{ tag.name }} images" href="/s/photos/{{ tag.name }}">{{ tag.name }}</a>
           </div>
-          <div class="pd-bt-l-8">
-               <a class="bg-eee tag d-inline-block" title="sunset images" href="/images/nature/sunset">sunset</a>
-          </div>
-          <div class="pd-bt-l-8">
-               <a class="bg-eee tag d-inline-block" title="sunrise images" href="/s/photos/sunrise">sunrise</a>
-          </div>
+          
      </div>
 </div>
