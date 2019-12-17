@@ -470,7 +470,7 @@
               class="uf-btn-white mr-8 uf-btn-text uf-btn-border no-decor fw-500">
               Cancel
             </button>
-            <button type="submit" (click)="uploadPhotos()" [disabled]="canBePublished ? null : true"
+            <button type="submit" (click)="uploadPhotos()" [disabled]="canBePublished ? null : true" [disabled]=" isUpload ? true : null"
               [ngClass]="canBePublished ? 'uf-btn-black' : 'uf-btn-grey'"
               class="uf-btn-text uf-btn-border no-decor fw-500">
               {{ publishText }}

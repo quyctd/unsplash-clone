@@ -176,6 +176,7 @@ export class AccountComponent implements OnInit {
     };
     this.userApi.updateAva(body).subscribe(
       data => {
+        localStorage.setItem('currentUser', JSON.stringify({ user: data.body }));
         window.location.reload();
       },
       error => {
@@ -197,6 +198,7 @@ export class AccountComponent implements OnInit {
     };
     this.userApi.updateAccount(body).subscribe(
       data => {
+        localStorage.setItem('currentUser', JSON.stringify({ user: data.body }));
         window.location.reload();
       },
       error => {

@@ -1254,3 +1254,10 @@ svg {
 .box-sizing-border-box {
   box-sizing: border-box!important;
 }
+
+.no-available {
+  display: block;
+    max-width: 300px;
+    min-height: 225px;
+    margin: 0 auto;
+}

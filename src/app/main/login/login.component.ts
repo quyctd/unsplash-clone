@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log('Login error');
+        this.router.navigateByUrl('/500');
       }
     );
   }

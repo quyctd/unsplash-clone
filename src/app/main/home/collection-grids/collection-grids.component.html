@@ -1,7 +1,10 @@
 <div data-set='collections-route'>
      <div class="collections-wrapper pd-x-12 mg-x-auto limit-width">
-          <div class="collections-container">
+          <div *ngIf="clts && clts.length != 0" class="collections-container">
                <app-collection-item class="width-4" *ngFor="let clt of clts" [clt]='clt'></app-collection-item>
+          </div>
+          <div *ngIf="!clts || clts.length == 0" style="margin-bottom: 100px; ">
+               <img class="no-available" src="../../../../assets/images/collection_empty.png">
           </div>
           <div id="spinner"></div>
      </div>

@@ -25,6 +25,7 @@ export class UploadComponent implements OnInit {
 
   message = '';
   imgURL: any;
+  isUpload = false;
 
   constructor(
     private cloudinary: Cloudinary,
@@ -305,6 +306,9 @@ export class UploadComponent implements OnInit {
   }
 
   get publishText() {
+    if (this.isUpload) {
+      return 'Publishing...';
+    }
     if (this.filesLength === 0) {
       return 'Publish to UpFamous';
     } else {
@@ -366,10 +370,12 @@ export class UploadComponent implements OnInit {
       list_upload: listUploads
     };
     console.log('Send params: ', params);
+    this.isUpload = true;
 
     this.api.upload(params).subscribe(
       data => {
         console.log('Upload successful', data.body);
+        this.isUpload = false;
         this.router.navigateByUrl('/');
       },
       error => {

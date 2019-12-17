@@ -40,8 +40,8 @@
                                    <div class="figure-author-ava-container">
                                         <div class="relative">
                                              <div class="img-circle" style="width: 32px; height: 32px;">
-                                                  <a href="/user/{{ item.user.username }}"><img class="figura-author-img"
-                                                            [src]="item.user.avatar"
+                                                  <a href="/user/{{ item.user.username }}"><img style="width: 32px; height: 32px;" class="figura-author-img"
+                                                            [src]="helper.imgSquare(item.user.avatar)"
                                                             role="presentation" alt="Go to {{ item.user_fullname }}'s profile" /></a>
                                              </div>
                                         </div>

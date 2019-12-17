@@ -22,13 +22,18 @@
      <div class="navbar__collection-section">
           <ul class="navbar__collection-list">
                <li class="navbar__li-collection">
-                    <a class="navbar__collection navbar__current" href="">
+                    <a class="navbar__collection" href="">
                          Editorial
                     </a>
                </li>
                <li class="navbar__li-collection">
                     <a class="navbar__collection" href='/following'>
                          Following
+                    </a>
+               </li>
+               <li class="navbar__li-collection">
+                    <a class="navbar__collection" href='/collections'>
+                         Collections
                     </a>
                </li>
           </ul>
@@ -44,7 +49,7 @@
           
           <div class="mg-l-8 navbar__user">
                <a href="/user/{{ currentUser.username }}">
-                    <img class="user-avatar" [src]="currentUser.avatar" role="presentation" alt="Go to {{currentUser.first_name}} {{ currentUser.last_name }}'s profile">
+                    <img class="user-avatar" [src]="helper.imgSquare(currentUser.avatar)" role="presentation" alt="Go to {{currentUser.first_name}} {{ currentUser.last_name }}'s profile">
                </a>
           </div>
      </div>

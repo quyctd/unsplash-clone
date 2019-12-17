@@ -11,7 +11,7 @@
                 <div class="relative">
                   <div class="img-circle" style="width:32px;height:32px">
                     <a href="/user/{{ item.user.username }}"><img class="user-avatar"
-                        [src]="item.user.avatar"
+                        [src]="helper.imgSquare(item.user.avatar)"
                         role="presentation" alt="Go to {{ item.user_fullname }}'s profile" />
                     </a>
                   </div>
@@ -96,7 +96,7 @@
           </div>
           <div class="max-width-100 pd-4">
             <div class="max-width-500 uf-grey">
-              <p class="d-inline mg-x-auto">
+              <p class="fz-12 d-inline mg-x-auto">
                 {{ item.description }}
               </p>
             </div>

@@ -83,6 +83,7 @@ export class JoinComponent implements OnInit {
       },
       error => {
         console.log('Register error: ', error, error.body);
+        this.router.navigateByUrl('/500');
       },
       () => {
         console.log();

@@ -45,6 +45,13 @@ export class HelpersService {
     }
   }
 
+  imgSquare(url) {
+    const app = 'w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/';
+    const source = '//res.cloudinary.com/flask-image/image/upload/';
+    const ret = 'http:' + source + app + url.split(source)[1];
+    return ret;
+  }
+
   get currentUser() {
     const userLocal = localStorage.getItem('currentUser');
     if (userLocal !== null && userLocal !== undefined) {

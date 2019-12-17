@@ -1,5 +1,8 @@
 <div class="mg-x-auto limit-width pd-y-12">
-     <div class="user-grid-wrapper d-flex flex-wrap-wrap">
+     <div *ngIf="users && users.length != 0" class="user-grid-wrapper d-flex flex-wrap-wrap">
           <app-user-item class="width-4" *ngFor="let user of users" [user]="user"></app-user-item>
+     </div>
+     <div *ngIf="!users || users.length == 0" style="margin-bottom: 100px; ">
+          <img class="no-available" src="../../../../assets/images/user_empty.png">
      </div>
 </div>

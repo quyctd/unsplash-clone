@@ -1,5 +1,5 @@
 <div class="photogrids">
-     <div>
+     <div *ngIf="items && items.length != 0">
           <div class="grid-count-three">
                <div class="width-4 grid-col-4">
                     <app-basic-figure *ngFor="let item of list1" [item]='item' (showCollectionModal)="showCollectionModal($event)"></app-basic-figure>
@@ -11,6 +11,9 @@
                     <app-basic-figure *ngFor="let item of list3" [item]='item' (showCollectionModal)="showCollectionModal($event)"></app-basic-figure>
                </div>
           </div>
+     </div>
+     <div *ngIf="!items || items.length == 0" style="margin-bottom: 100px; ">
+          <img class="no-available" src="../../../../assets/images/photo_empty.png">
      </div>
      <div id="spinner" class="spinner">
 
