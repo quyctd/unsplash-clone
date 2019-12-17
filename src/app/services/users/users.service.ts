@@ -13,8 +13,8 @@ export class UsersService extends BaseService {
     this.baseUrl += 'users/';
   }
 
-  userInfo(username): Observable<any> {
-    return this.http.get(this.baseUrl + username, {headers: this.httpHeaders});
+  userInfo(username, token): Observable<any> {
+    return this.http.get(this.baseUrl + username + '/' + token, {headers: this.httpHeaders});
   }
 
   accountInfo(token): Observable<any> {

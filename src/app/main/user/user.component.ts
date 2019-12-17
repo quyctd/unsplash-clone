@@ -60,7 +60,8 @@ export class UserComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.api.userInfo(this.username).subscribe(
+    const token = this.helper.token ? this.helper.token : 'nil';
+    this.api.userInfo(this.username, token).subscribe(
       data => {
         this.userdata = data.body;
       },

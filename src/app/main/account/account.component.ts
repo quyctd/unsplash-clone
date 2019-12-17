@@ -39,6 +39,10 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
 
+    if (!this.helper.token) {
+      this.router.navigateByUrl('/join');
+    }
+
     this.form = this.fbuilder.group({
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
