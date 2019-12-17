@@ -16,4 +16,16 @@ export class UsersService extends BaseService {
   userInfo(username): Observable<any> {
     return this.http.get(this.baseUrl + username, {headers: this.httpHeaders});
   }
+
+  accountInfo(token): Observable<any> {
+    return this.http.post(this.baseUrl + 'account', {token}, {headers: this.httpHeaders});
+  }
+
+  updateAva(body): Observable<any> {
+    return this.http.post(this.baseUrl + 'account/update_ava', body, {headers: this.httpHeaders});
+  }
+
+  updateAccount(body): Observable<any> {
+    return this.http.post(this.baseUrl + 'account/update', body, {headers: this.httpHeaders});
+  }
 }

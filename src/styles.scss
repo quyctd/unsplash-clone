@@ -97,6 +97,13 @@ img {
   border: 0;
 }
 
+p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 16px 0;
+}
+
 .paragraph {
   font-size: 15px;
   font-weight: 400;
@@ -109,6 +116,16 @@ a {
   text-decoration: underline;
   -webkit-transition: color 0.1s ease-in-out, opacity 0.1s ease-in-out;
   transition: color 0.1s ease-in-out, opacity 0.1s ease-in-out;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a:not([href]):not([tabindex]) {
+  color: $uf-grey;
+  text-decoration: underline;
 }
 
 .sheet--padding-bottom {

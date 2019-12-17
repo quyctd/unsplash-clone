@@ -10,40 +10,37 @@
           </div> <!-- close .arch -->
 
           <div class="form">
-            <form class="edit_user" id="edit_user" action="/account" accept-charset="UTF-8" method="post">
-              <input
-                name="utf8" type="hidden" value="✓">
-                <input type="hidden" name="_method" value="put">
-                <input type="hidden"
-                name="authenticity_token"
-                [value]="helper.token">
+            <form [formGroup]="form" class="edit_user" id="edit_user" action="/account" accept-charset="UTF-8" method="post">
+                <input name="utf8" type="hidden" value="✓">
+                <input style="display: none;" type="file" accept="image/*" #fileInput ng2FileSelect [uploader]="uploader" class="upload-input">
+                <input type="hidden" name="authenticity_token" [value]="helper.token">
               <div class="uf-row">
                 <div class="col-xs-12 col-sm-4 text-center">
-                  <a href="#"
+                  <a (click)="fileInput.click()"
                     class="d-inline-block">
                     <div class="upload-circular">
                       <img
                         sizes="128px"
-                        class="upload-circular__image upload-circular__image--large"
-                        src="https://images.unsplash.com/profile-fb-1564720054-f09a2804ca97.jpg">
+                        class="obj-fit-cover upload-circular__image upload-circular__image--large"
+                        [src]="userInfo.avatar">
                       <div class="upload-circular__progress">
                       </div> <!-- close .__progress -->
                     </div> <!-- close .upload-circular -->
 
-                    <p class="text-center zeta">Change profile image</p>
+                    <p class="text-center zeta">{{ uploadText }}</p>
                   </a> <!-- close .js -->
                 </div>
 
                 <div class="col-xs-12 col-sm-8">
                   <div class="form-group">
                     <label for="user_first_name">First name</label>
-                    <input class="uf-form-control" type="text" value="Dinh" name="user[first_name]" id="user_first_name">
+                    <input [formGroup]="form" class="uf-form-control" type="text" [value]="userInfo.first_name" formControlName="first_name" name="first_name" id="user_first_name">
 
                   </div> <!-- close .form-group -->
 
                   <div class="form-group">
                     <label for="user_last_name">Last name</label>
-                    <input class="uf-form-control" type="text" value="Quy" name="user[last_name]" id="user_last_name">
+                    <input [formGroup]="form" class="uf-form-control" type="text" [value]="userInfo.last_name" formControlName="last_name" name="last_name" id="user_last_name">
 
                   </div> <!-- close .form-group -->
 
@@ -51,7 +48,7 @@
                     <label for="user_email">
                       Email address
                     </label>
-                    <input class="uf-form-control" type="email" value="quy.dc98@gmail.com" name="user[email]"
+                    <input [formGroup]="form" class="uf-form-control" type="email" [value]="userInfo.email" formControlName="email" name="user[email]"
                       id="user_email">
 
                   </div> <!-- close .form-group -->
@@ -64,7 +61,7 @@
                     <label for="user_username">
                       Username <span class="text-secondary">(only letters, numbers, and underscores)</span>
                     </label>
-                    <input class="form-control" type="text" value="quyctd" name="user[username]" id="user_username">
+                    <input [formGroup]="form" class="form-control" type="text" [value]="userInfo.username" formControlName="username" name="user[username]" id="user_username">
                   </div> <!-- close .form-group -->
                 </div> <!-- close .col -->
 
@@ -72,7 +69,7 @@
                   <div class="form-group">
                     <label for="user_location">Location</label>
                     <div class="input-group">
-                      <input class="form-control" type="text" name="user[location]" id="user_location">
+                      <input [formGroup]="form" class="form-control" type="text" [value]="userInfo.location" formControlName="location" name="user[location]" id="user_location">
                     </div>
 
 
@@ -110,7 +107,7 @@
                       <label for="user_bio">Bio <span class="text-secondary"> (maximum 250 characters)</span></label>
   
                       <div class="input-with-counter js-character-count-container">
-                        <textarea class="form-control" rows="4" data-character-count="250" name="user[bio]"
+                        <textarea [formGroup]="form" class="form-control" [value]="userInfo.bio" formControlName="bio" rows="4" data-character-count="250" name="user[bio]"
                           id="user_bio"></textarea>
                       </div>
   
@@ -122,7 +119,7 @@
               <div class="row">
                 <div class="col-xs-12 col-sm-12">
                   <div class="form-group">
-                    <input type="submit" name="commit" value="Update account" class="uf-btn btn-default btn-block-level "
+                    <input type="submit" (click)="updateUserInfo()" name="commit" value="Update account" class="uf-btn btn-default btn-block-level "
                       data-disable-with="···">
                   </div> <!-- close .form-group -->
                 </div> <!-- close .col -->

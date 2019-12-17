@@ -7,7 +7,6 @@ import { HttpClient } from '@angular/common/http';
 import { PhotoUpload } from '../../models/photoUpload.model';
 import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-upload',
