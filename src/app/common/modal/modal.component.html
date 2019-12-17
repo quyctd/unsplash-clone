@@ -13,7 +13,8 @@
                          </svg>
                     </button>
                </div>
-               <div class="modal-content modal-content-outline pointer-auto">
+               <app-modal-info *ngIf="modalType == 'info'" [item]='item' class="w-100 d-flex"></app-modal-info>
+               <div *ngIf="modalType == 'collection'" class="modal-content modal-content-outline pointer-auto">
                     <div class="relative modal-content-height">
                          <app-modal-collection [item]='item'></app-modal-collection>
                     </div>

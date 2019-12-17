@@ -276,6 +276,10 @@ button {
   padding: 80px 0;
 }
 
+.pd-8 {
+  padding: 8px;
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -553,6 +557,10 @@ button[disabled] {
   line-height: 1.6;
 }
 
+.pd-bt-8 {
+  padding-bottom: 8px;
+}
+
 .pd-bt-l-8 {
   padding-bottom: 8px;
   padding-left: 8px;
@@ -807,6 +815,9 @@ svg {
 .modal-pd {
   @media (min-width: 1400px) {
     padding: 64px 120px 100px;
+  }
+  @media (max-width: 1399px) and (min-width: 768px) {
+    padding: 64px 70px 100px;
   }
 }
 
@@ -1168,6 +1179,10 @@ svg {
   padding: 16px;
   background-color: #fceeeb;
   border-radius: 2px;
+}
+
+.pd-16 {
+  padding: 16px;
 }
 
 .upload-err-text {

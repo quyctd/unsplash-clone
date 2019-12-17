@@ -15,6 +15,7 @@ export class PhotoViewerComponent implements OnInit {
   item: any;
   zoom: boolean;
   isShowModal = false;
+  modalType: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -108,8 +109,14 @@ export class PhotoViewerComponent implements OnInit {
     if (!this.helper.token) {
       this.router.navigateByUrl('/join');
     } else {
+      this.modalType = 'collection';
       this.isShowModal = true;
     }
+  }
+
+  showModalInfo() {
+    this.modalType = 'info';
+    this.isShowModal = true;
   }
 
   hideModal() {

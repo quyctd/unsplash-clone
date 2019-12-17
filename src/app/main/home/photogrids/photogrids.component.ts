@@ -11,6 +11,7 @@ export class PhotogridsComponent implements OnInit {
   private _items = [];
   showModal = false;
   modalItem: any;
+  modalType: string;
 
   get items(): any {
     return this._items;
@@ -48,6 +49,7 @@ export class PhotogridsComponent implements OnInit {
   }
 
   showCollectionModal(item) {
+    this.modalType = 'collection';
     this.showModal = true;
     this.modalItem = item;
   }

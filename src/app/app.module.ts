@@ -48,6 +48,7 @@ import { CollectionComponent } from './common/modal/collection/collection.compon
 import cloudinaryConfiguration from './config';
 import { LogoutComponent } from './main/logout/logout/logout.component';
 import { NotfoundComponent } from './common/notfound/notfound/notfound.component';
+import { InfoComponent } from './common/modal/info/info.component';
 
 export const cloudinary = {
   Cloudinary: CloudinaryCore
@@ -88,7 +89,8 @@ export const config: CloudinaryConfiguration = cloudinaryConfiguration;
     CollectionComponent,
     FileSelectDirective,
     LogoutComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
