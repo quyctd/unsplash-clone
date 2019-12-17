@@ -32,7 +32,8 @@ export class TopbarComponent implements OnInit {
   }
 
   search() {
-    const query = this.sForm.get('query').value;
+    let query = this.sForm.get('query').value;
+    query = decodeURI(query);
     if (query) {
       this.router.navigateByUrl('/s/photos/' + query);
     }

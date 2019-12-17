@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.sData = {};
     this.route = this.router.url.split('/')[2];
-    this.query = this.router.url.split('/')[3];
+    this.query = decodeURI(this.router.url.split('/')[3]);
     this.getSearchInfo();
   }
 
