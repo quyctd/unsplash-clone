@@ -17,4 +17,5 @@ export class PhotoUpload {
   fileIndex: any;
   paddingBottom: any;
   deleteToken: any;
+  location = '';
 }

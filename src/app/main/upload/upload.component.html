@@ -147,19 +147,18 @@
                                       </div>
                                     </div>
                                     <div class="mg-t-auto">
-                                      <button *ngIf="false" type="button"
+                                      <button *ngIf="!showLocation[i]" (click)="showAddLocation(i)" [id]="'btn_location_' + i" type="button"
                                         class="upload-location-wrapper icon-outline-1">
                                         <svg class="add-location-icon" version="1.1" viewBox="0 0 32 32" width="32"
                                           height="32" aria-hidden="false">
                                           <path
                                             d="M16 0c-6.7 0-12 5.3-12 12 0 8.6 8.6 17.3 11.2 19.7.4.4 1.1.4 1.5 0 2.7-2.4 11.3-11.1 11.3-19.7 0-6.7-5.3-12-12-12zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
                                           </path>
-                                        </svg><span class="overflow-hidden pd-l-8">Add
-                                          location</span>
+                                        </svg><span class="overflow-hidden pd-l-8">{{ locationText(i) }}</span>
                                       </button>
-                                      <div class="">
+                                      <div *ngIf="showLocation[i]" class="">
                                         <div class="relative flex-grow-1">
-                                          <div class="upload-location-wrapper location-wrapper-shadow">
+                                          <div class="upload-location-ip-wrapper location-wrapper-shadow">
                                             <button title="location" type="button"
                                               class="d-flex align-items-center location-icon-border"><svg
                                                 class="upload-location-icon upload-location-icon-box" version="1.1"
@@ -170,12 +169,14 @@
                                               </svg>
                                             </button>
                                             <div role="combobox" aria-haspopup="listbox"
-                                              aria-owns="react-autowhatever-LOCATION_AUTOCOMPLETE_INPUT"
-                                              aria-expanded="false" class="flex-grow-1 d-flex">
+                                              aria-expanded="false" class="flex-grow-1 d-flex mg-r-16">
                                               <input type="search" autocomplete="off" aria-autocomplete="list"
                                                 class="box-sizing-border-box upload-location-input"
-                                                id="LOCATION_AUTOCOMPLETE_INPUT" title="Location search"
-                                                placeholder="Add a place or a city, Enter to add" value="">
+                                                [id]="'input_location' + i" title="Location search"
+                                                placeholder="Add a place or a city" value="">
+                                              <button (click)="doAddLocation(i)" title="location" type="button" class="mg-l-8 d-flex align-items-center location-icon-border">
+                                                Add
+                                              </button> 
                                             </div>
                                           </div>
                                         </div>
@@ -184,7 +185,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <textarea class="upload-description-area" placeholder="Add a description (optional)"
+                              <textarea class="upload-description-area" [id]="'description_' + i" placeholder="Add a description (optional)"
                                 maxlength="600"></textarea>
                             </div>
                           </div>
@@ -324,7 +325,6 @@
                                           </svg>
                                         </button>
                                         <div role="tooltip"
-                                          id="uploader-form-valid-file-0d26b6aa-be2c-40a1-8b1d-00fc55b62681-removeButton"
                                           class="mytooltip">
                                           {{ removeFileText(file.progress) }}
                                         </div>

@@ -21,6 +21,7 @@ export class UploadComponent implements OnInit {
   limit = 10;
   hasBaseDropZoneOver = false;
   uploader: FileUploader;
+  showLocation = [];
 
   message = '';
   imgURL: any;
@@ -115,6 +116,7 @@ export class UploadComponent implements OnInit {
     };
 
     this.uploader.onAfterAddingFile = (item: any) => {
+      this.showLocation.push(false);
       // Build new Upload Photo
       const uploadPhoto = new PhotoUpload();
       uploadPhoto.file = item.file.rawFile;
@@ -342,16 +344,18 @@ export class UploadComponent implements OnInit {
 
   uploadPhotos() {
     let listUploads = [];
-    for (const upPhoto of this.files) {
+    for (let i = 0; i < this.files.length; i++) {
+      const upPhoto = this.files[i];
       const itemUpload = {
-        description: '',
         width: upPhoto.width,
         height: upPhoto.height,
         uploaded_at: Date.now(),
         cloudinary_id: upPhoto.cloudId,
         cloudinary_ver: upPhoto.cloudVersion,
         format: upPhoto.format,
-        original_file_name: upPhoto.originalFilename
+        original_file_name: upPhoto.originalFilename,
+        location: upPhoto.location,
+        description: this.getDescription(i)
       };
       listUploads.push(itemUpload);
     }
@@ -374,5 +378,26 @@ export class UploadComponent implements OnInit {
         console.log();
       }
     );
+  }
+
+  getDescription(i) {
+    const desc = document.getElementById('description_' + i) as HTMLInputElement;
+    if (desc.value) { return desc.value; } else { return ''; }
+  }
+
+  showAddLocation(i) {
+    this.showLocation[i] = true;
+  }
+
+  doAddLocation(i) {
+    const location = document.getElementById('input_location' + i) as HTMLInputElement;
+    this.files[i].location = location.value;
+    this.showLocation[i] = false;
+  }
+
+  locationText(i) {
+    if (this.files[i].location) {
+      return this.files[i].location;
+    } else { return 'Add location'; }
   }
 }

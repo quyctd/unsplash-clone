@@ -86,13 +86,13 @@
       </div>
       <div class="photo-info">
         <div class="photo-main-info pd-4">
-          <div class="max-width-100 pd-4">
-            <a class="fw-500 photo-location" href="/s/photos/irvine%2C-ca%2C-usa"><svg class="photo-location-icon"
+          <div *ngIf="item.location" class="max-width-100 pd-4">
+            <a class="fw-500 photo-location" href="/s/photos/{{ item.location }}"><svg class="photo-location-icon"
                 version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
                 <path
                   d="M16 0c-6.7 0-12 5.3-12 12 0 8.6 8.6 17.3 11.2 19.7.4.4 1.1.4 1.5 0 2.7-2.4 11.3-11.1 11.3-19.7 0-6.7-5.3-12-12-12zm0 18c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
                 </path>
-              </svg><span class="overflow-hidden">Irvine, CA, USA</span></a>
+              </svg><span class="overflow-hidden">{{ item.location }}</span></a>
           </div>
           <div class="max-width-100 pd-4">
             <div class="max-width-500 uf-grey">
@@ -134,8 +134,4 @@
     <!-- Related collections -->
   </div>
 </div>
-<!-- 
-<script>
-  {"@context":"https://schema.org","@type":"ImageObject","author":{"@type":"Person","name":"Jing Shi"},"contentLocation":{"@type":"Place","name":"Irvine, CA, USA"},"contentUrl":"https://images.unsplash.com/photo-1573258759625-f40df05cfee3?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjEyMDd9","thumbnail":{"@type":"ImageObject","url":"https://images.unsplash.com/photo-1573258759625-f40df05cfee3?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9"},"datePublished":"2019-11-08T19:20:05-05:00","license":"https://unsplash.com/license","width":"3912px","height":"5868px","isAccessibleForFree":true,"isFamilyFriendly":true,"caption":"My roommate going on social media after waking up.","representativeOfPage":true}
-</script> -->
 <app-modal *ngIf="isShowModal" [item]="item" [modalType]='modalType' [type]="'viewer'" (viewerHideModal)="hideModal()"></app-modal>
