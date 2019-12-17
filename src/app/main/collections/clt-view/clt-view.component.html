@@ -34,7 +34,7 @@
                                         <div class="relative">
                                              <div class="img-circle" *ngIf="clt.user" style="width: 32px; height: 32px;"><a
                                                        href="/user/{{ clt.user.username }}/collections"><img class="_1FdcY"
-                                                            src="../../../../assets/images/undefined_ava.jpg"
+                                                            [src]="clt.user.avatar"
                                                             role="presentation" alt="Go to {{ clt.user.fullname | titlecase }}'s profile"></a>
                                              </div>
                                         </div>
