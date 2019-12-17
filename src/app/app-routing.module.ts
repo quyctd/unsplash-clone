@@ -12,6 +12,7 @@ import { CollectionsComponent } from './main/collections/collections.component';
 import { CltViewComponent } from './main/collections/clt-view/clt-view.component';
 import { LogoutComponent } from './main/logout/logout/logout.component';
 import { NotfoundComponent } from './common/notfound/notfound/notfound.component';
+import { AccountComponent } from './main/account/account.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'following', component: FollowingComponent },
   { path: 'collections', component: CollectionsComponent },
   { path: 'collections/:id', component: CltViewComponent },
+  { path: 'account', component: AccountComponent },
   { path: 'logout', component: LogoutComponent },
   { path: '404', component: NotfoundComponent },
   { path: '**', component: NotfoundComponent }
