@@ -300,6 +300,7 @@ export class UploadComponent implements OnInit {
     } else {
       this.deleteImage(upPhoto, i);
       this.files.splice(i, 1);
+      this.showLocation.splice(i, 1);
     }
   }
 
