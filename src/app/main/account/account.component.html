@@ -33,19 +33,19 @@
 
                 <div class="col-xs-12 col-sm-8">
                   <div class="form-group">
-                    <label for="user_first_name">First name</label>
+                    <label class='label' for="user_first_name">First name</label>
                     <input [formGroup]="form" class="uf-form-control" type="text" [value]="userInfo.first_name" formControlName="first_name" name="first_name" id="user_first_name">
 
                   </div> <!-- close .form-group -->
 
                   <div class="form-group">
-                    <label for="user_last_name">Last name</label>
+                    <label class='label' for="user_last_name">Last name</label>
                     <input [formGroup]="form" class="uf-form-control" type="text" [value]="userInfo.last_name" formControlName="last_name" name="last_name" id="user_last_name">
 
                   </div> <!-- close .form-group -->
 
                   <div class="form-group">
-                    <label for="user_email">
+                    <label class='label' for="user_email">
                       Email address
                     </label>
                     <input [formGroup]="form" class="uf-form-control" type="email" [value]="userInfo.email" formControlName="email" name="user[email]"
@@ -58,7 +58,7 @@
               <div class="row">
                 <div class="col-xs-12 col-sm-12">
                   <div class="form-group">
-                    <label for="user_username">
+                    <label class='label' for="user_username">
                       Username <span class="text-secondary">(only letters, numbers, and underscores)</span>
                     </label>
                     <input [formGroup]="form" class="form-control" type="text" [value]="userInfo.username" formControlName="username" name="user[username]" id="user_username">
@@ -67,7 +67,7 @@
 
                 <div class="col-xs-12 col-sm-6">
                   <div class="form-group">
-                    <label for="user_location">Location</label>
+                    <label class='label' for="user_location">Location</label>
                     <div class="input-group">
                       <input [formGroup]="form" class="form-control" type="text" [value]="userInfo.location" formControlName="location" name="user[location]" id="user_location">
                     </div>
@@ -80,7 +80,7 @@
 
                 <div class="col-xs-12 col-sm-6">
                   <div class="form-group">
-                    <label for="user_interests">
+                    <label class='label' for="user_interests">
                       Interests
                     </label>
                     <input type="text" name="user[user_tags_set][custom_tags]" id="user_interests"
@@ -104,7 +104,7 @@
 
                 <div class="col-xs-12 col-sm-12">
                     <div class="form-group">
-                      <label for="user_bio">Bio <span class="text-secondary"> (maximum 250 characters)</span></label>
+                      <label class='label' for="user_bio">Bio <span class="text-secondary"> (maximum 250 characters)</span></label>
   
                       <div class="input-with-counter js-character-count-container">
                         <textarea [formGroup]="form" class="form-control" [value]="userInfo.bio" formControlName="bio" rows="4" data-character-count="250" name="user[bio]"
