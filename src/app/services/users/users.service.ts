@@ -28,4 +28,8 @@ export class UsersService extends BaseService {
   updateAccount(body): Observable<any> {
     return this.http.post(this.baseUrl + 'account/update', body, {headers: this.httpHeaders});
   }
+
+  doFollow(userId, username): Observable<any> {
+    return this.http.post(this.baseUrl + 'follow/' + userId + '/' + username, {headers: this.httpHeaders});
+  }
 }

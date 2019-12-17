@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   username: string;
   userdata: any;
   showAction = false;
+  isFollowing = false;
 
   constructor(
     private helper: HelpersService,
@@ -57,6 +58,19 @@ export class UserComponent implements OnInit {
     if (!this.helper.token) {
       this.router.navigateByUrl('/join');
     }
+    this.api.doFollow(this.helper.currentUser.id, this.username).subscribe(
+      data => {
+        this.isFollowing = data.status;
+      },
+      error => {
+        console.log(error);
+        this.router.navigateByUrl('/404');
+      }
+    );
+  }
+
+  get followText() {
+    if (this.isFollowing) { return 'Following';} else { return 'Follow'; }
   }
 
   getUserInfo() {
@@ -64,6 +78,12 @@ export class UserComponent implements OnInit {
     this.api.userInfo(this.username, token).subscribe(
       data => {
         this.userdata = data.body;
+        for (const follow of data.body.follower) {
+          if (follow.id === this.helper.currentUser.id) {
+            this.isFollowing = true;
+            break;
+          }
+        }
       },
       error => {
         console.log(error);

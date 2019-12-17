@@ -23,15 +23,18 @@
                                              <div class="user-info-act-pd">
                                                   <div *ngIf="!isCurrentUser" class="user-info-act-btn-wrapper">
                                                        <div class="pd-bt-l-8 ">
-                                                            <button type="button" (click)="doFollow()"
-                                                                 class="uf-btn-blue uf-btn-border uf-btn-text no-decor fw-500">
-                                                                 <span><svg class="follow-icon" version="1.1"
+                                                            <button type="button" (click)="doFollow()" [ngClass]="{'uf-btn-blue': !isFollowing, 'uf-btn-white': isFollowing }"
+                                                                 class="uf-btn-border uf-btn-text no-decor fw-500">
+                                                                 <span>
+                                                                      <svg *ngIf="!isFollowing" class="follow-icon" version="1.1"
                                                                            viewBox="0 0 32 32" width="32" height="32"
                                                                            aria-hidden="false">
                                                                            <path
                                                                                 d="M31.2 12.8h-2.4v-2.4c0-.4-.4-.8-.8-.8h-1.6c-.4 0-.8.4-.8.8v2.4h-2.4c-.4 0-.8.4-.8.8v1.6c0 .4.4.8.8.8h2.4v2.4c0 .4.4.8.8.8h1.6c.4 0 .8-.4.8-.8v-2.4h2.4c.4 0 .8-.4.8-.8v-1.6c0-.4-.4-.8-.8-.8zm-15.2 5.1v-1.2c1.9-1.1 3.2-3.1 3.2-5.5v-1.6c0-3.5-2.9-6.4-6.4-6.4s-6.4 2.9-6.4 6.4v1.6c0 2.4 1.3 4.4 3.2 5.5v1.2c-5.5.9-9.6 4-9.6 7.7v1.6c0 .9.7 1.6 1.6 1.6h22.4c.9 0 1.6-.7 1.6-1.6v-1.6c0-3.7-4.1-6.8-9.6-7.7z">
                                                                            </path>
-                                                                      </svg>Follow</span>
+                                                                      </svg>
+                                                                      {{ followText }}
+                                                                 </span>
                                                             </button>
                                                        </div>
                                                        <div class="pd-bt-l-8 " [ngStyle]="{display: 'none'}">
