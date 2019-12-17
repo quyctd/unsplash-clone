@@ -23,27 +23,27 @@ export class InfoComponent implements OnInit {
   }
 
   get cameraMake() {
-    if (this.item && this.item.exif.Make) { return this.item.exif.Make; } else { return '--'; }
+    if (this.item && this.item.exif && this.item.exif.camera_maker) { return this.item.exif.camera_maker; } else { return '--'; }
   }
 
   get cameraModel() {
-    if (this.item && this.item.exif.Model) { return this.item.exif.Model; } else { return '--'; }
+    if (this.item && this.item.exif && this.item.exif.camera_model) { return this.item.exif.camera_model; } else { return '--'; }
   }
 
   get ISO() {
-    if (this.item && this.item.exif.ISOSpeedRatings) { return this.item.exif.ISOSpeedRatings; } else { return '--'; }
+    if (this.item && this.item.exif && this.item.exif.iso) { return this.item.exif.iso; } else { return '--'; }
   }
 
   get focusLength() {
-    if (this.item && this.item.exif.FocalLength) { return this.item.exif.FocalLength; } else { return '--'; }
+    if (this.item && this.item.exif && this.item.exif.focus_length) { return this.item.exif.focus_length; } else { return '--'; }
   }
   
   get ApertureValue() {
-    if (this.item && this.item.exif.ApertureValue) { return this.item.exif.ApertureValue; } else { return '--'; }
+    if (this.item && this.item.exif && this.item.exif.aperture) { return this.item.exif.aperture; } else { return '--'; }
   }
   
   get ShutterSpeedValue() {
-    if (this.item && this.item.exif.ShutterSpeedValue) { return this.item.exif.ShutterSpeedValue; } else { return '--'; }
+    if (this.item && this.item.exif && this.item.exif.shutter_speed) { return this.item.exif.shutter_speed; } else { return '--'; }
   }
 
   get dimension() {

@@ -38,4 +38,8 @@ export class HomeService extends BaseService {
   search(query): Observable<any> {
     return this.http.get(this.baseUrl + '/search/' + query, { headers: this.httpHeaders });
   }
+
+  download(itemId): Observable<any> {
+    return this.http.post(this.baseUrl + '/download/' + itemId, { headers: this.httpHeaders });
+  }
 }

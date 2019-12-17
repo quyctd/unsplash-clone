@@ -85,5 +85,6 @@ export class BasicFigureComponent implements OnInit {
     link.href = this.imgUrl;
     link.target = '_blank';
     link.click();
+    this.api.download(this.item.id).subscribe();
   }
 }
