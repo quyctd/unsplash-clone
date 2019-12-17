@@ -3,7 +3,7 @@
     <div class="pd-8">
       <h2 class="info-text lh-12">Info</h2>
       <span class="fz-12">Published on 
-        <time datetime="2019-12-16T08:58:43-05:00">December 16, 2019</time></span>
+        <time>{{ helper.dateToText(item.created_at) }}</time></span>
     </div>
   </div>
   <dl class="d-flex flex-wrap-wrap pd-16 mg-y-0">
@@ -32,31 +32,31 @@
   <dl class="exif pd-16">
     <div class="info-stat pd-8">
       <dt class="exif-text">Camera Make</dt>
-      <dd class="mg-l-0">--</dd>
+      <dd class="mg-l-0">{{ cameraMake }}</dd>
     </div>
     <div class="info-stat pd-8">
       <dt class="exif-text">Camera Model</dt>
-      <dd class="mg-l-0">--</dd>
+      <dd class="mg-l-0">{{cameraModel}}</dd>
     </div>
     <div class="info-stat pd-8">
       <dt class="exif-text">Focal Length</dt>
-      <dd class="mg-l-0">--</dd>
+      <dd class="mg-l-0">{{ focusLength }}</dd>
     </div>
     <div class="info-stat pd-8">
       <dt class="exif-text">Aperture</dt>
-      <dd class="mg-l-0">--</dd>
+      <dd class="mg-l-0">{{ ApertureValue }}</dd>
     </div>
     <div class="info-stat pd-8">
       <dt class="exif-text">Shutter Speed</dt>
-      <dd class="mg-l-0">--</dd>
+      <dd class="mg-l-0">{{ ShutterSpeedValue }}</dd>
     </div>
     <div class="info-stat pd-8">
       <dt class="exif-text">ISO</dt>
-      <dd class="mg-l-0">--</dd>
+      <dd class="mg-l-0">{{ ISO }}</dd>
     </div>
     <div class="info-stat pd-8">
       <dt class="exif-text">Dimensions</dt>
-      <dd class="mg-l-0">2939 × 3739</dd>
+      <dd class="mg-l-0">{{ dimension }}</dd>
     </div>
   </dl>
 </div>
