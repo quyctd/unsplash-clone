@@ -1,6 +1,6 @@
 export default {
-    cloud_name: 'flask-image',
-    upload_preset: 'upfamous',
-    api_key: '133444264233997',
-    api_secret: 'SrlSO-4T4W2lQx72PEYGHSEnOwU'
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    upload_preset: process.env.CLOUDINARY_UPLOAD_PRESET,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET_KEY
 }
