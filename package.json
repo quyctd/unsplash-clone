@@ -27,7 +27,7 @@
     "cloudinary-core": "^2.8.0",
     "crypto-js": "^3.1.9-1",
     "dotenv": "^8.2.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-click-outside": "^5.1.1",
     "ng2-file-upload": "^1.4.0",
     "rxjs": "~6.4.0",
